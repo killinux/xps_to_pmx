@@ -1,0 +1,186 @@
+Starting new HTTPS connection (1): api.github.com:443
+https://api.github.com:443 "GET /repos/UuuNyaa/blender_mmd_assets/issues?state=open&milestone=1&labels=Official&per_page=100&page=1 HTTP/1.1" 200 None
+https://api.github.com:443 "GET /repos/UuuNyaa/blender_mmd_assets/issues?state=open&milestone=1&labels=Official&per_page=100&page=2 HTTP/1.1" 200 None
+****************************************
+ mmd_tools.core.pmx.exporter module
+----------------------------------------
+Loading mesh: mesh
+ - Calculating normals split...
+   - Done (polygons:2)
+exportings pmx model data...
+name: E
+name(english): E
+comment:
+exported by mmd_tools
+comment(english):
+exported by mmd_tools
+
+exporting vertices... 4
+finished exporting vertices.
+exporting faces... 2
+finished exporting faces.
+exporting textures... 0
+finished exporting textures.
+exporting materials... 2
+finished exporting materials.
+exporting bones... 1
+finished exporting bones.
+exporting morphs... 0
+finished exporting morphs.
+exporting display items... 0
+finished exporting display items.
+exporting rigid bodies... 0
+finished exporting rigid bodies.
+exporting joints... 0
+finished exporting joints.
+finished exporting the model.
+close the file("C:\Users\haoni\AppData\Local\Temp\mmd_tools_102_enum.pmx")
+ Finished exporting the model in 0.007524 seconds.
+----------------------------------------
+ mmd_tools.core.pmx.exporter module
+****************************************
+****************************************
+ mmd_tools.pmx module
+----------------------------------------
+ Start to load model data form a pmx file
+            by the mmd_tools.pmx modlue.
+
+loading pmx header information...
+File signature is b'PMX '
+pmx format version: 2.000000
+----------------------------
+pmx header information
+----------------------------
+pmx version: 2.0
+encoding: <Encoding charset utf-16-le>
+number of uvs: 0
+vertex index size: 1 byte(s)
+texture index: 1 byte(s)
+material index: 1 byte(s)
+bone index: 1 byte(s)
+morph index: 1 byte(s)
+rigid index: 1 byte(s)
+----------------------------
+Model name: E
+Model name(english): E
+Comment:exported by mmd_tools
+Comment(english):exported by mmd_tools
+
+------------------------------
+Load Vertices
+------------------------------
+----- Loaded 4 vertices
+
+------------------------------
+ Load Faces
+------------------------------
+ Load 2 faces
+
+------------------------------
+ Load Textures
+------------------------------
+ ----- Loaded 0 textures
+
+------------------------------
+ Load Materials
+------------------------------
+Material 0: 材質1
+  Name(english): 
+  Comment: 
+  Vertex Count: 3
+  Diffuse: (0.80, 0.80, 0.80, 1.00)
+  Specular: (0.62, 0.62, 0.62)
+  Shininess: 50.000000
+  Ambient: (0.40, 0.40, 0.40)
+  Double Sided: False
+  Drop Shadow: True
+  Self Shadow: True
+  Self Shadow Map: True
+  Edge: False
+  Edge Color: (0.00, 0.00, 0.00, 1.00)
+  Edge Size: 1.00
+  Texture: None
+  Sphere Texture: None
+
+Material 1: 材質2
+  Name(english): 
+  Comment: 
+  Vertex Count: 3
+  Diffuse: (0.80, 0.80, 0.80, 1.00)
+  Specular: (0.62, 0.62, 0.62)
+  Shininess: 50.000000
+  Ambient: (0.40, 0.40, 0.40)
+  Double Sided: False
+  Drop Shadow: True
+  Self Shadow: True
+  Self Shadow Map: True
+  Edge: False
+  Edge Color: (0.00, 0.00, 0.00, 1.00)
+  Edge Size: 1.00
+  Texture: None
+  Sphere Texture: None
+
+----- Loaded 2  materials.
+
+------------------------------
+ Load Bones
+------------------------------
+Bone 0: 全ての親
+  Name(english): 
+  Location: (0.000000, 0.000000, 0.000000)
+  displayConnection: (0.0, 5.0, 0.0)
+  Parent: -1
+  Transform Order: 0
+  Rotatable: True
+  Movable: True
+  Visible: True
+  Controllable: True
+  Additional Location: False
+  Additional Rotation: False
+  IK: False
+
+----- Loaded 1 bones.
+
+------------------------------
+ Load Morphs
+------------------------------
+----- Loaded 0 morphs.
+
+------------------------------
+ Load Display Items
+------------------------------
+----- Loaded 0 display items.
+
+------------------------------
+ Load Rigid Bodies
+------------------------------
+----- Loaded 0 rigid bodies.
+
+------------------------------
+ Load Joints
+------------------------------
+----- Loaded 0 joints.
+ Finished loading.
+----------------------------------------
+ mmd_tools.pmx module
+****************************************
+close the file("C:\Users\haoni\AppData\Local\Temp\mmd_tools_102_enum.pmx")
+BlenderMCP addon registered
+xps_tools addon: Verbose is enabled
+xps_tools addon: Read in JSON settings from file
+mmd_tools registed 140 classes
+[WARN] Geometry Nodes do not exist. Ignore it.
+[WARN] Geometry Nodes do not exist. Ignore it.
+[WARN] Geometry Nodes do not exist. Ignore it.
+[WARN] Geometry Nodes do not exist. Ignore it.
+[WARN] Geometry Nodes are not initialized. Ignore it.
+mmd_uuunyaa_tools addon: Verbose is enabled
+mmd_uuunyaa_tools addon: Read in JSON settings from file
+Asset Auto Update: repo='UuuNyaa/blender_mmd_assets', query='{"state": "open", "milestone": 1, "labels": "Official"}'
+ContentCache.__init__: cache_folder=C:\Users\haoni\AppData\Local\Temp\mmd_uuunyaa_tools_cache, temporary_dir=C:\Users\haoni\AppData\Local\Temp\tmp5rv1diwy
+WROTE C:\Users\haoni\AppData\Local\Temp\claude\E--code-model-tools-xps-to-pmx\441df278-ebd9-48c0-b8a0-450576caae61\scratchpad\verify_live3_102.json
+BlenderMCP addon unregistered
+Blender 3.6.15 (hash f612027620c9 built 2024-08-19 11:30:00)
+Read prefs: "C:\Users\haoni\AppData\Roaming\Blender Foundation\Blender\3.6\config\userpref.blend"
+
+Blender quit

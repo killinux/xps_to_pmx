@@ -1,0 +1,63 @@
+{
+ "K_enum_idprop_and_toon_idprop": {
+  "M1": {
+   "rna_sphere_type": "0",
+   "rna_is_shared": true,
+   "rna_shared_toon": 3,
+   "surface_src": "ShaderNodeBsdfPrincipled",
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ]
+  },
+  "M2": {
+   "rna_sphere_type": "1",
+   "rna_is_shared": true,
+   "rna_shared_toon": 3,
+   "surface_src": "ShaderNodeBsdfPrincipled",
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ]
+  },
+  "M3": {
+   "rna_sphere_type": "2",
+   "rna_is_shared": true,
+   "rna_shared_toon": 3,
+   "surface_src": "ShaderNodeBsdfPrincipled",
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ]
+  },
+  "M4": {
+   "rna_sphere_type": "3",
+   "rna_is_shared": true,
+   "rna_shared_toon": 3,
+   "surface_src": "ShaderNodeBsdfPrincipled",
+   "nodes": [
+    "ShaderNodeBsdfPrincipled",
+    "ShaderNodeOutputMaterial"
+   ]
+  },
+  "exported_materials": [
+   [
+    "材質1",
+    0,
+    true,
+    3
+   ],
+   [
+    "材質2",
+    1,
+    true,
+    3
+   ]
+  ],
+  "has_vertex_group_sort_op": true,
+  "vertex_group_sort_types": [
+   "NAME",
+   "BONE_HIERARCHY"
+  ]
+ }
+}

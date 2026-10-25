@@ -1,0 +1,163 @@
+{
+ "G_fallback_order": {
+  "creation_order": [
+   "R",
+   "X1",
+   "R2",
+   "X2",
+   "Y1"
+  ],
+  "data_bones_order": [
+   "R",
+   "X1",
+   "Y1",
+   "X2",
+   "R2"
+  ],
+  "pose_bones_order": [
+   "R",
+   "X1",
+   "Y1",
+   "X2",
+   "R2"
+  ],
+  "exported_order": [
+   "R",
+   "X1",
+   "Y1",
+   "X2",
+   "R2"
+  ],
+  "exported_visible": {
+   "R": true,
+   "X1": true,
+   "Y1": false,
+   "X2": false,
+   "R2": true
+  },
+  "root_empty_display_size_for_scale_0.08": 0.4000000059604645,
+  "model_name_e_comment": [
+   "O",
+   "O",
+   "exported by mmd_tools",
+   "exported by mmd_tools"
+  ]
+ },
+ "H_create_with_existing_armature": {
+  "root_name": "XPSRoot",
+  "arm_name_after": "Armature",
+  "arm_parent": "XPSRoot",
+  "arm_world_unchanged": true,
+  "mesh_world_unchanged": true,
+  "arm_matrix_local_is_identity": true,
+  "root_location": [
+   1.0,
+   2.0,
+   3.0
+  ],
+  "root_scale": [
+   0.4999999701976776,
+   0.4999999701976776,
+   0.5
+  ],
+  "arm_locks": [
+   [
+    true,
+    true,
+    true
+   ],
+   [
+    true,
+    true,
+    true
+   ],
+   [
+    true,
+    true,
+    true
+   ]
+  ],
+  "meshes_found": [
+   "Body"
+  ],
+  "mesh_modifiers": [
+   [
+    "Armature",
+    "ARMATURE"
+   ]
+  ]
+ },
+ "I_mmd_material_rewires_nodes": {
+  "nodes_initial": [
+   [
+    "ShaderNodeBsdfPrincipled",
+    "原理化BSDF"
+   ],
+   [
+    "ShaderNodeOutputMaterial",
+    "材质输出"
+   ]
+  ],
+  "surface_src_initial": [
+   "ShaderNodeBsdfPrincipled",
+   "原理化BSDF"
+  ],
+  "after_idprop_write": {
+   "surface_src": [
+    "ShaderNodeBsdfPrincipled",
+    "原理化BSDF"
+   ],
+   "nodes": [
+    "原理化BSDF",
+    "材质输出"
+   ],
+   "rna_read_diffuse": [
+    0.8999999761581421,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "rna_read_alpha": 0.5
+  },
+  "after_name_write": {
+   "surface_src": [
+    "ShaderNodeBsdfPrincipled",
+    "原理化BSDF"
+   ],
+   "name_j": "体"
+  },
+  "after_rna_write": {
+   "surface_src": [
+    "ShaderNodeGroup",
+    "mmd_shader"
+   ],
+   "nodes": [
+    "mmd_shader",
+    "mmd_tex_uv",
+    "原理化BSDF",
+    "材质输出"
+   ],
+   "principled_still_exists": true,
+   "blend_method": "OPAQUE"
+  }
+ },
+ "J_operators_and_api_presence": {
+  "export_poll": true,
+  "export_to_bad_path_raised": "RuntimeError('错误: Traceback (most recent call last):\\n  File \"C:\\\\Users\\\\haoni\\\\AppData\\\\Roaming\\\\Blender Foundation\\\\Blender\\\\3.6\\\\scripts\\\\addons\\\\mmd_tools\\\\operators\\\\fileio.py\", line 515, in execute\\n    self._do_execute(context, root)\\n  File \"C:\\\\Users\\\\haoni\\\\AppData\\\\Roaming\\\\Blender Foundation\\\\Blender\\\\3.6\\\\scripts\\\\addons\\\\mmd_tools\\\\operators\\\\fileio.py\", line 544, in _do_execute\\n    pmx_exporter.export(\\n  File \"C:\\\\Users\\\\haoni\\\\AppData\\\\Roaming\\\\Blender Foundation\\\\Blender\\\\3.6\\\\scripts\\\\addons\\\\mmd_tools\\\\core\\\\pmx\\\\exporter.py\", line 1278, in export\\n    exporter.execute(filepath, **kwargs)\\n  File \"C:\\\\Users\\\\haoni\\\\AppData\\\\Roaming\\\\Blender Foundation\\\\Blender\\\\3.6\\\\scripts\\\\addons\\\\mmd_tools\\\\core\\\\pmx\\\\exporter.py\", line 1270, in execute\\n    pmx.save(filepath, self.__model, add_uv_count=self.__add_uv_count)\\n  File \"C:\\\\Users\\\\haoni\\\\AppData\\\\Roaming\\\\Blender Foundation\\\\Blender\\\\3.6\\\\scripts\\\\addons\\\\mmd_tools\\\\core\\\\pmx\\\\__init__.py\", line 1613, in save\\n    with FileWriteStream(path) as fs:\\n  File \"C:\\\\Users\\\\haoni\\\\AppData\\\\Roaming\\\\Blender Foundation\\\\Blender\\\\3.6\\\\scripts\\\\addons\\\\mmd_tools\\\\core\\\\pmx\\\\__init__.py\", line 117, in __init__\\n    self.__fout = open(path, \\'wb\\')\\nFileNotFoundError: [Errno 2] No such file or directory: \\'Q:\\\\\\\\does_not_exist_dir\\\\\\\\x.pmx\\'\\n\\n')",
+  "bad_file_exists": false,
+  "apply_additional_transform_returned": [
+   "FINISHED"
+  ],
+  "has_pose_library_attr": false,
+  "has_poselib_apply_pose": false,
+  "ops_dir_contains_fix_bone_order": false,
+  "types_has_fix_bone_order": false,
+  "types_has_export_pmx": true,
+  "bpyutils_has_activate_layer_collection": false,
+  "Model_has_clothGroupObject_patched_by_uuunyaa": true,
+  "clothGroupObject_defined_in": "C:\\Users\\haoni\\AppData\\Roaming\\Blender Foundation\\Blender\\3.6\\scripts\\addons\\mmd_uuunyaa_tools\\converters\\physics\\cloth.py",
+  "ui_language": "zh_CN",
+  "use_translate_new_dataname": true,
+  "shared_toon_folder_pref": "",
+  "base_texture_folder_pref": ""
+ }
+}

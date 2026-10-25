@@ -1,0 +1,3321 @@
+{
+ "file": "E:\\4090\\tifa\\change\\Lucy 2 18\\Lucy 2 18 V1.blend",
+ "objects": [
+  {
+   "name": "000_J.Hair_001_R",
+   "type": "EMPTY",
+   "parent": "joints",
+   "mods": [],
+   "mmd_type": "JOINT",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "000_頭",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "001_J.Hair_002_R",
+   "type": "EMPTY",
+   "parent": "joints",
+   "mods": [],
+   "mmd_type": "JOINT",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "001_頭1",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "002_Hair_001_R",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_9"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "002_J.Hair_003_R",
+   "type": "EMPTY",
+   "parent": "joints",
+   "mods": [],
+   "mmd_type": "JOINT",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "003_Hair_002_R",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_9"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "003_J.Hair_004_R",
+   "type": "EMPTY",
+   "parent": "joints",
+   "mods": [],
+   "mmd_type": "JOINT",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "004_Hair_003_R",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_9"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "004_J.Hair_001_L",
+   "type": "EMPTY",
+   "parent": "joints",
+   "mods": [],
+   "mmd_type": "JOINT",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "005_Hair_004_R",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_9"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "005_J.Hair_002_L",
+   "type": "EMPTY",
+   "parent": "joints",
+   "mods": [],
+   "mmd_type": "JOINT",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "006_Hair_001_L",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_9"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "006_J.Hair_003_L",
+   "type": "EMPTY",
+   "parent": "joints",
+   "mods": [],
+   "mmd_type": "JOINT",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "007_Hair_002_L",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_9"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "007_J.Hair_004_L",
+   "type": "EMPTY",
+   "parent": "joints",
+   "mods": [],
+   "mmd_type": "JOINT",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "008_Hair_003_L",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_9"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "008_J.Hair_005_L",
+   "type": "EMPTY",
+   "parent": "joints",
+   "mods": [],
+   "mmd_type": "JOINT",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "009_Hair_004_L",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_9"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "009_J.Hair_001_N",
+   "type": "EMPTY",
+   "parent": "joints",
+   "mods": [],
+   "mmd_type": "JOINT",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "00A_Hair_005_L",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_9"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00A_J.Hair_002_N",
+   "type": "EMPTY",
+   "parent": "joints",
+   "mods": [],
+   "mmd_type": "JOINT",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "00B_Hair_001_N",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_9"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00B_J.Hair_007_R",
+   "type": "EMPTY",
+   "parent": "joints",
+   "mods": [],
+   "mmd_type": "JOINT",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "00C_Hair_002_N",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_9"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00C_J.Hair_008_R",
+   "type": "EMPTY",
+   "parent": "joints",
+   "mods": [],
+   "mmd_type": "JOINT",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "00D_Hair_007_R",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_9"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00D_J.Hair_005_R.002",
+   "type": "EMPTY",
+   "parent": "joints",
+   "mods": [],
+   "mmd_type": "JOINT",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "00E_Hair_008_R",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_9"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00E_J.Hair_006_R.001",
+   "type": "EMPTY",
+   "parent": "joints",
+   "mods": [],
+   "mmd_type": "JOINT",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "00F_Hair_005_R.002",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_9"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00F_J.左乳奶",
+   "type": "EMPTY",
+   "parent": "joints",
+   "mods": [],
+   "mmd_type": "JOINT",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "00G_Hair_006_R.001",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_9"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00G_J.右乳奶",
+   "type": "EMPTY",
+   "parent": "joints",
+   "mods": [],
+   "mmd_type": "JOINT",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "00H_下半身",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00I_上半身",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00J_上半身1",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00K_上半身2",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00L_上半身3",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00M_首",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00N_首1",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00O_左足",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00P_左ひざ",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00Q_右足",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00R_右ひざ",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00S_左肩",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00T_左腕",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00U_左ひじ",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00V_右肩",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00W_右腕",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00X_右ひじ",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_0"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00Y_左乳奶",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_15"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "00Z_右乳奶",
+   "type": "MESH",
+   "parent": "rigidbodies",
+   "mods": [],
+   "mmd_type": "RIGID_BODY",
+   "hide": true,
+   "materials": [
+    "mmd_tools_rigid_15"
+   ],
+   "nverts": 34,
+   "shape_keys": [],
+   "vgroups": 0
+  },
+  {
+   "name": "joints",
+   "type": "EMPTY",
+   "parent": "Lucy 2 18 V1",
+   "mods": [],
+   "mmd_type": "JOINT_GRP_OBJ",
+   "hide": true,
+   "materials": []
+  },
+  {
+   "name": "Lucy 2 18 V1",
+   "type": "EMPTY",
+   "parent": null,
+   "mods": [],
+   "mmd_type": "ROOT",
+   "hide": false,
+   "materials": []
+  },
+  {
+   "name": "Lucy 2 18 V1_arm",
+   "type": "ARMATURE",
+   "parent": "Lucy 2 18 V1",
+   "mods": [],
+   "mmd_type": "NONE",
+   "hide": false,
+   "materials": [],
+   "nbones": 282,
+   "bones_sample": [
+    "操作中心",
+    "全ての親",
+    "センター",
+    "グルーブ",
+    "腰",
+    "下半身",
+    "腰キャンセル.L",
+    "足.L",
+    "ひざ.L",
+    "足首.L",
+    "つま先.L",
+    "lSmallToe4",
+    "lSmallToe4_2",
+    "lSmallToe3",
+    "lSmallToe3_2",
+    "lSmallToe2",
+    "lSmallToe2_2",
+    "lSmallToe1",
+    "lSmallToe1_2",
+    "lBigToe",
+    "lBigToe_2",
+    "_dummy_足首D.L",
+    "_dummy_ひざD.L",
+    "_shadow_足首D.L",
+    "_dummy_足D.L",
+    "_shadow_ひざD.L",
+    "足D.L",
+    "ひざD.L",
+    "足首D.L",
+    "足先EX.L",
+    "_shadow_足D.L",
+    "腰キャンセル.R",
+    "足.R",
+    "ひざ.R",
+    "足首.R",
+    "つま先.R",
+    "rSmallToe4",
+    "rSmallToe4_2",
+    "rSmallToe3",
+    "rSmallToe3_2"
+   ]
+  },
+  {
+   "name": "Lucy 2 18 V1_mesh",
+   "type": "MESH",
+   "parent": "Lucy 2 18 V1_arm",
+   "mods": [
+    [
+     "ARMATURE",
+     "mmd_bone_order_override"
+    ]
+   ],
+   "mmd_type": "NONE",
+   "hide": false,
+   "materials": [
+    "+Boots",
+    "+Jacket",
+    "+Leggings",
+    "+Leotard",
+    "+Shorts",
+    "-Leotard.GenS",
+    "Arms",
+    "Body",
+    "Eyes",
+    "Face",
+    "Gen",
+    "Legs",
+    "Mouth",
+    "Eyelashes",
+    "Hair"
+   ],
+   "nverts": 161267,
+   "shape_keys": [
+    "Basis"
+   ],
+   "vgroups": 236
+  },
+  {
+   "name": "rigidbodies",
+   "type": "EMPTY",
+   "parent": "Lucy 2 18 V1",
+   "mods": [],
+   "mmd_type": "RIGID_GRP_OBJ",
+   "hide": true,
+   "materials": []
+  }
+ ],
+ "materials": [
+  {
+   "name": "+Boots",
+   "users": 1,
+   "use_nodes": true,
+   "blend": "HASHED",
+   "shadow": "HASHED",
+   "backface": false,
+   "mmd": {
+    "name_j": "+Boots",
+    "name_e": "+Boots",
+    "diffuse": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "shininess": 10.0,
+    "ambient": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "is_double_sided": true,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": true,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": "\r\nRenderGroup:\t4\r\nParameters:\t0.1, 0, 0"
+   },
+   "nodes": [
+    {
+     "name": "mmd_shader",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDShaderDev",
+     "inputs": {
+      "Ambient Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Diffuse Color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "Specular Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Reflect": 1.0,
+      "Base Tex Fac": 1.0,
+      "Base Tex": "<linked>",
+      "Toon Tex Fac": 0.0,
+      "Toon Tex": "<linked>",
+      "Sphere Tex Fac": 0.0,
+      "Sphere Tex": "<linked>",
+      "Sphere Mul/Add": 0.0,
+      "Double Sided": 1.0,
+      "Alpha": 1.0,
+      "Base Alpha": "<linked>",
+      "Toon Alpha": "<linked>",
+      "Sphere Alpha": "<linked>"
+     }
+    },
+    {
+     "name": "mmd_tex_uv",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDTexUV",
+     "inputs": {}
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "mmd_base_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Base Tex",
+     "image": "//Lucia Outfit Sub_Boots_BaseColo1r.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_toon_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Toon Tex",
+     "image": "//..\\..\\..\\..\\..\\toon01.bmp",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_sphere_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Sphere Tex",
+     "image": "//Lucia Outfit Sub_Boots_Normal.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    }
+   ],
+   "links": [
+    "mmd_shader.Shader -> Material Output.Surface",
+    "mmd_base_tex.Color -> mmd_shader.Base Tex",
+    "mmd_base_tex.Alpha -> mmd_shader.Base Alpha",
+    "mmd_tex_uv.Base UV -> mmd_base_tex.Vector",
+    "mmd_toon_tex.Color -> mmd_shader.Toon Tex",
+    "mmd_toon_tex.Alpha -> mmd_shader.Toon Alpha",
+    "mmd_tex_uv.Toon UV -> mmd_toon_tex.Vector",
+    "mmd_sphere_tex.Color -> mmd_shader.Sphere Tex",
+    "mmd_sphere_tex.Alpha -> mmd_shader.Sphere Alpha",
+    "mmd_tex_uv.Sphere UV -> mmd_sphere_tex.Vector"
+   ]
+  },
+  {
+   "name": "+Jacket",
+   "users": 1,
+   "use_nodes": true,
+   "blend": "HASHED",
+   "shadow": "HASHED",
+   "backface": false,
+   "mmd": {
+    "name_j": "+Jacket",
+    "name_e": "+Jacket",
+    "diffuse": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "shininess": 10.0,
+    "ambient": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "is_double_sided": true,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": true,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": "\r\nRenderGroup:\t4\r\nParameters:\t0.1, 0, 0"
+   },
+   "nodes": [
+    {
+     "name": "mmd_shader",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDShaderDev",
+     "inputs": {
+      "Ambient Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Diffuse Color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "Specular Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Reflect": 1.0,
+      "Base Tex Fac": 1.0,
+      "Base Tex": "<linked>",
+      "Toon Tex Fac": 0.0,
+      "Toon Tex": "<linked>",
+      "Sphere Tex Fac": 0.0,
+      "Sphere Tex": "<linked>",
+      "Sphere Mul/Add": 0.0,
+      "Double Sided": 1.0,
+      "Alpha": 1.0,
+      "Base Alpha": "<linked>",
+      "Toon Alpha": "<linked>",
+      "Sphere Alpha": "<linked>"
+     }
+    },
+    {
+     "name": "mmd_tex_uv",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDTexUV",
+     "inputs": {}
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "mmd_base_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Base Tex",
+     "image": "//Lucia Outfit Sub_Sleeves_BaseColor.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_toon_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Toon Tex",
+     "image": "//..\\..\\..\\..\\..\\toon01.bmp",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_sphere_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Sphere Tex",
+     "image": "//Lucia Outfit Sub_Sleeves_Normal.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    }
+   ],
+   "links": [
+    "mmd_shader.Shader -> Material Output.Surface",
+    "mmd_base_tex.Color -> mmd_shader.Base Tex",
+    "mmd_base_tex.Alpha -> mmd_shader.Base Alpha",
+    "mmd_tex_uv.Base UV -> mmd_base_tex.Vector",
+    "mmd_toon_tex.Color -> mmd_shader.Toon Tex",
+    "mmd_toon_tex.Alpha -> mmd_shader.Toon Alpha",
+    "mmd_tex_uv.Toon UV -> mmd_toon_tex.Vector",
+    "mmd_sphere_tex.Color -> mmd_shader.Sphere Tex",
+    "mmd_sphere_tex.Alpha -> mmd_shader.Sphere Alpha",
+    "mmd_tex_uv.Sphere UV -> mmd_sphere_tex.Vector"
+   ]
+  },
+  {
+   "name": "+Leggings",
+   "users": 1,
+   "use_nodes": true,
+   "blend": "HASHED",
+   "shadow": "HASHED",
+   "backface": false,
+   "mmd": {
+    "name_j": "+Leggings",
+    "name_e": "+Leggings",
+    "diffuse": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "shininess": 10.0,
+    "ambient": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "is_double_sided": true,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": true,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": "\r\nRenderGroup:\t4\r\nParameters:\t0.1, 0, 0"
+   },
+   "nodes": [
+    {
+     "name": "mmd_shader",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDShaderDev",
+     "inputs": {
+      "Ambient Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Diffuse Color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "Specular Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Reflect": 1.0,
+      "Base Tex Fac": 1.0,
+      "Base Tex": "<linked>",
+      "Toon Tex Fac": 0.0,
+      "Toon Tex": "<linked>",
+      "Sphere Tex Fac": 0.0,
+      "Sphere Tex": "<linked>",
+      "Sphere Mul/Add": 0.0,
+      "Double Sided": 1.0,
+      "Alpha": 1.0,
+      "Base Alpha": "<linked>",
+      "Toon Alpha": "<linked>",
+      "Sphere Alpha": "<linked>"
+     }
+    },
+    {
+     "name": "mmd_tex_uv",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDTexUV",
+     "inputs": {}
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "mmd_base_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Base Tex",
+     "image": "//Lucia Outfit Sub_PantsMat_BaseColo1r.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_toon_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Toon Tex",
+     "image": "//..\\..\\..\\..\\..\\toon01.bmp",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_sphere_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Sphere Tex",
+     "image": "//Lucia Outfit Sub_PantsMat_Normal.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    }
+   ],
+   "links": [
+    "mmd_shader.Shader -> Material Output.Surface",
+    "mmd_base_tex.Color -> mmd_shader.Base Tex",
+    "mmd_base_tex.Alpha -> mmd_shader.Base Alpha",
+    "mmd_tex_uv.Base UV -> mmd_base_tex.Vector",
+    "mmd_toon_tex.Color -> mmd_shader.Toon Tex",
+    "mmd_toon_tex.Alpha -> mmd_shader.Toon Alpha",
+    "mmd_tex_uv.Toon UV -> mmd_toon_tex.Vector",
+    "mmd_sphere_tex.Color -> mmd_shader.Sphere Tex",
+    "mmd_sphere_tex.Alpha -> mmd_shader.Sphere Alpha",
+    "mmd_tex_uv.Sphere UV -> mmd_sphere_tex.Vector"
+   ]
+  },
+  {
+   "name": "+Leotard",
+   "users": 1,
+   "use_nodes": true,
+   "blend": "HASHED",
+   "shadow": "HASHED",
+   "backface": false,
+   "mmd": {
+    "name_j": "+Leotard",
+    "name_e": "+Leotard",
+    "diffuse": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "shininess": 10.0,
+    "ambient": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "is_double_sided": true,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": true,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": "\r\nRenderGroup:\t4\r\nParameters:\t0.1, 0, 0"
+   },
+   "nodes": [
+    {
+     "name": "mmd_shader",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDShaderDev",
+     "inputs": {
+      "Ambient Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Diffuse Color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "Specular Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Reflect": 1.0,
+      "Base Tex Fac": 1.0,
+      "Base Tex": "<linked>",
+      "Toon Tex Fac": 0.0,
+      "Toon Tex": "<linked>",
+      "Sphere Tex Fac": 0.0,
+      "Sphere Tex": "<linked>",
+      "Sphere Mul/Add": 0.0,
+      "Double Sided": 1.0,
+      "Alpha": 1.0,
+      "Base Alpha": "<linked>",
+      "Toon Alpha": "<linked>",
+      "Sphere Alpha": "<linked>"
+     }
+    },
+    {
+     "name": "mmd_tex_uv",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDTexUV",
+     "inputs": {}
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "mmd_base_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Base Tex",
+     "image": "//Lucia Outfit Sub_Leotard_BaseColor2.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_toon_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Toon Tex",
+     "image": "//..\\..\\..\\..\\..\\toon01.bmp",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_sphere_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Sphere Tex",
+     "image": "//Lucia Outfit Sub_Leotard_Normal.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    }
+   ],
+   "links": [
+    "mmd_shader.Shader -> Material Output.Surface",
+    "mmd_base_tex.Color -> mmd_shader.Base Tex",
+    "mmd_base_tex.Alpha -> mmd_shader.Base Alpha",
+    "mmd_tex_uv.Base UV -> mmd_base_tex.Vector",
+    "mmd_toon_tex.Color -> mmd_shader.Toon Tex",
+    "mmd_toon_tex.Alpha -> mmd_shader.Toon Alpha",
+    "mmd_tex_uv.Toon UV -> mmd_toon_tex.Vector",
+    "mmd_sphere_tex.Color -> mmd_shader.Sphere Tex",
+    "mmd_sphere_tex.Alpha -> mmd_shader.Sphere Alpha",
+    "mmd_tex_uv.Sphere UV -> mmd_sphere_tex.Vector"
+   ]
+  },
+  {
+   "name": "+Shorts",
+   "users": 1,
+   "use_nodes": true,
+   "blend": "HASHED",
+   "shadow": "HASHED",
+   "backface": false,
+   "mmd": {
+    "name_j": "+Shorts",
+    "name_e": "+Shorts",
+    "diffuse": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "shininess": 10.0,
+    "ambient": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "is_double_sided": true,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": true,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": "\r\nRenderGroup:\t4\r\nParameters:\t0.1, 0, 0"
+   },
+   "nodes": [
+    {
+     "name": "mmd_shader",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDShaderDev",
+     "inputs": {
+      "Ambient Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Diffuse Color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "Specular Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Reflect": 1.0,
+      "Base Tex Fac": 1.0,
+      "Base Tex": "<linked>",
+      "Toon Tex Fac": 0.0,
+      "Toon Tex": "<linked>",
+      "Sphere Tex Fac": 0.0,
+      "Sphere Tex": "<linked>",
+      "Sphere Mul/Add": 0.0,
+      "Double Sided": 1.0,
+      "Alpha": 1.0,
+      "Base Alpha": "<linked>",
+      "Toon Alpha": "<linked>",
+      "Sphere Alpha": "<linked>"
+     }
+    },
+    {
+     "name": "mmd_tex_uv",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDTexUV",
+     "inputs": {}
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "mmd_base_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Base Tex",
+     "image": "//Lucia Outfit Sub_PantsMat_BaseColo1r.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_toon_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Toon Tex",
+     "image": "//..\\..\\..\\..\\..\\toon01.bmp",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_sphere_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Sphere Tex",
+     "image": "//Lucia Outfit Sub_PantsMat_Normal.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    }
+   ],
+   "links": [
+    "mmd_shader.Shader -> Material Output.Surface",
+    "mmd_base_tex.Color -> mmd_shader.Base Tex",
+    "mmd_base_tex.Alpha -> mmd_shader.Base Alpha",
+    "mmd_tex_uv.Base UV -> mmd_base_tex.Vector",
+    "mmd_toon_tex.Color -> mmd_shader.Toon Tex",
+    "mmd_toon_tex.Alpha -> mmd_shader.Toon Alpha",
+    "mmd_tex_uv.Toon UV -> mmd_toon_tex.Vector",
+    "mmd_sphere_tex.Color -> mmd_shader.Sphere Tex",
+    "mmd_sphere_tex.Alpha -> mmd_shader.Sphere Alpha",
+    "mmd_tex_uv.Sphere UV -> mmd_sphere_tex.Vector"
+   ]
+  },
+  {
+   "name": "-Leotard.GenS",
+   "users": 1,
+   "use_nodes": true,
+   "blend": "HASHED",
+   "shadow": "HASHED",
+   "backface": false,
+   "mmd": {
+    "name_j": "-Leotard.GenS",
+    "name_e": "-Leotard.GenS",
+    "diffuse": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "shininess": 10.0,
+    "ambient": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "is_double_sided": true,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": true,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": "\r\nRenderGroup:\t6\r\nParameters:\t0.1, 0, 0"
+   },
+   "nodes": [
+    {
+     "name": "mmd_shader",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDShaderDev",
+     "inputs": {
+      "Ambient Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Diffuse Color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "Specular Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Reflect": 1.0,
+      "Base Tex Fac": 1.0,
+      "Base Tex": "<linked>",
+      "Toon Tex Fac": 0.0,
+      "Toon Tex": "<linked>",
+      "Sphere Tex Fac": 0.0,
+      "Sphere Tex": "<linked>",
+      "Sphere Mul/Add": 0.0,
+      "Double Sided": 1.0,
+      "Alpha": 1.0,
+      "Base Alpha": "<linked>",
+      "Toon Alpha": "<linked>",
+      "Sphere Alpha": "<linked>"
+     }
+    },
+    {
+     "name": "mmd_tex_uv",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDTexUV",
+     "inputs": {}
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "mmd_base_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Base Tex",
+     "image": "//GoldenPalace_Color.png",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_toon_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Toon Tex",
+     "image": "//..\\..\\..\\..\\..\\toon01.bmp",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_sphere_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Sphere Tex",
+     "image": "//GoldenPalace_NormalMap.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    }
+   ],
+   "links": [
+    "mmd_shader.Shader -> Material Output.Surface",
+    "mmd_base_tex.Color -> mmd_shader.Base Tex",
+    "mmd_base_tex.Alpha -> mmd_shader.Base Alpha",
+    "mmd_tex_uv.Base UV -> mmd_base_tex.Vector",
+    "mmd_toon_tex.Color -> mmd_shader.Toon Tex",
+    "mmd_toon_tex.Alpha -> mmd_shader.Toon Alpha",
+    "mmd_tex_uv.Toon UV -> mmd_toon_tex.Vector",
+    "mmd_sphere_tex.Color -> mmd_shader.Sphere Tex",
+    "mmd_sphere_tex.Alpha -> mmd_shader.Sphere Alpha",
+    "mmd_tex_uv.Sphere UV -> mmd_sphere_tex.Vector"
+   ]
+  },
+  {
+   "name": "Arms",
+   "users": 1,
+   "use_nodes": true,
+   "blend": "HASHED",
+   "shadow": "HASHED",
+   "backface": false,
+   "mmd": {
+    "name_j": "Arms",
+    "name_e": "Arms",
+    "diffuse": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "shininess": 10.0,
+    "ambient": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "is_double_sided": true,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": true,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": "\r\nRenderGroup:\t4\r\nParameters:\t0.1, 0, 0"
+   },
+   "nodes": [
+    {
+     "name": "mmd_shader",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDShaderDev",
+     "inputs": {
+      "Ambient Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Diffuse Color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "Specular Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Reflect": 1.0,
+      "Base Tex Fac": 1.0,
+      "Base Tex": "<linked>",
+      "Toon Tex Fac": 0.0,
+      "Toon Tex": "<linked>",
+      "Sphere Tex Fac": 0.0,
+      "Sphere Tex": "<linked>",
+      "Sphere Mul/Add": 0.0,
+      "Double Sided": 1.0,
+      "Alpha": 1.0,
+      "Base Alpha": "<linked>",
+      "Toon Alpha": "<linked>",
+      "Sphere Alpha": "<linked>"
+     }
+    },
+    {
+     "name": "mmd_tex_uv",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDTexUV",
+     "inputs": {}
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "mmd_base_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Base Tex",
+     "image": "//LucyArmsD.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_toon_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Toon Tex",
+     "image": "//..\\..\\..\\..\\..\\toon01.bmp",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_sphere_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Sphere Tex",
+     "image": "//Arms_N.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    }
+   ],
+   "links": [
+    "mmd_shader.Shader -> Material Output.Surface",
+    "mmd_base_tex.Color -> mmd_shader.Base Tex",
+    "mmd_base_tex.Alpha -> mmd_shader.Base Alpha",
+    "mmd_tex_uv.Base UV -> mmd_base_tex.Vector",
+    "mmd_toon_tex.Color -> mmd_shader.Toon Tex",
+    "mmd_toon_tex.Alpha -> mmd_shader.Toon Alpha",
+    "mmd_tex_uv.Toon UV -> mmd_toon_tex.Vector",
+    "mmd_sphere_tex.Color -> mmd_shader.Sphere Tex",
+    "mmd_sphere_tex.Alpha -> mmd_shader.Sphere Alpha",
+    "mmd_tex_uv.Sphere UV -> mmd_sphere_tex.Vector"
+   ]
+  },
+  {
+   "name": "Body",
+   "users": 1,
+   "use_nodes": true,
+   "blend": "HASHED",
+   "shadow": "HASHED",
+   "backface": false,
+   "mmd": {
+    "name_j": "Body",
+    "name_e": "Body",
+    "diffuse": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "shininess": 10.0,
+    "ambient": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "is_double_sided": true,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": true,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": "\r\nRenderGroup:\t4\r\nParameters:\t0.1, 0, 0"
+   },
+   "nodes": [
+    {
+     "name": "mmd_shader",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDShaderDev",
+     "inputs": {
+      "Ambient Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Diffuse Color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "Specular Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Reflect": 1.0,
+      "Base Tex Fac": 1.0,
+      "Base Tex": "<linked>",
+      "Toon Tex Fac": 0.0,
+      "Toon Tex": "<linked>",
+      "Sphere Tex Fac": 0.0,
+      "Sphere Tex": "<linked>",
+      "Sphere Mul/Add": 0.0,
+      "Double Sided": 1.0,
+      "Alpha": 1.0,
+      "Base Alpha": "<linked>",
+      "Toon Alpha": "<linked>",
+      "Sphere Alpha": "<linked>"
+     }
+    },
+    {
+     "name": "mmd_tex_uv",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDTexUV",
+     "inputs": {}
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "mmd_base_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Base Tex",
+     "image": "//LucyTorso_D.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_toon_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Toon Tex",
+     "image": "//..\\..\\..\\..\\..\\toon01.bmp",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_sphere_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Sphere Tex",
+     "image": "//LXTorso_N.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    }
+   ],
+   "links": [
+    "mmd_shader.Shader -> Material Output.Surface",
+    "mmd_base_tex.Color -> mmd_shader.Base Tex",
+    "mmd_base_tex.Alpha -> mmd_shader.Base Alpha",
+    "mmd_tex_uv.Base UV -> mmd_base_tex.Vector",
+    "mmd_toon_tex.Color -> mmd_shader.Toon Tex",
+    "mmd_toon_tex.Alpha -> mmd_shader.Toon Alpha",
+    "mmd_tex_uv.Toon UV -> mmd_toon_tex.Vector",
+    "mmd_sphere_tex.Color -> mmd_shader.Sphere Tex",
+    "mmd_sphere_tex.Alpha -> mmd_shader.Sphere Alpha",
+    "mmd_tex_uv.Sphere UV -> mmd_sphere_tex.Vector"
+   ]
+  },
+  {
+   "name": "Dots Stroke",
+   "users": 2,
+   "use_nodes": false,
+   "blend": "OPAQUE",
+   "shadow": "OPAQUE",
+   "backface": false,
+   "mmd": {
+    "name_j": "",
+    "name_e": "",
+    "diffuse": [
+     0.800000011920929,
+     0.800000011920929,
+     0.800000011920929
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.625,
+     0.625,
+     0.625
+    ],
+    "shininess": 50.0,
+    "ambient": [
+     0.4000000059604645,
+     0.4000000059604645,
+     0.4000000059604645
+    ],
+    "is_double_sided": false,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": false,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": ""
+   }
+  },
+  {
+   "name": "Eyelashes",
+   "users": 1,
+   "use_nodes": true,
+   "blend": "HASHED",
+   "shadow": "HASHED",
+   "backface": false,
+   "mmd": {
+    "name_j": "Eyelashes",
+    "name_e": "Eyelashes",
+    "diffuse": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "shininess": 10.0,
+    "ambient": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "is_double_sided": true,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": true,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": "\r\nRenderGroup:\t7\r\nParameters:\t0.1, 0, 0"
+   },
+   "nodes": [
+    {
+     "name": "mmd_shader",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDShaderDev",
+     "inputs": {
+      "Ambient Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Diffuse Color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "Specular Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Reflect": 1.0,
+      "Base Tex Fac": 1.0,
+      "Base Tex": "<linked>",
+      "Toon Tex Fac": 0.0,
+      "Toon Tex": "<linked>",
+      "Sphere Tex Fac": 0.0,
+      "Sphere Tex": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "Sphere Mul/Add": 0.0,
+      "Double Sided": 1.0,
+      "Alpha": 1.0,
+      "Base Alpha": "<linked>",
+      "Toon Alpha": "<linked>",
+      "Sphere Alpha": 1.0
+     }
+    },
+    {
+     "name": "mmd_tex_uv",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDTexUV",
+     "inputs": {}
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "mmd_base_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Base Tex",
+     "image": "//LucyEyelashes_D.png",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_toon_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Toon Tex",
+     "image": "//..\\..\\..\\..\\..\\toon01.bmp",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    }
+   ],
+   "links": [
+    "mmd_shader.Shader -> Material Output.Surface",
+    "mmd_base_tex.Color -> mmd_shader.Base Tex",
+    "mmd_base_tex.Alpha -> mmd_shader.Base Alpha",
+    "mmd_tex_uv.Base UV -> mmd_base_tex.Vector",
+    "mmd_toon_tex.Color -> mmd_shader.Toon Tex",
+    "mmd_toon_tex.Alpha -> mmd_shader.Toon Alpha",
+    "mmd_tex_uv.Toon UV -> mmd_toon_tex.Vector"
+   ]
+  },
+  {
+   "name": "Eyes",
+   "users": 1,
+   "use_nodes": true,
+   "blend": "HASHED",
+   "shadow": "HASHED",
+   "backface": false,
+   "mmd": {
+    "name_j": "Eyes",
+    "name_e": "Eyes",
+    "diffuse": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "shininess": 10.0,
+    "ambient": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "is_double_sided": true,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": true,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": "\r\nRenderGroup:\t4\r\nParameters:\t0.1, 0, 0"
+   },
+   "nodes": [
+    {
+     "name": "mmd_shader",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDShaderDev",
+     "inputs": {
+      "Ambient Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Diffuse Color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "Specular Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Reflect": 1.0,
+      "Base Tex Fac": 1.0,
+      "Base Tex": "<linked>",
+      "Toon Tex Fac": 0.0,
+      "Toon Tex": "<linked>",
+      "Sphere Tex Fac": 0.0,
+      "Sphere Tex": "<linked>",
+      "Sphere Mul/Add": 0.0,
+      "Double Sided": 1.0,
+      "Alpha": 1.0,
+      "Base Alpha": "<linked>",
+      "Toon Alpha": "<linked>",
+      "Sphere Alpha": "<linked>"
+     }
+    },
+    {
+     "name": "mmd_tex_uv",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDTexUV",
+     "inputs": {}
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "mmd_base_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Base Tex",
+     "image": "//LuciaEyes_D.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_toon_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Toon Tex",
+     "image": "//..\\..\\..\\..\\..\\toon01.bmp",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_sphere_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Sphere Tex",
+     "image": "//Eyes_N.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    }
+   ],
+   "links": [
+    "mmd_shader.Shader -> Material Output.Surface",
+    "mmd_base_tex.Color -> mmd_shader.Base Tex",
+    "mmd_base_tex.Alpha -> mmd_shader.Base Alpha",
+    "mmd_tex_uv.Base UV -> mmd_base_tex.Vector",
+    "mmd_toon_tex.Color -> mmd_shader.Toon Tex",
+    "mmd_toon_tex.Alpha -> mmd_shader.Toon Alpha",
+    "mmd_tex_uv.Toon UV -> mmd_toon_tex.Vector",
+    "mmd_sphere_tex.Color -> mmd_shader.Sphere Tex",
+    "mmd_sphere_tex.Alpha -> mmd_shader.Sphere Alpha",
+    "mmd_tex_uv.Sphere UV -> mmd_sphere_tex.Vector"
+   ]
+  },
+  {
+   "name": "Face",
+   "users": 1,
+   "use_nodes": true,
+   "blend": "HASHED",
+   "shadow": "HASHED",
+   "backface": false,
+   "mmd": {
+    "name_j": "Face",
+    "name_e": "Face",
+    "diffuse": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "shininess": 10.0,
+    "ambient": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "is_double_sided": true,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": true,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": "\r\nRenderGroup:\t4\r\nParameters:\t0.1, 0, 0"
+   },
+   "nodes": [
+    {
+     "name": "mmd_shader",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDShaderDev",
+     "inputs": {
+      "Ambient Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Diffuse Color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "Specular Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Reflect": 1.0,
+      "Base Tex Fac": 1.0,
+      "Base Tex": "<linked>",
+      "Toon Tex Fac": 0.0,
+      "Toon Tex": "<linked>",
+      "Sphere Tex Fac": 0.0,
+      "Sphere Tex": "<linked>",
+      "Sphere Mul/Add": 0.0,
+      "Double Sided": 1.0,
+      "Alpha": 1.0,
+      "Base Alpha": "<linked>",
+      "Toon Alpha": "<linked>",
+      "Sphere Alpha": "<linked>"
+     }
+    },
+    {
+     "name": "mmd_tex_uv",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDTexUV",
+     "inputs": {}
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "mmd_base_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Base Tex",
+     "image": "//LucyHead_D.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_toon_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Toon Tex",
+     "image": "//..\\..\\..\\..\\..\\toon01.bmp",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_sphere_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Sphere Tex",
+     "image": "//LXHead_N.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    }
+   ],
+   "links": [
+    "mmd_shader.Shader -> Material Output.Surface",
+    "mmd_base_tex.Color -> mmd_shader.Base Tex",
+    "mmd_base_tex.Alpha -> mmd_shader.Base Alpha",
+    "mmd_tex_uv.Base UV -> mmd_base_tex.Vector",
+    "mmd_toon_tex.Color -> mmd_shader.Toon Tex",
+    "mmd_toon_tex.Alpha -> mmd_shader.Toon Alpha",
+    "mmd_tex_uv.Toon UV -> mmd_toon_tex.Vector",
+    "mmd_sphere_tex.Color -> mmd_shader.Sphere Tex",
+    "mmd_sphere_tex.Alpha -> mmd_shader.Sphere Alpha",
+    "mmd_tex_uv.Sphere UV -> mmd_sphere_tex.Vector"
+   ]
+  },
+  {
+   "name": "Gen",
+   "users": 1,
+   "use_nodes": true,
+   "blend": "BLEND",
+   "shadow": "HASHED",
+   "backface": false,
+   "mmd": {
+    "name_j": "Gen",
+    "name_e": "Gen",
+    "diffuse": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "shininess": 10.0,
+    "ambient": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "is_double_sided": true,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": true,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": "\r\nRenderGroup:\t4\r\nParameters:\t0.1, 0, 0"
+   },
+   "nodes": [
+    {
+     "name": "mmd_shader",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDShaderDev",
+     "inputs": {
+      "Ambient Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Diffuse Color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "Specular Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Reflect": 1.0,
+      "Base Tex Fac": 1.0,
+      "Base Tex": "<linked>",
+      "Toon Tex Fac": 0.0,
+      "Toon Tex": "<linked>",
+      "Sphere Tex Fac": 0.0,
+      "Sphere Tex": "<linked>",
+      "Sphere Mul/Add": 0.0,
+      "Double Sided": 1.0,
+      "Alpha": 1.0,
+      "Base Alpha": "<linked>",
+      "Toon Alpha": "<linked>",
+      "Sphere Alpha": "<linked>"
+     }
+    },
+    {
+     "name": "mmd_tex_uv",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDTexUV",
+     "inputs": {}
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "mmd_base_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Base Tex",
+     "image": "//LucyTorso_D.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_toon_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Toon Tex",
+     "image": "//..\\..\\..\\..\\..\\toon01.bmp",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_sphere_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Sphere Tex",
+     "image": "//LXTorso_N.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    }
+   ],
+   "links": [
+    "mmd_shader.Shader -> Material Output.Surface",
+    "mmd_base_tex.Color -> mmd_shader.Base Tex",
+    "mmd_base_tex.Alpha -> mmd_shader.Base Alpha",
+    "mmd_tex_uv.Base UV -> mmd_base_tex.Vector",
+    "mmd_toon_tex.Color -> mmd_shader.Toon Tex",
+    "mmd_toon_tex.Alpha -> mmd_shader.Toon Alpha",
+    "mmd_tex_uv.Toon UV -> mmd_toon_tex.Vector",
+    "mmd_sphere_tex.Color -> mmd_shader.Sphere Tex",
+    "mmd_sphere_tex.Alpha -> mmd_shader.Sphere Alpha",
+    "mmd_tex_uv.Sphere UV -> mmd_sphere_tex.Vector"
+   ]
+  },
+  {
+   "name": "Hair",
+   "users": 1,
+   "use_nodes": true,
+   "blend": "HASHED",
+   "shadow": "HASHED",
+   "backface": false,
+   "mmd": {
+    "name_j": "Hair",
+    "name_e": "Hair",
+    "diffuse": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "shininess": 10.0,
+    "ambient": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "is_double_sided": true,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": true,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": "\r\nRenderGroup:\t6\r\nParameters:\t0.1, 0, 0"
+   },
+   "nodes": [
+    {
+     "name": "mmd_shader",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDShaderDev",
+     "inputs": {
+      "Ambient Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Diffuse Color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "Specular Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Reflect": 1.0,
+      "Base Tex Fac": 1.0,
+      "Base Tex": "<linked>",
+      "Toon Tex Fac": 0.0,
+      "Toon Tex": "<linked>",
+      "Sphere Tex Fac": 0.0,
+      "Sphere Tex": "<linked>",
+      "Sphere Mul/Add": 0.0,
+      "Double Sided": 1.0,
+      "Alpha": 1.0,
+      "Base Alpha": "<linked>",
+      "Toon Alpha": "<linked>",
+      "Sphere Alpha": "<linked>"
+     }
+    },
+    {
+     "name": "mmd_tex_uv",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDTexUV",
+     "inputs": {}
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "mmd_base_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Base Tex",
+     "image": "//LHair1_D.png",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_toon_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Toon Tex",
+     "image": "//..\\..\\..\\..\\..\\toon01.bmp",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_sphere_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Sphere Tex",
+     "image": "//LHair_N.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    }
+   ],
+   "links": [
+    "mmd_shader.Shader -> Material Output.Surface",
+    "mmd_base_tex.Color -> mmd_shader.Base Tex",
+    "mmd_base_tex.Alpha -> mmd_shader.Base Alpha",
+    "mmd_tex_uv.Base UV -> mmd_base_tex.Vector",
+    "mmd_toon_tex.Color -> mmd_shader.Toon Tex",
+    "mmd_toon_tex.Alpha -> mmd_shader.Toon Alpha",
+    "mmd_tex_uv.Toon UV -> mmd_toon_tex.Vector",
+    "mmd_sphere_tex.Color -> mmd_shader.Sphere Tex",
+    "mmd_sphere_tex.Alpha -> mmd_shader.Sphere Alpha",
+    "mmd_tex_uv.Sphere UV -> mmd_sphere_tex.Vector"
+   ]
+  },
+  {
+   "name": "Legs",
+   "users": 1,
+   "use_nodes": true,
+   "blend": "HASHED",
+   "shadow": "HASHED",
+   "backface": false,
+   "mmd": {
+    "name_j": "Legs",
+    "name_e": "Legs",
+    "diffuse": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "shininess": 10.0,
+    "ambient": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "is_double_sided": true,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": true,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": "\r\nRenderGroup:\t4\r\nParameters:\t0.1, 0, 0"
+   },
+   "nodes": [
+    {
+     "name": "mmd_shader",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDShaderDev",
+     "inputs": {
+      "Ambient Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Diffuse Color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "Specular Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Reflect": 1.0,
+      "Base Tex Fac": 1.0,
+      "Base Tex": "<linked>",
+      "Toon Tex Fac": 0.0,
+      "Toon Tex": "<linked>",
+      "Sphere Tex Fac": 0.0,
+      "Sphere Tex": "<linked>",
+      "Sphere Mul/Add": 0.0,
+      "Double Sided": 1.0,
+      "Alpha": 1.0,
+      "Base Alpha": "<linked>",
+      "Toon Alpha": "<linked>",
+      "Sphere Alpha": "<linked>"
+     }
+    },
+    {
+     "name": "mmd_tex_uv",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDTexUV",
+     "inputs": {}
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "mmd_base_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Base Tex",
+     "image": "//LucyLegsD.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_toon_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Toon Tex",
+     "image": "//..\\..\\..\\..\\..\\toon01.bmp",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_sphere_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Sphere Tex",
+     "image": "//Legs_N.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    }
+   ],
+   "links": [
+    "mmd_shader.Shader -> Material Output.Surface",
+    "mmd_base_tex.Color -> mmd_shader.Base Tex",
+    "mmd_base_tex.Alpha -> mmd_shader.Base Alpha",
+    "mmd_tex_uv.Base UV -> mmd_base_tex.Vector",
+    "mmd_toon_tex.Color -> mmd_shader.Toon Tex",
+    "mmd_toon_tex.Alpha -> mmd_shader.Toon Alpha",
+    "mmd_tex_uv.Toon UV -> mmd_toon_tex.Vector",
+    "mmd_sphere_tex.Color -> mmd_shader.Sphere Tex",
+    "mmd_sphere_tex.Alpha -> mmd_shader.Sphere Alpha",
+    "mmd_tex_uv.Sphere UV -> mmd_sphere_tex.Vector"
+   ]
+  },
+  {
+   "name": "mmd_tools_rigid_0",
+   "users": 19,
+   "use_nodes": true,
+   "blend": "BLEND",
+   "shadow": "NONE",
+   "backface": true,
+   "mmd": {
+    "name_j": "",
+    "name_e": "",
+    "diffuse": [
+     0.800000011920929,
+     0.800000011920929,
+     0.800000011920929
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.625,
+     0.625,
+     0.625
+    ],
+    "shininess": 50.0,
+    "ambient": [
+     0.4000000059604645,
+     0.4000000059604645,
+     0.4000000059604645
+    ],
+    "is_double_sided": false,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": false,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": ""
+   },
+   "nodes": [
+    {
+     "name": "Background",
+     "type": "BACKGROUND",
+     "label": ""
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    }
+   ],
+   "links": [
+    "Background.Background -> Material Output.Surface"
+   ]
+  },
+  {
+   "name": "mmd_tools_rigid_15",
+   "users": 2,
+   "use_nodes": true,
+   "blend": "BLEND",
+   "shadow": "NONE",
+   "backface": true,
+   "mmd": {
+    "name_j": "",
+    "name_e": "",
+    "diffuse": [
+     0.800000011920929,
+     0.800000011920929,
+     0.800000011920929
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.625,
+     0.625,
+     0.625
+    ],
+    "shininess": 50.0,
+    "ambient": [
+     0.4000000059604645,
+     0.4000000059604645,
+     0.4000000059604645
+    ],
+    "is_double_sided": false,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": false,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": ""
+   },
+   "nodes": [
+    {
+     "name": "Background",
+     "type": "BACKGROUND",
+     "label": ""
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    }
+   ],
+   "links": [
+    "Background.Background -> Material Output.Surface"
+   ]
+  },
+  {
+   "name": "mmd_tools_rigid_9",
+   "users": 15,
+   "use_nodes": true,
+   "blend": "BLEND",
+   "shadow": "NONE",
+   "backface": true,
+   "mmd": {
+    "name_j": "",
+    "name_e": "",
+    "diffuse": [
+     0.800000011920929,
+     0.800000011920929,
+     0.800000011920929
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.625,
+     0.625,
+     0.625
+    ],
+    "shininess": 50.0,
+    "ambient": [
+     0.4000000059604645,
+     0.4000000059604645,
+     0.4000000059604645
+    ],
+    "is_double_sided": false,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": false,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": ""
+   },
+   "nodes": [
+    {
+     "name": "Background",
+     "type": "BACKGROUND",
+     "label": ""
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    }
+   ],
+   "links": [
+    "Background.Background -> Material Output.Surface"
+   ]
+  },
+  {
+   "name": "Mouth",
+   "users": 1,
+   "use_nodes": true,
+   "blend": "HASHED",
+   "shadow": "HASHED",
+   "backface": true,
+   "mmd": {
+    "name_j": "Mouth",
+    "name_e": "Mouth",
+    "diffuse": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "alpha": 1.0,
+    "specular": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "shininess": 10.0,
+    "ambient": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "is_double_sided": false,
+    "enabled_drop_shadow": true,
+    "enabled_self_shadow_map": true,
+    "enabled_self_shadow": true,
+    "enabled_toon_edge": false,
+    "edge_weight": 1.0,
+    "sphere_texture_type": "0",
+    "is_shared_toon_texture": true,
+    "shared_toon_texture": 0,
+    "toon_texture": "",
+    "comment": "\r\nRenderGroup:\t4\r\nParameters:\t0.1, 0, 0"
+   },
+   "nodes": [
+    {
+     "name": "mmd_shader",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDShaderDev",
+     "inputs": {
+      "Ambient Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Diffuse Color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "Specular Color": [
+       0.5,
+       0.5,
+       0.5,
+       1.0
+      ],
+      "Reflect": 1.0,
+      "Base Tex Fac": 1.0,
+      "Base Tex": "<linked>",
+      "Toon Tex Fac": 0.0,
+      "Toon Tex": "<linked>",
+      "Sphere Tex Fac": 0.0,
+      "Sphere Tex": "<linked>",
+      "Sphere Mul/Add": 0.0,
+      "Double Sided": 0.0,
+      "Alpha": 1.0,
+      "Base Alpha": "<linked>",
+      "Toon Alpha": "<linked>",
+      "Sphere Alpha": "<linked>"
+     }
+    },
+    {
+     "name": "mmd_tex_uv",
+     "type": "GROUP",
+     "label": "",
+     "group": "MMDTexUV",
+     "inputs": {}
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "mmd_base_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Base Tex",
+     "image": "//Mouth_D.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_toon_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Toon Tex",
+     "image": "//..\\..\\..\\..\\..\\toon01.bmp",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    },
+    {
+     "name": "mmd_sphere_tex",
+     "type": "TEX_IMAGE",
+     "label": "Mmd Sphere Tex",
+     "image": "//Mouth_N.jpg",
+     "colorspace": "sRGB",
+     "interp": "Linear"
+    }
+   ],
+   "links": [
+    "mmd_shader.Shader -> Material Output.Surface",
+    "mmd_base_tex.Color -> mmd_shader.Base Tex",
+    "mmd_base_tex.Alpha -> mmd_shader.Base Alpha",
+    "mmd_tex_uv.Base UV -> mmd_base_tex.Vector",
+    "mmd_toon_tex.Color -> mmd_shader.Toon Tex",
+    "mmd_toon_tex.Alpha -> mmd_shader.Toon Alpha",
+    "mmd_tex_uv.Toon UV -> mmd_toon_tex.Vector",
+    "mmd_sphere_tex.Color -> mmd_shader.Sphere Tex",
+    "mmd_sphere_tex.Alpha -> mmd_shader.Sphere Alpha",
+    "mmd_tex_uv.Sphere UV -> mmd_sphere_tex.Vector"
+   ]
+  }
+ ],
+ "images": [
+  {
+   "name": "Arms_N.jpg",
+   "filepath": "//Arms_N.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    2048,
+    2048
+   ],
+   "packed": false
+  },
+  {
+   "name": "Eyes_N.jpg",
+   "filepath": "//Eyes_N.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    1024,
+    1024
+   ],
+   "packed": false
+  },
+  {
+   "name": "GoldenPalace_Color.png",
+   "filepath": "//GoldenPalace_Color.png",
+   "colorspace": "sRGB",
+   "size": [
+    1024,
+    1024
+   ],
+   "packed": false
+  },
+  {
+   "name": "GoldenPalace_NormalMap.jpg",
+   "filepath": "//GoldenPalace_NormalMap.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    1024,
+    1024
+   ],
+   "packed": false
+  },
+  {
+   "name": "Legs_N.jpg",
+   "filepath": "//Legs_N.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    2048,
+    2048
+   ],
+   "packed": false
+  },
+  {
+   "name": "LHair1_D.png",
+   "filepath": "//LHair1_D.png",
+   "colorspace": "sRGB",
+   "size": [
+    1024,
+    1024
+   ],
+   "packed": false
+  },
+  {
+   "name": "LHair_N.jpg",
+   "filepath": "//LHair_N.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    1024,
+    1024
+   ],
+   "packed": false
+  },
+  {
+   "name": "Lucia Outfit Sub_Boots_BaseColo1r.jpg",
+   "filepath": "//Lucia Outfit Sub_Boots_BaseColo1r.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    2048,
+    2048
+   ],
+   "packed": false
+  },
+  {
+   "name": "Lucia Outfit Sub_Boots_Normal.jpg",
+   "filepath": "//Lucia Outfit Sub_Boots_Normal.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    2048,
+    2048
+   ],
+   "packed": false
+  },
+  {
+   "name": "Lucia Outfit Sub_Leotard_BaseColor2.jpg",
+   "filepath": "//Lucia Outfit Sub_Leotard_BaseColor2.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    2048,
+    2048
+   ],
+   "packed": false
+  },
+  {
+   "name": "Lucia Outfit Sub_Leotard_Normal.jpg",
+   "filepath": "//Lucia Outfit Sub_Leotard_Normal.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    2048,
+    2048
+   ],
+   "packed": false
+  },
+  {
+   "name": "Lucia Outfit Sub_PantsMat_BaseColo1r.jpg",
+   "filepath": "//Lucia Outfit Sub_PantsMat_BaseColo1r.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    2048,
+    2048
+   ],
+   "packed": false
+  },
+  {
+   "name": "Lucia Outfit Sub_PantsMat_Normal.jpg",
+   "filepath": "//Lucia Outfit Sub_PantsMat_Normal.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    2048,
+    2048
+   ],
+   "packed": false
+  },
+  {
+   "name": "Lucia Outfit Sub_Sleeves_BaseColor.jpg",
+   "filepath": "//Lucia Outfit Sub_Sleeves_BaseColor.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    2048,
+    2048
+   ],
+   "packed": false
+  },
+  {
+   "name": "Lucia Outfit Sub_Sleeves_Normal.jpg",
+   "filepath": "//Lucia Outfit Sub_Sleeves_Normal.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    2048,
+    2048
+   ],
+   "packed": false
+  },
+  {
+   "name": "LuciaEyes_D.jpg",
+   "filepath": "//LuciaEyes_D.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    1024,
+    1024
+   ],
+   "packed": false
+  },
+  {
+   "name": "LucyArmsD.jpg",
+   "filepath": "//LucyArmsD.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    2048,
+    2048
+   ],
+   "packed": false
+  },
+  {
+   "name": "LucyEyelashes_D.png",
+   "filepath": "//LucyEyelashes_D.png",
+   "colorspace": "sRGB",
+   "size": [
+    1024,
+    1024
+   ],
+   "packed": false
+  },
+  {
+   "name": "LucyHead_D.jpg",
+   "filepath": "//LucyHead_D.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    2048,
+    2048
+   ],
+   "packed": false
+  },
+  {
+   "name": "LucyLegsD.jpg",
+   "filepath": "//LucyLegsD.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    2048,
+    2048
+   ],
+   "packed": false
+  },
+  {
+   "name": "LucyTorso_D.jpg",
+   "filepath": "//LucyTorso_D.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    2048,
+    2048
+   ],
+   "packed": false
+  },
+  {
+   "name": "LXHead_N.jpg",
+   "filepath": "//LXHead_N.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    2048,
+    2048
+   ],
+   "packed": false
+  },
+  {
+   "name": "LXTorso_N.jpg",
+   "filepath": "//LXTorso_N.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    2048,
+    2048
+   ],
+   "packed": false
+  },
+  {
+   "name": "Mouth_D.jpg",
+   "filepath": "//Mouth_D.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    1024,
+    1024
+   ],
+   "packed": false
+  },
+  {
+   "name": "Mouth_N.jpg",
+   "filepath": "//Mouth_N.jpg",
+   "colorspace": "sRGB",
+   "size": [
+    1024,
+    1024
+   ],
+   "packed": false
+  },
+  {
+   "name": "Render Result",
+   "filepath": "",
+   "colorspace": "",
+   "size": [
+    0,
+    0
+   ],
+   "packed": false
+  },
+  {
+   "name": "toon01.bmp",
+   "filepath": "//..\\..\\..\\..\\..\\toon01.bmp",
+   "colorspace": "sRGB",
+   "size": [
+    0,
+    0
+   ],
+   "packed": false
+  }
+ ],
+ "node_groups": [
+  {
+   "name": "MMDShaderDev",
+   "users": 15,
+   "nodes": [
+    [
+     "GROUP_INPUT",
+     "Group Input"
+    ],
+    [
+     "GROUP_OUTPUT",
+     "Group Output"
+    ],
+    [
+     "MIX",
+     "Mix"
+    ],
+    [
+     "MIX",
+     "Mix.001"
+    ],
+    [
+     "MIX",
+     "Mix.002"
+    ],
+    [
+     "MIX",
+     "Mix.003"
+    ],
+    [
+     "MIX",
+     "Mix.004"
+    ],
+    [
+     "MIX",
+     "Mix.005"
+    ],
+    [
+     "NEW_GEOMETRY",
+     "Geometry"
+    ],
+    [
+     "MATH",
+     "Math"
+    ],
+    [
+     "MATH",
+     "Math.001"
+    ],
+    [
+     "MATH",
+     "Math.002"
+    ],
+    [
+     "MATH",
+     "Math.003"
+    ],
+    [
+     "MATH",
+     "Math.004"
+    ],
+    [
+     "MATH",
+     "Math.005"
+    ],
+    [
+     "MATH",
+     "Math.006"
+    ],
+    [
+     "BSDF_DIFFUSE",
+     "Diffuse BSDF"
+    ],
+    [
+     "BSDF_GLOSSY",
+     "Glossy BSDF"
+    ],
+    [
+     "MIX_SHADER",
+     "Mix Shader"
+    ],
+    [
+     "BSDF_TRANSPARENT",
+     "Transparent BSDF"
+    ],
+    [
+     "MIX_SHADER",
+     "Mix Shader.001"
+    ]
+   ],
+   "inputs": [
+    "Ambient Color",
+    "Diffuse Color",
+    "Specular Color",
+    "Reflect",
+    "Base Tex Fac",
+    "Base Tex",
+    "Toon Tex Fac",
+    "Toon Tex",
+    "Sphere Tex Fac",
+    "Sphere Tex",
+    "Sphere Mul/Add",
+    "Double Sided",
+    "Alpha",
+    "Base Alpha",
+    "Toon Alpha",
+    "Sphere Alpha"
+   ]
+  },
+  {
+   "name": "MMDTexUV",
+   "users": 15,
+   "nodes": [
+    [
+     "GROUP_OUTPUT",
+     "Group Output"
+    ],
+    [
+     "TEX_COORD",
+     "Texture Coordinate"
+    ],
+    [
+     "UVMAP",
+     "UV Map"
+    ],
+    [
+     "VECT_TRANSFORM",
+     "Vector Transform"
+    ],
+    [
+     "MAPPING",
+     "Mapping"
+    ]
+   ],
+   "inputs": []
+  }
+ ]
+}

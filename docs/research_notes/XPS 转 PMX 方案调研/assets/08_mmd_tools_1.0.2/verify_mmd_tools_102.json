@@ -1,0 +1,733 @@
+{
+ "addon_enable": {
+  "blender_version": "3.6.15",
+  "python": "3.10.13 (main, Oct 10 2023, 08:34:31) [MSC v.1928 64 bit (AMD64)]",
+  "mmd_tools": "already enabled",
+  "mmd_uuunyaa_tools": "already enabled"
+ },
+ "version_identity": {
+  "bl_info_version": [
+   1,
+   0,
+   2
+  ],
+  "bl_info_blender": [
+   2,
+   83,
+   0
+  ],
+  "bl_info_author": "sugiany",
+  "bl_info_description": "Utility tools for MMD model editing. (UuuNyaa's forked version)",
+  "module_file": "C:\\Users\\haoni\\AppData\\Roaming\\Blender Foundation\\Blender\\3.6\\scripts\\addons\\mmd_tools\\__init__.py",
+  "package_name": "mmd_tools",
+  "has_MMD_TOOLS_VERSION": false,
+  "in_preferences_addons": true,
+  "uuunyaa_version": [
+   1,
+   8,
+   0
+  ],
+  "uuunyaa_blender": [
+   3,
+   6,
+   0
+  ]
+ },
+ "operator_ids": {
+  "count": 82,
+  "ids": [
+   "apply_additional_transform",
+   "apply_bone_morph",
+   "apply_bone_morph_offset",
+   "apply_material_morph_offset",
+   "apply_uv_morph",
+   "attach_meshes",
+   "bone_fixed_axis_setup",
+   "bone_local_axes_setup",
+   "build_rig",
+   "change_mmd_ik_loop_factor",
+   "check_addon_update",
+   "clean_additional_transform",
+   "clean_rig",
+   "clean_shape_keys",
+   "clear_bone_morph_view",
+   "clear_temp_materials",
+   "clear_uv_morph_view",
+   "convert_materials_for_cycles",
+   "convert_to_mmd_camera",
+   "convert_to_mmd_lamp",
+   "convert_to_mmd_model",
+   "create_mmd_model_root_object",
+   "create_work_material",
+   "display_item_add",
+   "display_item_find",
+   "display_item_frame_add",
+   "display_item_frame_move",
+   "display_item_frame_remove",
+   "display_item_move",
+   "display_item_quick_setup",
+   "display_item_remove",
+   "display_item_select_current",
+   "edge_preview_setup",
+   "edit_bone_morph_offset",
+   "edit_uv_morph",
+   "execute_translation_script",
+   "export_pmx",
+   "export_vmd",
+   "export_vpd",
+   "flip_pose",
+   "import_model",
+   "import_vmd",
+   "import_vpd",
+   "join_meshes",
+   "joint_add",
+   "joint_remove",
+   "material_morph_offset_init",
+   "material_open_sphere_texture",
+   "material_open_texture",
+   "material_remove_sphere_texture",
+   "material_remove_texture",
+   "morph_add",
+   "morph_copy",
+   "morph_move",
+   "morph_offset_add",
+   "morph_offset_remove",
+   "morph_overwrite_from_active_pose_library",
+   "morph_remove",
+   "morph_slider_setup",
+   "move_material_down",
+   "move_material_up",
+   "object_move",
+   "object_select",
+   "recalculate_bone_roll",
+   "reset_shading",
+   "rigid_body_add",
+   "rigid_body_remove",
+   "rigid_body_select",
+   "rigid_body_world_update",
+   "sdef_bind",
+   "sdef_cache_reset",
+   "sdef_unbind",
+   "select_bone_morph_offset_bone",
+   "separate_by_materials",
+   "set_frame_range",
+   "set_glsl_shading",
+   "set_shadeless_glsl_shading",
+   "show_global_translation_popup",
+   "translate_mmd_model",
+   "update_addon",
+   "view_bone_morph",
+   "view_uv_morph"
+  ],
+  "uuunyaa_ops": [
+   "add_center_of_gravity_object",
+   "add_pyramid_mesh_by_breast_bone",
+   "add_skin_hair_mesh",
+   "asset_cache_remove",
+   "asset_detail_popup",
+   "asset_download",
+   "asset_download_cancel",
+   "asset_import",
+   "asset_search",
+   "assign_pyramid_weights",
+   "attach_material_adjuster",
+   "autorig_apply_mmd_rest_pose",
+   "autorig_to_mmd_compatible",
+   "check_eevee_rendering_performance",
+   "convert_materials_for_eevee",
+   "convert_pyramid_mesh_to_cloth",
+   "convert_rigid_body_to_cloth",
+   "copy_cloth_adjuster_settings",
+   "copy_collision_adjuster_settings",
+   "copy_pyramid_cloth_adjuster_settings",
+   "delete_cached_files",
+   "delete_debug_asset_json",
+   "detach_material_adjuster",
+   "end_background_check",
+   "freeze_lighting",
+   "mesh_auto_segment",
+   "mesh_paint_selected_faces",
+   "mmd_armature_add_metarig",
+   "mmd_rigify_mmd_focused_integrate",
+   "mmd_rigify_rigify_focused_integrate",
+   "reload_asset_jsons",
+   "remove_mesh_cloth",
+   "remove_mesh_collision",
+   "remove_unused_shape_keys",
+   "remove_unused_vertex_groups",
+   "restore_segmentation_color_palette",
+   "rigify_apply_mmd_rest_pose",
+   "rigify_to_mmd_compatible",
+   "select_cloth_mesh",
+   "select_collision_mesh",
+   "select_mesh_objects_with_slow_material",
+   "select_mesh_objects_with_use_auto_smooth",
+   "select_moved_pose_bones",
+   "select_rigid_body_mesh",
+   "select_shape_key_target_vertices",
+   "setup_render_engine_for_eevee",
+   "setup_render_engine_for_toon_eevee",
+   "setup_render_engine_for_workbench",
+   "setup_segmentation_color_palette",
+   "show_message_box",
+   "stretch_bone_to_vertex",
+   "tune_lighting",
+   "tune_material",
+   "update_asset_json",
+   "update_debug_asset_json",
+   "updater_check_now",
+   "updater_ignore",
+   "updater_install_manually",
+   "updater_install_popup",
+   "updater_restore_backup",
+   "updater_update_now",
+   "updater_update_successful",
+   "updater_update_target"
+  ],
+  "has_fix_bone_order": false,
+  "has_bone_id_move_up": false,
+  "has_validate_bones": false,
+  "has_convert_bone_morph_to_vertex_morph": false,
+  "has_translate_mmd_model": true,
+  "has_display_item_quick_setup": true,
+  "has_convert_to_mmd_model": true,
+  "has_apply_additional_transform": true,
+  "has_global_translation_popup": false,
+  "has_show_global_translation_popup": true,
+  "has_attach_meshes": true,
+  "has_model_validation": false
+ },
+ "signatures": {
+  "Model.create": "(name, name_e='', scale=1, obj_name=None, armature=None, add_root_bone=False)",
+  "Model.createRigidBody": "(self, **kwargs)",
+  "Model.createJoint": "(self, **kwargs)",
+  "Model.initialDisplayFrames": "(self, reset=True)",
+  "Model.create_ik_constraint": "(self, bone, ik_target)",
+  "FnBone.apply_additional_transformation": "(armature)",
+  "FnBone.clean_additional_transformation": "(armature)",
+  "FnBone.apply_auto_bone_roll": "(armature)",
+  "FnBone.update_bone_roll": "(edit_bone, mmd_local_axis_x, mmd_local_axis_z)",
+  "FnMaterial.create_texture": "(self, filepath)",
+  "FnMaterial.convert_to_mmd_material": "(material)",
+  "exporter.export": "(filepath, **kwargs)",
+  "importer.PMXImporter.execute": "(self, **args)",
+  "FnModel_methods": [
+   "all_children",
+   "child_meshes",
+   "find_armature",
+   "find_joint_group",
+   "find_rigid_group",
+   "find_root",
+   "translate_in_presets"
+  ],
+  "Model_methods": [
+   "allObjects",
+   "applyAdditionalTransformConstraints",
+   "armature",
+   "build",
+   "buildJoints",
+   "buildRigids",
+   "clean",
+   "cleanAdditionalTransformConstraints",
+   "clothGroupObject",
+   "cloths",
+   "create",
+   "createJoint",
+   "createJointPool",
+   "createRigidBody",
+   "createRigidBodyPool",
+   "create_ik_constraint",
+   "findMesh",
+   "findMeshByIndex",
+   "findRoot",
+   "firstMesh",
+   "getMeshIndex",
+   "initialDisplayFrames",
+   "jointGroupObject",
+   "joints",
+   "loadMorphs",
+   "materials",
+   "meshes",
+   "morph_slider",
+   "renameBone",
+   "rigidBodies",
+   "rigidGroupObject",
+   "rootObject",
+   "temporaryGroupObject",
+   "temporaryObjects",
+   "updateRigid"
+  ],
+  "FnBone_methods": [
+   "AUTO_LOCAL_AXIS_ARMS",
+   "AUTO_LOCAL_AXIS_FINGERS",
+   "AUTO_LOCAL_AXIS_SEMI_STANDARD_ARMS",
+   "apply_additional_transformation",
+   "apply_auto_bone_roll",
+   "apply_bone_fixed_axis",
+   "apply_bone_local_axes",
+   "bone_id",
+   "clean_additional_transformation",
+   "from_bone_id",
+   "get_axes",
+   "get_selected_pose_bones",
+   "has_auto_local_axis",
+   "load_bone_fixed_axis",
+   "load_bone_local_axes",
+   "patch_rna_idprop",
+   "pose_bone",
+   "update_additional_transform_influence",
+   "update_auto_bone_roll",
+   "update_bone_roll"
+  ]
+ },
+ "property_lists": {
+  "MMDBone": [
+   "additional_transform_bone",
+   "additional_transform_bone_id",
+   "additional_transform_influence",
+   "bone_id",
+   "enabled_fixed_axis",
+   "enabled_local_axes",
+   "fixed_axis",
+   "has_additional_location",
+   "has_additional_rotation",
+   "ik_rotation_constraint",
+   "is_additional_transform_dirty",
+   "is_controllable",
+   "is_tip",
+   "local_axis_x",
+   "local_axis_z",
+   "name_e",
+   "name_j",
+   "transform_after_dynamics",
+   "transform_order"
+  ],
+  "MMDRoot": [
+   "active_display_item_frame",
+   "active_joint_index",
+   "active_mesh_index",
+   "active_morph",
+   "active_morph_type",
+   "active_rigidbody_index",
+   "bone_morphs",
+   "comment_e_text",
+   "comment_text",
+   "display_item_frames",
+   "group_morphs",
+   "is_built",
+   "material_morphs",
+   "name_e",
+   "show_armature",
+   "show_joints",
+   "show_meshes",
+   "show_names_of_joints",
+   "show_names_of_rigid_bodies",
+   "show_rigid_bodies",
+   "show_temporary_objects",
+   "use_property_driver",
+   "use_sdef",
+   "use_sphere_texture",
+   "use_toon_texture",
+   "uv_morphs",
+   "vertex_morphs"
+  ],
+  "MMDDisplayItem": [
+   "morph_type",
+   "type"
+  ],
+  "MMDDisplayItemFrame": [
+   "active_item",
+   "data",
+   "is_special",
+   "name_e"
+  ],
+  "MMDMaterial": [
+   "alpha",
+   "ambient_color",
+   "comment",
+   "diffuse_color",
+   "edge_color",
+   "edge_weight",
+   "enabled_drop_shadow",
+   "enabled_self_shadow",
+   "enabled_self_shadow_map",
+   "enabled_toon_edge",
+   "is_double_sided",
+   "is_shared_toon_texture",
+   "material_id",
+   "name_e",
+   "name_j",
+   "shared_toon_texture",
+   "shininess",
+   "specular_color",
+   "sphere_texture_type",
+   "toon_texture"
+  ],
+  "MMDRigidBody": [
+   "bone",
+   "collision_group_mask",
+   "collision_group_number",
+   "name_e",
+   "name_j",
+   "shape",
+   "size",
+   "type"
+  ],
+  "MMDJoint": [
+   "name_e",
+   "name_j",
+   "spring_angular",
+   "spring_linear"
+  ],
+  "PoseBone_extra": [
+   "mmd_bone",
+   "is_mmd_shadow_bone",
+   "mmd_shadow_bone_type",
+   "mmd_ik_toggle"
+  ],
+  "Object_extra": [
+   "mmd_type",
+   "mmd_root",
+   "mmd_rigid",
+   "mmd_joint",
+   "mmd_camera",
+   "mmd_data_query"
+  ],
+  "mmd_type_enum": [
+   "NONE",
+   "ROOT",
+   "RIGID_GRP_OBJ",
+   "JOINT_GRP_OBJ",
+   "TEMPORARY_GRP_OBJ",
+   "PLACEHOLDER",
+   "CAMERA",
+   "JOINT",
+   "RIGID_BODY",
+   "LIGHT",
+   "TRACK_TARGET",
+   "NON_COLLISION_CONSTRAINT",
+   "SPRING_CONSTRAINT",
+   "SPRING_GOAL"
+  ],
+  "MMDBone_bone_id_default": -1,
+  "MMDBone_ik_rotation_constraint_default": 1.0,
+  "MMDBone_additional_transform_influence_default": 1.0,
+  "MMDRoot_has_ik_loop_factor": false,
+  "MMDBone_has_display_connection_type": false
+ },
+ "import_export_operator_props": {
+  "import_model": {
+   "filepath": {
+    "type": "STRING",
+    "default": ""
+   },
+   "files": {
+    "type": "COLLECTION"
+   },
+   "directory": {
+    "type": "STRING",
+    "default": ""
+   },
+   "filter_glob": {
+    "type": "STRING",
+    "default": "*.pmx;*.pmd"
+   },
+   "types": {
+    "type": "ENUM",
+    "items": [
+     "MESH",
+     "ARMATURE",
+     "PHYSICS",
+     "DISPLAY",
+     "MORPHS"
+    ],
+    "default": [
+     "ARMATURE",
+     "DISPLAY",
+     "MESH",
+     "MORPHS",
+     "PHYSICS"
+    ]
+   },
+   "scale": {
+    "type": "FLOAT",
+    "default": 1.0
+   },
+   "clean_model": {
+    "type": "BOOLEAN",
+    "default": true
+   },
+   "remove_doubles": {
+    "type": "BOOLEAN",
+    "default": false
+   },
+   "fix_IK_links": {
+    "type": "BOOLEAN",
+    "default": false
+   },
+   "apply_bone_fixed_axis": {
+    "type": "BOOLEAN",
+    "default": false
+   },
+   "rename_bones": {
+    "type": "BOOLEAN",
+    "default": true
+   },
+   "use_underscore": {
+    "type": "BOOLEAN",
+    "default": false
+   },
+   "dictionary": {
+    "type": "ENUM",
+    "items": [],
+    "default": ""
+   },
+   "use_mipmap": {
+    "type": "BOOLEAN",
+    "default": true
+   },
+   "sph_blend_factor": {
+    "type": "FLOAT",
+    "default": 1.0
+   },
+   "spa_blend_factor": {
+    "type": "FLOAT",
+    "default": 1.0
+   },
+   "log_level": {
+    "type": "ENUM",
+    "items": [
+     "DEBUG",
+     "INFO",
+     "WARNING",
+     "ERROR"
+    ],
+    "default": "DEBUG"
+   },
+   "save_log": {
+    "type": "BOOLEAN",
+    "default": false
+   }
+  },
+  "export_pmx": {
+   "filepath": {
+    "type": "STRING",
+    "default": ""
+   },
+   "check_existing": {
+    "type": "BOOLEAN",
+    "default": true
+   },
+   "filter_glob": {
+    "type": "STRING",
+    "default": "*.pmx"
+   },
+   "scale": {
+    "type": "FLOAT",
+    "default": 1.0
+   },
+   "copy_textures": {
+    "type": "BOOLEAN",
+    "default": true
+   },
+   "sort_materials": {
+    "type": "BOOLEAN",
+    "default": false
+   },
+   "disable_specular": {
+    "type": "BOOLEAN",
+    "default": false
+   },
+   "visible_meshes_only": {
+    "type": "BOOLEAN",
+    "default": false
+   },
+   "overwrite_bone_morphs_from_pose_library": {
+    "type": "BOOLEAN",
+    "default": false
+   },
+   "translate_in_presets": {
+    "type": "BOOLEAN",
+    "default": false
+   },
+   "sort_vertices": {
+    "type": "ENUM",
+    "items": [
+     "NONE",
+     "BLENDER",
+     "CUSTOM"
+    ],
+    "default": "NONE"
+   },
+   "log_level": {
+    "type": "ENUM",
+    "items": [
+     "DEBUG",
+     "INFO",
+     "WARNING",
+     "ERROR"
+    ],
+    "default": "DEBUG"
+   },
+   "save_log": {
+    "type": "BOOLEAN",
+    "default": false
+   }
+  },
+  "display_item_quick_setup": {
+   "type": {
+    "type": "ENUM",
+    "items": [
+     "RESET",
+     "FACIAL",
+     "GROUP_LOAD",
+     "GROUP_APPLY"
+    ],
+    "default": "FACIAL"
+   }
+  },
+  "translate_mmd_model": {
+   "dictionary": {
+    "type": "ENUM",
+    "items": [],
+    "default": ""
+   },
+   "types": {
+    "type": "ENUM",
+    "items": [
+     "BONE",
+     "MORPH",
+     "MATERIAL",
+     "DISPLAY",
+     "PHYSICS",
+     "INFO"
+    ],
+    "default": [
+     "BONE",
+     "DISPLAY",
+     "MATERIAL",
+     "MORPH",
+     "PHYSICS"
+    ]
+   },
+   "modes": {
+    "type": "ENUM",
+    "items": [
+     "MMD",
+     "BLENDER"
+    ],
+    "default": [
+     "MMD"
+    ]
+   },
+   "use_morph_prefix": {
+    "type": "BOOLEAN",
+    "default": false
+   },
+   "overwrite": {
+    "type": "BOOLEAN",
+    "default": false
+   },
+   "allow_fails": {
+    "type": "BOOLEAN",
+    "default": false
+   }
+  },
+  "rigid_body_add": {
+   "name_j": {
+    "type": "STRING",
+    "default": "$name_j"
+   },
+   "name_e": {
+    "type": "STRING",
+    "default": "$name_e"
+   },
+   "collision_group_number": {
+    "type": "INT",
+    "default": 0
+   },
+   "collision_group_mask": {
+    "type": "BOOLEAN",
+    "default": false
+   },
+   "rigid_type": {
+    "type": "ENUM",
+    "items": [
+     "0",
+     "1",
+     "2"
+    ],
+    "default": "0"
+   },
+   "rigid_shape": {
+    "type": "ENUM",
+    "items": [
+     "SPHERE",
+     "BOX",
+     "CAPSULE"
+    ],
+    "default": "SPHERE"
+   },
+   "size": {
+    "type": "FLOAT",
+    "default": 0.0
+   },
+   "mass": {
+    "type": "FLOAT",
+    "default": 1.0
+   },
+   "friction": {
+    "type": "FLOAT",
+    "default": 0.5
+   },
+   "bounce": {
+    "type": "FLOAT",
+    "default": 0.0
+   },
+   "linear_damping": {
+    "type": "FLOAT",
+    "default": 0.03999999910593033
+   },
+   "angular_damping": {
+    "type": "FLOAT",
+    "default": 0.10000000149011612
+   }
+  },
+  "joint_add": {
+   "use_bone_rotation": {
+    "type": "BOOLEAN",
+    "default": true
+   },
+   "limit_linear_lower": {
+    "type": "FLOAT",
+    "default": 0.0
+   },
+   "limit_linear_upper": {
+    "type": "FLOAT",
+    "default": 0.0
+   },
+   "limit_angular_lower": {
+    "type": "FLOAT",
+    "default": 0.0
+   },
+   "limit_angular_upper": {
+    "type": "FLOAT",
+    "default": 0.0
+   },
+   "spring_linear": {
+    "type": "FLOAT",
+    "default": 0.0
+   },
+   "spring_angular": {
+    "type": "FLOAT",
+    "default": 0.0
+   }
+  }
+ },
+ "additional_transform_live_test": {
+  "ERROR": "Traceback (most recent call last):\n  File \"C:\\Users\\haoni\\AppData\\Local\\Temp\\claude\\E--code-model-tools-xps-to-pmx\\441df278-ebd9-48c0-b8a0-450576caae61\\scratchpad\\verify_mmd_tools_102.py\", line 17, in deco\n    OUT[name] = fn()\n  File \"C:\\Users\\haoni\\AppData\\Local\\Temp\\claude\\E--code-model-tools-xps-to-pmx\\441df278-ebd9-48c0-b8a0-450576caae61\\scratchpad\\verify_mmd_tools_102.py\", line 168, in _\n    rig = Model.create('TestModel', 'TestModel_e', scale=1.0, obj_name='Test', add_root_bone=True)\n  File \"C:\\Users\\haoni\\AppData\\Roaming\\Blender Foundation\\Blender\\3.6\\scripts\\addons\\mmd_tools\\core\\model.py\", line 606, in create\n    root.mmd_type = 'ROOT'\nAttributeError: 'Object' object has no attribute 'mmd_type'\n"
+ },
+ "bone_order_live_test": {
+  "ERROR": "Traceback (most recent call last):\n  File \"C:\\Users\\haoni\\AppData\\Local\\Temp\\claude\\E--code-model-tools-xps-to-pmx\\441df278-ebd9-48c0-b8a0-450576caae61\\scratchpad\\verify_mmd_tools_102.py\", line 17, in deco\n    OUT[name] = fn()\n  File \"C:\\Users\\haoni\\AppData\\Local\\Temp\\claude\\E--code-model-tools-xps-to-pmx\\441df278-ebd9-48c0-b8a0-450576caae61\\scratchpad\\verify_mmd_tools_102.py\", line 284, in _\n    rig = Model.create('Order', 'Order', scale=1.0, obj_name='Order', add_root_bone=False)\n  File \"C:\\Users\\haoni\\AppData\\Roaming\\Blender Foundation\\Blender\\3.6\\scripts\\addons\\mmd_tools\\core\\model.py\", line 606, in create\n    root.mmd_type = 'ROOT'\nAttributeError: 'Object' object has no attribute 'mmd_type'\n"
+ }
+}

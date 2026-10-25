@@ -1,0 +1,2640 @@
+{
+ "A_create_and_additional_transform": {
+  "root_name": "Test",
+  "root_mmd_type": "ROOT",
+  "mmd_root_name": "TestModel",
+  "armature_name": "Test_arm",
+  "armature_parent": "Test",
+  "armature_data_name": "Test",
+  "bones_after_create": [
+   "全ての親"
+  ],
+  "root_bone_name_j_e": [
+   "全ての親",
+   "Root"
+  ],
+  "bone_groups_after_create": [],
+  "root_empty_display_size": 5.0,
+  "arm_display_type": "WIRE",
+  "arm_show_in_front": true,
+  "display_frames_after_create": [],
+  "active_object_after_create": "Test",
+  "children_of_root": [
+   "Test_arm"
+  ],
+  "display_frames_after_initial": [
+   [
+    "Root",
+    "Root",
+    true,
+    [
+     [
+      "BONE",
+      "全ての親"
+     ]
+    ]
+   ],
+   [
+    "表情",
+    "Facial",
+    true,
+    []
+   ]
+  ],
+  "before_apply": {
+   "左目": {
+    "dirty": true,
+    "add_bone": "両目",
+    "add_bone_id": 0,
+    "constraints": []
+   },
+   "左肩C": {
+    "dirty": true,
+    "add_bone": "左肩P",
+    "add_bone_id": 1,
+    "constraints": []
+   },
+   "左足D": {
+    "dirty": true,
+    "add_bone": "左足",
+    "add_bone_id": 2,
+    "constraints": []
+   }
+  },
+  "bone_ids_after_setting_targets": {
+   "全ての親": -1,
+   "センター": -1,
+   "上半身": -1,
+   "頭": -1,
+   "両目": 0,
+   "左目": -1,
+   "左肩P": 1,
+   "左肩": -1,
+   "左肩C": -1,
+   "左腕": -1,
+   "左足": 2,
+   "左足D": -1
+  },
+  "after_apply": {
+   "左目": {
+    "is_mmd_shadow_bone": false,
+    "mmd_shadow_bone_type": "",
+    "parent": "頭",
+    "use_deform": true,
+    "use_connect": false,
+    "layers_on": [
+     0
+    ],
+    "bone_group": null,
+    "hide": false,
+    "name_j": "左目",
+    "name_e": "",
+    "bone_id": -1,
+    "transform_order": 0,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": true,
+    "has_add_loc": false,
+    "add_bone": "両目",
+    "add_bone_id": 0,
+    "add_influence": 1.0,
+    "dirty": false,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": [
+     {
+      "type": "TRANSFORM",
+      "name": "mmd_additional_rotation",
+      "target": "Test_arm",
+      "subtarget": "両目",
+      "influence": 1.0,
+      "mute": false,
+      "map_from": "ROTATION",
+      "map_to": "ROTATION",
+      "owner_space": "LOCAL",
+      "target_space": "LOCAL",
+      "use_motion_extrapolate": true,
+      "from_rotation_mode": "AUTO",
+      "to_euler_order": "AUTO",
+      "mix_mode_rot": "ADD",
+      "mix_mode": "ADD",
+      "from_min_x_rot": -3.1416,
+      "from_max_x_rot": 3.1416,
+      "to_min_x_rot": -3.1416,
+      "to_max_x_rot": 3.1416,
+      "from_min_x": 0.0,
+      "from_max_x": 0.0,
+      "to_min_x": 0.0,
+      "to_max_x": 0.0
+     }
+    ]
+   },
+   "左肩C": {
+    "is_mmd_shadow_bone": false,
+    "mmd_shadow_bone_type": "",
+    "parent": "左肩",
+    "use_deform": true,
+    "use_connect": false,
+    "layers_on": [
+     0
+    ],
+    "bone_group": null,
+    "hide": false,
+    "name_j": "左肩C",
+    "name_e": "",
+    "bone_id": -1,
+    "transform_order": 0,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": true,
+    "has_add_loc": false,
+    "add_bone": "左肩P",
+    "add_bone_id": 1,
+    "add_influence": -1.0,
+    "dirty": false,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": [
+     {
+      "type": "TRANSFORM",
+      "name": "mmd_additional_rotation",
+      "target": "Test_arm",
+      "subtarget": "左肩P",
+      "influence": 1.0,
+      "mute": false,
+      "map_from": "ROTATION",
+      "map_to": "ROTATION",
+      "owner_space": "LOCAL",
+      "target_space": "LOCAL",
+      "use_motion_extrapolate": true,
+      "from_rotation_mode": "AUTO",
+      "to_euler_order": "AUTO",
+      "mix_mode_rot": "ADD",
+      "mix_mode": "ADD",
+      "from_min_x_rot": -3.1416,
+      "from_max_x_rot": 3.1416,
+      "to_min_x_rot": 3.1416,
+      "to_max_x_rot": -3.1416,
+      "from_min_x": 0.0,
+      "from_max_x": 0.0,
+      "to_min_x": 0.0,
+      "to_max_x": 0.0
+     }
+    ]
+   },
+   "左足D": {
+    "is_mmd_shadow_bone": false,
+    "mmd_shadow_bone_type": "",
+    "parent": "センター",
+    "use_deform": true,
+    "use_connect": false,
+    "layers_on": [
+     0
+    ],
+    "bone_group": null,
+    "hide": false,
+    "name_j": "左足D",
+    "name_e": "",
+    "bone_id": -1,
+    "transform_order": 0,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": true,
+    "has_add_loc": false,
+    "add_bone": "左足",
+    "add_bone_id": 2,
+    "add_influence": 1.0,
+    "dirty": false,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": [
+     {
+      "type": "TRANSFORM",
+      "name": "mmd_additional_rotation",
+      "target": "Test_arm",
+      "subtarget": "左足",
+      "influence": 1.0,
+      "mute": false,
+      "map_from": "ROTATION",
+      "map_to": "ROTATION",
+      "owner_space": "LOCAL",
+      "target_space": "LOCAL",
+      "use_motion_extrapolate": true,
+      "from_rotation_mode": "AUTO",
+      "to_euler_order": "AUTO",
+      "mix_mode_rot": "ADD",
+      "mix_mode": "ADD",
+      "from_min_x_rot": -3.1416,
+      "from_max_x_rot": 3.1416,
+      "to_min_x_rot": -3.1416,
+      "to_max_x_rot": 3.1416,
+      "from_min_x": 0.0,
+      "from_max_x": 0.0,
+      "to_min_x": 0.0,
+      "to_max_x": 0.0
+     }
+    ]
+   }
+  },
+  "all_bones_after_apply": [
+   "全ての親",
+   "センター",
+   "上半身",
+   "頭",
+   "両目",
+   "左目",
+   "左肩P",
+   "左肩",
+   "左肩C",
+   "左腕",
+   "左足",
+   "左足D"
+  ],
+  "armature_layers_visible": [
+   0
+  ],
+  "bones_after_clean": [
+   "全ての親",
+   "センター",
+   "上半身",
+   "頭",
+   "両目",
+   "左目",
+   "左肩P",
+   "左肩",
+   "左肩C",
+   "左腕",
+   "左足",
+   "左足D"
+  ],
+  "constraints_after_clean": {},
+  "dirty_after_clean": {
+   "左目": true,
+   "左肩C": true,
+   "左足D": true,
+   "センター": true
+  },
+  "bones_after_reapply": [
+   "全ての親",
+   "センター",
+   "上半身",
+   "頭",
+   "両目",
+   "左目",
+   "左肩P",
+   "左肩",
+   "左肩C",
+   "左腕",
+   "左足",
+   "左足D"
+  ],
+  "exported_bones": [
+   [
+    0,
+    "全ての親",
+    "Root",
+    -1,
+    false,
+    false,
+    null,
+    0,
+    true,
+    [
+     0.0,
+     5.0,
+     0.0
+    ]
+   ],
+   [
+    1,
+    "センター",
+    "",
+    0,
+    false,
+    false,
+    null,
+    0,
+    true,
+    [
+     0.0,
+     0.19999980926513672,
+     0.0
+    ]
+   ],
+   [
+    2,
+    "上半身",
+    "",
+    1,
+    false,
+    false,
+    null,
+    0,
+    true,
+    [
+     0.0,
+     0.2999999523162842,
+     0.0
+    ]
+   ],
+   [
+    3,
+    "頭",
+    "",
+    2,
+    false,
+    false,
+    null,
+    0,
+    true,
+    [
+     0.0,
+     0.19999992847442627,
+     0.0
+    ]
+   ],
+   [
+    4,
+    "両目",
+    "",
+    3,
+    false,
+    false,
+    null,
+    0,
+    true,
+    [
+     0.0,
+     0.0,
+     -0.10000000149011612
+    ]
+   ],
+   [
+    5,
+    "左目",
+    "",
+    3,
+    true,
+    false,
+    [
+     4,
+     1.0
+    ],
+    0,
+    true,
+    [
+     0.0,
+     0.0,
+     -0.05000000447034836
+    ]
+   ],
+   [
+    6,
+    "左肩P",
+    "",
+    2,
+    false,
+    false,
+    null,
+    0,
+    true,
+    [
+     0.0,
+     0.10000002384185791,
+     0.0
+    ]
+   ],
+   [
+    7,
+    "左肩",
+    "",
+    6,
+    false,
+    false,
+    null,
+    0,
+    true,
+    [
+     0.15000000596046448,
+     0.0,
+     0.0
+    ]
+   ],
+   [
+    8,
+    "左肩C",
+    "",
+    7,
+    true,
+    false,
+    [
+     6,
+     -1.0
+    ],
+    0,
+    true,
+    [
+     0.0,
+     0.10000002384185791,
+     -3.552714525833448e-16
+    ]
+   ],
+   [
+    9,
+    "左腕",
+    "",
+    8,
+    false,
+    false,
+    null,
+    0,
+    true,
+    [
+     0.24999994039535522,
+     -0.20000004768371582,
+     -9.555520555994427e-16
+    ]
+   ],
+   [
+    10,
+    "左足",
+    "",
+    1,
+    false,
+    false,
+    null,
+    0,
+    true,
+    [
+     0.0,
+     -0.40000003576278687,
+     0.0
+    ]
+   ],
+   [
+    11,
+    "左足D",
+    "",
+    1,
+    true,
+    false,
+    [
+     10,
+     1.0
+    ],
+    0,
+    true,
+    [
+     0.0,
+     -0.40000003576278687,
+     0.0
+    ]
+   ]
+  ],
+  "exported_display": [
+   [
+    "Root",
+    "Root",
+    true,
+    [
+     [
+      0,
+      0
+     ]
+    ]
+   ],
+   [
+    "表情",
+    "Facial",
+    true,
+    []
+   ]
+  ]
+ },
+ "B_importer_roundtrip": {
+  "default_display_frames_in_pmx_Model": [
+   [
+    "Root",
+    "Root",
+    true
+   ],
+   [
+    "表情",
+    "Facial",
+    true
+   ]
+  ],
+  "root_name": "Mmd Tools 102 Rt In",
+  "armature_name": "Mmd Tools 102 Rt In_arm",
+  "import_folder": "C:\\Users\\haoni\\AppData\\Local\\Temp",
+  "mmd_ik_loop_factor_custom_prop": null,
+  "comment_text_blocks": [
+   "Mmd Tools 102 Rt In",
+   "Mmd Tools 102 Rt In_e"
+  ],
+  "mesh_objects": [
+   [
+    "Mmd Tools 102 Rt In_mesh",
+    [
+     "mmd_bone_order_override:ARMATURE"
+    ],
+    [
+     "全ての親",
+     "センター",
+     "上半身",
+     "首",
+     "頭",
+     "両目"
+    ],
+    0
+   ]
+  ],
+  "all_bones": [
+   "全ての親",
+   "センター",
+   "上半身",
+   "首",
+   "頭",
+   "両目",
+   "左目",
+   "左肩P",
+   "左肩",
+   "左肩C",
+   "左腕",
+   "_dummy_左肩C",
+   "_shadow_左肩C",
+   "下半身",
+   "左足",
+   "左ひざ",
+   "左足首",
+   "左つま先",
+   "_dummy_左足首D",
+   "_shadow_左足首D",
+   "左足D",
+   "左ひざD",
+   "左足首D",
+   "左足ＩＫ",
+   "左つま先ＩＫ"
+  ],
+  "bone_groups": [
+   [
+    "Root",
+    [
+     "全ての親"
+    ]
+   ],
+   [
+    "体",
+    [
+     "センター",
+     "上半身",
+     "下半身"
+    ]
+   ],
+   [
+    "足",
+    [
+     "左足",
+     "左ひざ",
+     "左足ＩＫ",
+     "左つま先ＩＫ"
+    ]
+   ]
+  ],
+  "display_frames": [
+   [
+    "Root",
+    "Root",
+    true,
+    [
+     [
+      "BONE",
+      "全ての親"
+     ]
+    ]
+   ],
+   [
+    "表情",
+    "Facial",
+    true,
+    []
+   ],
+   [
+    "体",
+    "Body",
+    false,
+    [
+     [
+      "BONE",
+      "センター"
+     ],
+     [
+      "BONE",
+      "上半身"
+     ],
+     [
+      "BONE",
+      "下半身"
+     ]
+    ]
+   ],
+   [
+    "足",
+    "Legs",
+    false,
+    [
+     [
+      "BONE",
+      "左足"
+     ],
+     [
+      "BONE",
+      "左ひざ"
+     ],
+     [
+      "BONE",
+      "左足ＩＫ"
+     ],
+     [
+      "BONE",
+      "左つま先ＩＫ"
+     ]
+    ]
+   ]
+  ],
+  "bones": {
+   "左目": {
+    "is_mmd_shadow_bone": false,
+    "mmd_shadow_bone_type": "",
+    "parent": "頭",
+    "use_deform": true,
+    "use_connect": false,
+    "layers_on": [
+     0
+    ],
+    "bone_group": null,
+    "hide": false,
+    "name_j": "左目",
+    "name_e": "左目_e",
+    "bone_id": -1,
+    "transform_order": 0,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": true,
+    "has_add_loc": false,
+    "add_bone": "両目",
+    "add_bone_id": 0,
+    "add_influence": 1.0,
+    "dirty": false,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": [
+     {
+      "type": "TRANSFORM",
+      "name": "mmd_additional_rotation",
+      "target": "Mmd Tools 102 Rt In_arm",
+      "subtarget": "両目",
+      "influence": 1.0,
+      "mute": false,
+      "map_from": "ROTATION",
+      "map_to": "ROTATION",
+      "owner_space": "LOCAL",
+      "target_space": "LOCAL",
+      "use_motion_extrapolate": true,
+      "from_rotation_mode": "AUTO",
+      "to_euler_order": "AUTO",
+      "mix_mode_rot": "ADD",
+      "mix_mode": "ADD",
+      "from_min_x_rot": -3.1416,
+      "from_max_x_rot": 3.1416,
+      "to_min_x_rot": -3.1416,
+      "to_max_x_rot": 3.1416,
+      "from_min_x": 0.0,
+      "from_max_x": 0.0,
+      "to_min_x": 0.0,
+      "to_max_x": 0.0
+     }
+    ]
+   },
+   "両目": {
+    "is_mmd_shadow_bone": false,
+    "mmd_shadow_bone_type": "",
+    "parent": "頭",
+    "use_deform": true,
+    "use_connect": false,
+    "layers_on": [
+     0
+    ],
+    "bone_group": null,
+    "hide": false,
+    "name_j": "両目",
+    "name_e": "両目_e",
+    "bone_id": 0,
+    "transform_order": 0,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": false,
+    "has_add_loc": false,
+    "add_bone": "",
+    "add_bone_id": -1,
+    "add_influence": 1.0,
+    "dirty": false,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": []
+   },
+   "左肩C": {
+    "is_mmd_shadow_bone": false,
+    "mmd_shadow_bone_type": "",
+    "parent": "左肩",
+    "use_deform": true,
+    "use_connect": false,
+    "layers_on": [
+     0
+    ],
+    "bone_group": null,
+    "hide": false,
+    "name_j": "左肩C",
+    "name_e": "左肩C_e",
+    "bone_id": -1,
+    "transform_order": 0,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": true,
+    "has_add_loc": false,
+    "add_bone": "左肩P",
+    "add_bone_id": 1,
+    "add_influence": -1.0,
+    "dirty": false,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": [
+     {
+      "type": "TRANSFORM",
+      "name": "mmd_additional_rotation",
+      "target": "Mmd Tools 102 Rt In_arm",
+      "subtarget": "_shadow_左肩C",
+      "influence": 1.0,
+      "mute": false,
+      "map_from": "ROTATION",
+      "map_to": "ROTATION",
+      "owner_space": "LOCAL",
+      "target_space": "LOCAL",
+      "use_motion_extrapolate": true,
+      "from_rotation_mode": "AUTO",
+      "to_euler_order": "AUTO",
+      "mix_mode_rot": "ADD",
+      "mix_mode": "ADD",
+      "from_min_x_rot": -3.1416,
+      "from_max_x_rot": 3.1416,
+      "to_min_x_rot": 3.1416,
+      "to_max_x_rot": -3.1416,
+      "from_min_x": 0.0,
+      "from_max_x": 0.0,
+      "to_min_x": 0.0,
+      "to_max_x": 0.0
+     }
+    ]
+   },
+   "左肩P": {
+    "is_mmd_shadow_bone": false,
+    "mmd_shadow_bone_type": "",
+    "parent": "上半身",
+    "use_deform": true,
+    "use_connect": false,
+    "layers_on": [
+     0
+    ],
+    "bone_group": null,
+    "hide": false,
+    "name_j": "左肩P",
+    "name_e": "左肩P_e",
+    "bone_id": 1,
+    "transform_order": 0,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": false,
+    "has_add_loc": false,
+    "add_bone": "",
+    "add_bone_id": -1,
+    "add_influence": 1.0,
+    "dirty": false,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": []
+   },
+   "左足D": {
+    "is_mmd_shadow_bone": false,
+    "mmd_shadow_bone_type": "",
+    "parent": "下半身",
+    "use_deform": true,
+    "use_connect": false,
+    "layers_on": [
+     0
+    ],
+    "bone_group": null,
+    "hide": false,
+    "name_j": "左足D",
+    "name_e": "左足D_e",
+    "bone_id": -1,
+    "transform_order": 1,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": true,
+    "has_add_loc": false,
+    "add_bone": "左足",
+    "add_bone_id": 2,
+    "add_influence": 1.0,
+    "dirty": false,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": [
+     {
+      "type": "TRANSFORM",
+      "name": "mmd_additional_rotation",
+      "target": "Mmd Tools 102 Rt In_arm",
+      "subtarget": "左足",
+      "influence": 1.0,
+      "mute": false,
+      "map_from": "ROTATION",
+      "map_to": "ROTATION",
+      "owner_space": "LOCAL",
+      "target_space": "LOCAL",
+      "use_motion_extrapolate": true,
+      "from_rotation_mode": "AUTO",
+      "to_euler_order": "AUTO",
+      "mix_mode_rot": "ADD",
+      "mix_mode": "ADD",
+      "from_min_x_rot": -3.1416,
+      "from_max_x_rot": 3.1416,
+      "to_min_x_rot": -3.1416,
+      "to_max_x_rot": 3.1416,
+      "from_min_x": 0.0,
+      "from_max_x": 0.0,
+      "to_min_x": 0.0,
+      "to_max_x": 0.0
+     }
+    ]
+   },
+   "左ひざD": {
+    "is_mmd_shadow_bone": false,
+    "mmd_shadow_bone_type": "",
+    "parent": "左足D",
+    "use_deform": true,
+    "use_connect": false,
+    "layers_on": [
+     0
+    ],
+    "bone_group": null,
+    "hide": false,
+    "name_j": "左ひざD",
+    "name_e": "左ひざD_e",
+    "bone_id": -1,
+    "transform_order": 1,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": true,
+    "has_add_loc": false,
+    "add_bone": "左ひざ",
+    "add_bone_id": 3,
+    "add_influence": 1.0,
+    "dirty": false,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": [
+     {
+      "type": "TRANSFORM",
+      "name": "mmd_additional_rotation",
+      "target": "Mmd Tools 102 Rt In_arm",
+      "subtarget": "左ひざ",
+      "influence": 1.0,
+      "mute": false,
+      "map_from": "ROTATION",
+      "map_to": "ROTATION",
+      "owner_space": "LOCAL",
+      "target_space": "LOCAL",
+      "use_motion_extrapolate": true,
+      "from_rotation_mode": "AUTO",
+      "to_euler_order": "AUTO",
+      "mix_mode_rot": "ADD",
+      "mix_mode": "ADD",
+      "from_min_x_rot": -3.1416,
+      "from_max_x_rot": 3.1416,
+      "to_min_x_rot": -3.1416,
+      "to_max_x_rot": 3.1416,
+      "from_min_x": 0.0,
+      "from_max_x": 0.0,
+      "to_min_x": 0.0,
+      "to_max_x": 0.0
+     }
+    ]
+   },
+   "左足首D": {
+    "is_mmd_shadow_bone": false,
+    "mmd_shadow_bone_type": "",
+    "parent": "左ひざD",
+    "use_deform": true,
+    "use_connect": false,
+    "layers_on": [
+     0
+    ],
+    "bone_group": null,
+    "hide": false,
+    "name_j": "左足首D",
+    "name_e": "左足首D_e",
+    "bone_id": -1,
+    "transform_order": 1,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": true,
+    "has_add_loc": false,
+    "add_bone": "左足首",
+    "add_bone_id": 4,
+    "add_influence": 1.0,
+    "dirty": false,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": [
+     {
+      "type": "TRANSFORM",
+      "name": "mmd_additional_rotation",
+      "target": "Mmd Tools 102 Rt In_arm",
+      "subtarget": "_shadow_左足首D",
+      "influence": 1.0,
+      "mute": false,
+      "map_from": "ROTATION",
+      "map_to": "ROTATION",
+      "owner_space": "LOCAL",
+      "target_space": "LOCAL",
+      "use_motion_extrapolate": true,
+      "from_rotation_mode": "AUTO",
+      "to_euler_order": "AUTO",
+      "mix_mode_rot": "ADD",
+      "mix_mode": "ADD",
+      "from_min_x_rot": -3.1416,
+      "from_max_x_rot": 3.1416,
+      "to_min_x_rot": -3.1416,
+      "to_max_x_rot": 3.1416,
+      "from_min_x": 0.0,
+      "from_max_x": 0.0,
+      "to_min_x": 0.0,
+      "to_max_x": 0.0
+     }
+    ]
+   },
+   "左足": {
+    "is_mmd_shadow_bone": false,
+    "mmd_shadow_bone_type": "",
+    "parent": "下半身",
+    "use_deform": true,
+    "use_connect": false,
+    "layers_on": [
+     0
+    ],
+    "bone_group": "足",
+    "hide": false,
+    "name_j": "左足",
+    "name_e": "左足_e",
+    "bone_id": 2,
+    "transform_order": 0,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": false,
+    "has_add_loc": false,
+    "add_bone": "",
+    "add_bone_id": -1,
+    "add_influence": 1.0,
+    "dirty": false,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": []
+   },
+   "左ひざ": {
+    "is_mmd_shadow_bone": false,
+    "mmd_shadow_bone_type": "",
+    "parent": "左足",
+    "use_deform": true,
+    "use_connect": false,
+    "layers_on": [
+     0
+    ],
+    "bone_group": "足",
+    "hide": false,
+    "name_j": "左ひざ",
+    "name_e": "左ひざ_e",
+    "bone_id": 3,
+    "transform_order": 0,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": false,
+    "has_add_loc": false,
+    "add_bone": "",
+    "add_bone_id": -1,
+    "add_influence": 1.0,
+    "dirty": false,
+    "use_ik_limit": [
+     true,
+     true,
+     true
+    ],
+    "ik_min_max_x": [
+     0.0,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": [
+     {
+      "type": "IK",
+      "name": "IK",
+      "target": "Mmd Tools 102 Rt In_arm",
+      "subtarget": "左足ＩＫ",
+      "influence": 1.0,
+      "mute": false,
+      "chain_count": 2,
+      "iterations": 40,
+      "use_tail": true,
+      "pole_target": null,
+      "is_valid": true
+     },
+     {
+      "type": "LIMIT_ROTATION",
+      "name": "mmd_ik_limit_override",
+      "target": null,
+      "subtarget": null,
+      "influence": 1.0,
+      "mute": false,
+      "owner_space": "POSE",
+      "use_limit_x": true,
+      "use_limit_y": false,
+      "use_limit_z": false,
+      "min_x": 0.0087,
+      "max_x": 3.1416,
+      "min_y": 0.0,
+      "max_y": 0.0,
+      "min_z": 0.0,
+      "max_z": 0.0
+     }
+    ]
+   },
+   "左足首": {
+    "is_mmd_shadow_bone": false,
+    "mmd_shadow_bone_type": "",
+    "parent": "左ひざ",
+    "use_deform": true,
+    "use_connect": false,
+    "layers_on": [
+     0
+    ],
+    "bone_group": null,
+    "hide": false,
+    "name_j": "左足首",
+    "name_e": "左足首_e",
+    "bone_id": 4,
+    "transform_order": 0,
+    "is_tip": false,
+    "ik_rotation_constraint": 4.0,
+    "has_add_rot": false,
+    "has_add_loc": false,
+    "add_bone": "",
+    "add_bone_id": -1,
+    "add_influence": 1.0,
+    "dirty": false,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": [
+     {
+      "type": "DAMPED_TRACK",
+      "name": "mmd_ik_target_override",
+      "target": "Mmd Tools 102 Rt In_arm",
+      "subtarget": "左ひざ",
+      "influence": 0.0,
+      "mute": true,
+      "track_axis": "TRACK_Y"
+     },
+     {
+      "type": "IK",
+      "name": "IK",
+      "target": "Mmd Tools 102 Rt In_arm",
+      "subtarget": "左つま先ＩＫ",
+      "influence": 1.0,
+      "mute": false,
+      "chain_count": 1,
+      "iterations": 3,
+      "use_tail": true,
+      "pole_target": null,
+      "is_valid": true
+     }
+    ]
+   },
+   "左つま先": {
+    "is_mmd_shadow_bone": false,
+    "mmd_shadow_bone_type": "",
+    "parent": "左足首",
+    "use_deform": true,
+    "use_connect": false,
+    "layers_on": [
+     0
+    ],
+    "bone_group": null,
+    "hide": false,
+    "name_j": "左つま先",
+    "name_e": "左つま先_e",
+    "bone_id": -1,
+    "transform_order": 0,
+    "is_tip": true,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": false,
+    "has_add_loc": false,
+    "add_bone": "",
+    "add_bone_id": -1,
+    "add_influence": 1.0,
+    "dirty": false,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": [
+     {
+      "type": "DAMPED_TRACK",
+      "name": "mmd_ik_target_override",
+      "target": "Mmd Tools 102 Rt In_arm",
+      "subtarget": "左足首",
+      "influence": 0.0,
+      "mute": true,
+      "track_axis": "TRACK_Y"
+     }
+    ]
+   },
+   "左足ＩＫ": {
+    "is_mmd_shadow_bone": false,
+    "mmd_shadow_bone_type": "",
+    "parent": "全ての親",
+    "use_deform": true,
+    "use_connect": false,
+    "layers_on": [
+     0
+    ],
+    "bone_group": "足",
+    "hide": false,
+    "name_j": "左足ＩＫ",
+    "name_e": "左足ＩＫ_e",
+    "bone_id": -1,
+    "transform_order": 0,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": false,
+    "has_add_loc": false,
+    "add_bone": "",
+    "add_bone_id": -1,
+    "add_influence": 1.0,
+    "dirty": false,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": []
+   },
+   "左つま先ＩＫ": {
+    "is_mmd_shadow_bone": false,
+    "mmd_shadow_bone_type": "",
+    "parent": "左足ＩＫ",
+    "use_deform": true,
+    "use_connect": false,
+    "layers_on": [
+     0
+    ],
+    "bone_group": "足",
+    "hide": false,
+    "name_j": "左つま先ＩＫ",
+    "name_e": "左つま先ＩＫ_e",
+    "bone_id": -1,
+    "transform_order": 0,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": false,
+    "has_add_loc": false,
+    "add_bone": "",
+    "add_bone_id": -1,
+    "add_influence": 1.0,
+    "dirty": false,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": []
+   }
+  },
+  "shadow_bones": {
+   "_dummy_左肩C": {
+    "is_mmd_shadow_bone": true,
+    "mmd_shadow_bone_type": "DUMMY",
+    "parent": "左肩P",
+    "use_deform": false,
+    "use_connect": false,
+    "layers_on": [
+     9
+    ],
+    "bone_group": null,
+    "hide": false,
+    "name_j": "",
+    "name_e": "",
+    "bone_id": -1,
+    "transform_order": 0,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": false,
+    "has_add_loc": false,
+    "add_bone": "",
+    "add_bone_id": -1,
+    "add_influence": 1.0,
+    "dirty": true,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": []
+   },
+   "_shadow_左肩C": {
+    "is_mmd_shadow_bone": true,
+    "mmd_shadow_bone_type": "SHADOW",
+    "parent": "上半身",
+    "use_deform": false,
+    "use_connect": false,
+    "layers_on": [
+     8
+    ],
+    "bone_group": null,
+    "hide": false,
+    "name_j": "",
+    "name_e": "",
+    "bone_id": -1,
+    "transform_order": 0,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": false,
+    "has_add_loc": false,
+    "add_bone": "",
+    "add_bone_id": -1,
+    "add_influence": 1.0,
+    "dirty": true,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": [
+     {
+      "type": "COPY_TRANSFORMS",
+      "name": "mmd_tools_at_dummy",
+      "target": "Mmd Tools 102 Rt In_arm",
+      "subtarget": "_dummy_左肩C",
+      "influence": 1.0,
+      "mute": false,
+      "owner_space": "POSE",
+      "target_space": "POSE"
+     }
+    ]
+   },
+   "_dummy_左足首D": {
+    "is_mmd_shadow_bone": true,
+    "mmd_shadow_bone_type": "DUMMY",
+    "parent": "左足首",
+    "use_deform": false,
+    "use_connect": false,
+    "layers_on": [
+     9
+    ],
+    "bone_group": null,
+    "hide": false,
+    "name_j": "",
+    "name_e": "",
+    "bone_id": -1,
+    "transform_order": 0,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": false,
+    "has_add_loc": false,
+    "add_bone": "",
+    "add_bone_id": -1,
+    "add_influence": 1.0,
+    "dirty": true,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": []
+   },
+   "_shadow_左足首D": {
+    "is_mmd_shadow_bone": true,
+    "mmd_shadow_bone_type": "SHADOW",
+    "parent": "左ひざ",
+    "use_deform": false,
+    "use_connect": false,
+    "layers_on": [
+     8
+    ],
+    "bone_group": null,
+    "hide": false,
+    "name_j": "",
+    "name_e": "",
+    "bone_id": -1,
+    "transform_order": 0,
+    "is_tip": false,
+    "ik_rotation_constraint": 1.0,
+    "has_add_rot": false,
+    "has_add_loc": false,
+    "add_bone": "",
+    "add_bone_id": -1,
+    "add_influence": 1.0,
+    "dirty": true,
+    "use_ik_limit": [
+     false,
+     false,
+     false
+    ],
+    "ik_min_max_x": [
+     -3.1416,
+     3.1416
+    ],
+    "lock_location": [
+     false,
+     false,
+     false
+    ],
+    "lock_rotation": [
+     false,
+     false,
+     false
+    ],
+    "constraints": [
+     {
+      "type": "COPY_TRANSFORMS",
+      "name": "mmd_tools_at_dummy",
+      "target": "Mmd Tools 102 Rt In_arm",
+      "subtarget": "_dummy_左足首D",
+      "influence": 1.0,
+      "mute": false,
+      "owner_space": "POSE",
+      "target_space": "POSE"
+     }
+    ]
+   }
+  },
+  "armature_layers_visible": [
+   0
+  ],
+  "exported_bones": [
+   {
+    "name": "全ての親",
+    "parent": -1,
+    "order": 0,
+    "addRot": false,
+    "addLoc": false,
+    "addT": null,
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     0.0,
+     1.0,
+     0.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "センター",
+    "parent": 0,
+    "order": 0,
+    "addRot": false,
+    "addLoc": false,
+    "addT": null,
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     0.0,
+     1.0,
+     0.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "上半身",
+    "parent": 1,
+    "order": 0,
+    "addRot": false,
+    "addLoc": false,
+    "addT": null,
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     0.0,
+     4.0,
+     0.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "首",
+    "parent": 2,
+    "order": 0,
+    "addRot": false,
+    "addLoc": false,
+    "addT": null,
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     0.0,
+     1.0,
+     0.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "頭",
+    "parent": 3,
+    "order": 0,
+    "addRot": false,
+    "addLoc": false,
+    "addT": null,
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     0.0,
+     1.0,
+     0.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "両目",
+    "parent": 4,
+    "order": 0,
+    "addRot": false,
+    "addLoc": false,
+    "addT": null,
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     0.0,
+     1.0,
+     0.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "左目",
+    "parent": 4,
+    "order": 0,
+    "addRot": true,
+    "addLoc": false,
+    "addT": [
+     5,
+     1.0
+    ],
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     0.0,
+     1.0,
+     0.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "左肩P",
+    "parent": 2,
+    "order": 0,
+    "addRot": false,
+    "addLoc": false,
+    "addT": null,
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     0.0,
+     1.0,
+     0.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "左肩",
+    "parent": 7,
+    "order": 0,
+    "addRot": false,
+    "addLoc": false,
+    "addT": null,
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     1.5,
+     0.0,
+     0.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "左肩C",
+    "parent": 8,
+    "order": 0,
+    "addRot": true,
+    "addLoc": false,
+    "addT": [
+     7,
+     -1.0
+    ],
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     0.0,
+     1.0,
+     0.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "左腕",
+    "parent": 9,
+    "order": 0,
+    "addRot": false,
+    "addLoc": false,
+    "addT": null,
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     0.0,
+     1.0,
+     0.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "下半身",
+    "parent": 1,
+    "order": 0,
+    "addRot": false,
+    "addLoc": false,
+    "addT": null,
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     0.0,
+     1.0,
+     0.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "左足",
+    "parent": 11,
+    "order": 0,
+    "addRot": false,
+    "addLoc": false,
+    "addT": null,
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     0.0,
+     -5.0,
+     0.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "左ひざ",
+    "parent": 12,
+    "order": 0,
+    "addRot": false,
+    "addLoc": false,
+    "addT": null,
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     0.0,
+     -4.0,
+     0.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "左足首",
+    "parent": 13,
+    "order": 0,
+    "addRot": false,
+    "addLoc": false,
+    "addT": null,
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     0.0,
+     -1.0,
+     -1.5
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "左つま先",
+    "parent": 14,
+    "order": 0,
+    "addRot": false,
+    "addLoc": false,
+    "addT": null,
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": -1,
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "左足ＩＫ",
+    "parent": 0,
+    "order": 0,
+    "addRot": false,
+    "addLoc": false,
+    "addT": null,
+    "isIK": true,
+    "target": 14,
+    "loop": 40,
+    "angle": 1.0,
+    "links": [
+     [
+      13,
+      [
+       -3.142,
+       0.0,
+       0.0
+      ],
+      [
+       -0.009,
+       0.0,
+       0.0
+      ]
+     ],
+     [
+      12,
+      null,
+      null
+     ]
+    ],
+    "disp": [
+     0.0,
+     0.0,
+     1.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "左つま先ＩＫ",
+    "parent": 16,
+    "order": 0,
+    "addRot": false,
+    "addLoc": false,
+    "addT": null,
+    "isIK": true,
+    "target": 15,
+    "loop": 3,
+    "angle": 4.0,
+    "links": [
+     [
+      14,
+      null,
+      null
+     ]
+    ],
+    "disp": [
+     0.0,
+     0.0,
+     1.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "左足D",
+    "parent": 11,
+    "order": 1,
+    "addRot": true,
+    "addLoc": false,
+    "addT": [
+     12,
+     1.0
+    ],
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     0.0,
+     -5.0,
+     0.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "左ひざD",
+    "parent": 18,
+    "order": 1,
+    "addRot": true,
+    "addLoc": false,
+    "addT": [
+     13,
+     1.0
+    ],
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     0.0,
+     -4.0,
+     0.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   },
+   {
+    "name": "左足首D",
+    "parent": 19,
+    "order": 1,
+    "addRot": true,
+    "addLoc": false,
+    "addT": [
+     14,
+     1.0
+    ],
+    "isIK": false,
+    "target": null,
+    "loop": null,
+    "angle": null,
+    "links": null,
+    "disp": [
+     0.0,
+     -1.0,
+     0.0
+    ],
+    "visible": true,
+    "movable": true,
+    "rotatable": true
+   }
+  ],
+  "exported_display": [
+   [
+    "Root",
+    "Root",
+    true,
+    [
+     [
+      0,
+      0
+     ]
+    ]
+   ],
+   [
+    "表情",
+    "Facial",
+    true,
+    []
+   ],
+   [
+    "体",
+    "Body",
+    false,
+    [
+     [
+      0,
+      1
+     ],
+     [
+      0,
+      2
+     ],
+     [
+      0,
+      11
+     ]
+    ]
+   ],
+   [
+    "足",
+    "Legs",
+    false,
+    [
+     [
+      0,
+      12
+     ],
+     [
+      0,
+      13
+     ],
+     [
+      0,
+      16
+     ],
+     [
+      0,
+      17
+     ]
+    ]
+   ]
+  ],
+  "exported_bone_count_vs_input": [
+   21,
+   21
+  ]
+ },
+ "C_import_with_rename_LR": {
+  "bone_names": [
+   [
+    "全ての親",
+    "全ての親"
+   ],
+   [
+    "センター",
+    "センター"
+   ],
+   [
+    "上半身",
+    "上半身"
+   ],
+   [
+    "首",
+    "首"
+   ],
+   [
+    "頭",
+    "頭"
+   ],
+   [
+    "両目",
+    "両目"
+   ],
+   [
+    "目.L",
+    "左目"
+   ],
+   [
+    "肩P.L",
+    "左肩P"
+   ],
+   [
+    "肩.L",
+    "左肩"
+   ],
+   [
+    "肩C.L",
+    "左肩C"
+   ],
+   [
+    "腕.L",
+    "左腕"
+   ],
+   [
+    "下半身",
+    "下半身"
+   ],
+   [
+    "足.L",
+    "左足"
+   ],
+   [
+    "ひざ.L",
+    "左ひざ"
+   ],
+   [
+    "足首.L",
+    "左足首"
+   ],
+   [
+    "つま先.L",
+    "左つま先"
+   ],
+   [
+    "足D.L",
+    "左足D"
+   ],
+   [
+    "ひざD.L",
+    "左ひざD"
+   ],
+   [
+    "足首D.L",
+    "左足首D"
+   ],
+   [
+    "足ＩＫ.L",
+    "左足ＩＫ"
+   ],
+   [
+    "つま先ＩＫ.L",
+    "左つま先ＩＫ"
+   ]
+  ],
+  "shadow_bone_names": [
+   "_dummy_肩C.L",
+   "_shadow_肩C.L",
+   "_dummy_足首D.L",
+   "_shadow_足首D.L"
+  ],
+  "vertex_groups": [
+   "全ての親",
+   "センター",
+   "上半身",
+   "首",
+   "頭",
+   "両目",
+   "目.L",
+   "肩P.L",
+   "肩.L",
+   "肩C.L",
+   "腕.L",
+   "下半身",
+   "足.L",
+   "ひざ.L",
+   "足首.L",
+   "つま先.L",
+   "足ＩＫ.L",
+   "つま先ＩＫ.L",
+   "足D.L",
+   "ひざD.L",
+   "足首D.L"
+  ],
+  "display_items_renamed": [
+   [
+    "Root",
+    [
+     "全ての親"
+    ]
+   ],
+   [
+    "表情",
+    []
+   ],
+   [
+    "体",
+    [
+     "センター",
+     "上半身",
+     "下半身"
+    ]
+   ],
+   [
+    "足",
+    [
+     "足.L",
+     "ひざ.L",
+     "足ＩＫ.L",
+     "つま先ＩＫ.L"
+    ]
+   ]
+  ],
+  "ik_subtargets": [
+   [
+    "ひざ.L",
+    "足ＩＫ.L"
+   ],
+   [
+    "足首.L",
+    "つま先ＩＫ.L"
+   ]
+  ],
+  "root_scale_display_size": 0.4000000059604645
+ },
+ "D_bone_order_override": {
+  "armature_bone_order": [
+   "C",
+   "A",
+   "B",
+   "D_shadowless"
+  ],
+  "vg_order": [
+   "A",
+   "B",
+   "C"
+  ],
+  "exported_bone_order_with_override": [
+   "A",
+   "B",
+   "C",
+   "D_shadowless"
+  ],
+  "vertex_weights": [
+   [
+    1,
+    [
+     0,
+     1
+    ],
+    [
+     0.6666666865348816
+    ]
+   ],
+   [
+    0,
+    [
+     0
+    ],
+    []
+   ],
+   [
+    0,
+    [
+     0
+    ],
+    []
+   ]
+  ],
+  "vg_order_after_move": [
+   "C",
+   "A",
+   "B"
+  ],
+  "exported_bone_order_after_move": [
+   "C",
+   "A",
+   "B",
+   "D_shadowless"
+  ],
+  "exported_bone_order_without_override_modifier": [
+   "C",
+   "A",
+   "B",
+   "D_shadowless"
+  ]
+ },
+ "E_material_texture": {
+  "use_nodes": true,
+  "node_names": [
+   "mmd_base_tex",
+   "mmd_shader",
+   "mmd_tex_uv",
+   "材质输出"
+  ],
+  "node_groups": [
+   "MMDShaderDev",
+   "MMDTexUV"
+  ],
+  "returned_slot_type": "_DummyTextureSlot",
+  "returned_image": "C:\\Users\\haoni\\AppData\\Local\\Temp\\mmd_tools_102_tex.png",
+  "blend_method": "OPAQUE",
+  "shader_inputs": [
+   "Ambient Color",
+   "Diffuse Color",
+   "Specular Color",
+   "Reflect",
+   "Base Tex Fac",
+   "Base Tex",
+   "Toon Tex Fac",
+   "Toon Tex",
+   "Sphere Tex Fac",
+   "Sphere Tex",
+   "Sphere Mul/Add",
+   "Double Sided",
+   "Alpha",
+   "Base Alpha",
+   "Toon Alpha",
+   "Sphere Alpha"
+  ],
+  "node_names_after_toon": [
+   "mmd_base_tex",
+   "mmd_shader",
+   "mmd_tex_uv",
+   "mmd_toon_tex",
+   "材质输出"
+  ],
+  "exported_textures": [
+   "C:\\Users\\haoni\\AppData\\Local\\Temp\\mmd_tools_102_matexport\\textures\\mmd_tools_102_tex.png"
+  ],
+  "exported_material": [
+   [
+    "体",
+    "body",
+    0,
+    2,
+    true,
+    0,
+    3
+   ]
+  ],
+  "files_in_out_dir": [
+   "mat.pmx",
+   "textures\\mmd_tools_102_tex.png"
+  ],
+  "exported_textures_no_copy": [
+   "C:\\Users\\haoni\\AppData\\Local\\Temp\\mmd_tools_102_tex.png"
+  ]
+ },
+ "F_rigid_joint": {
+  "rigidbody_world_before": false,
+  "rigid_names": [
+   [
+    "頭",
+    "RIGID_BODY",
+    "頭",
+    "0",
+    "SPHERE",
+    [
+     0.1,
+     0.0,
+     0.0
+    ],
+    "全ての親",
+    1.0,
+    true,
+    "rigidbodies",
+    [
+     "mmd_tools_rigid_parent:CHILD_OF"
+    ]
+   ],
+   [
+    "髪1",
+    "RIGID_BODY",
+    "髪1",
+    "1",
+    "CAPSULE",
+    [
+     0.05,
+     0.3,
+     0.0
+    ],
+    "髪1",
+    0.5,
+    false,
+    "rigidbodies",
+    [
+     "mmd_tools_rigid_parent:CHILD_OF"
+    ]
+   ]
+  ],
+  "joint": [
+   "J.髪1",
+   "JOINT",
+   "髪1",
+   "joints",
+   "GENERIC_SPRING",
+   "頭",
+   "髪1",
+   10.0
+  ],
+  "group_objects": [
+   [
+    "joints",
+    "JOINT_GRP_OBJ"
+   ],
+   [
+    "RB_arm",
+    "NONE"
+   ],
+   [
+    "rigidbodies",
+    "RIGID_GRP_OBJ"
+   ]
+  ],
+  "rigidbody_world_after": true,
+  "is_built": false,
+  "exported_rigids": [
+   [
+    "頭",
+    0,
+    0,
+    0,
+    [
+     0.1,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.6,
+     0.0
+    ],
+    0,
+    65535,
+    1.0
+   ],
+   [
+    "髪1",
+    1,
+    2,
+    1,
+    [
+     0.05,
+     0.3,
+     0.0
+    ],
+    [
+     0.0,
+     1.35,
+     0.0
+    ],
+    3,
+    65527,
+    0.5
+   ]
+  ],
+  "exported_joints": [
+   [
+    "髪1",
+    0,
+    1,
+    [
+     0.5,
+     0.5,
+     0.5
+    ],
+    [
+     10.0,
+     10.0,
+     10.0
+    ]
+   ]
+  ]
+ }
+}
