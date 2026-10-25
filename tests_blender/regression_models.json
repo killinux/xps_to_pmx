@@ -1,0 +1,28 @@
+{
+  "comment": "Regression set (design doc §12.2). Paths are outside the repo; tests skip missing files.",
+  "models": [
+    {
+      "id": "xnalara_inase_arbiter",
+      "convention": "xna_lara",
+      "path": "E:/day_work/2025money/wish/inase (arbiter)/xps.xps"
+    },
+    {
+      "id": "daz_purifier_inase",
+      "convention": "daz_g8",
+      "path": "E:/mywork/add_on/Purifier (Inase)/xps.xps",
+      "reference_pmx": "E:/mywork/add_on/Purifier Inase 18/Purifier Inase 18 V1.pmx"
+    },
+    {
+      "id": "biped_stellarblade_eve",
+      "convention": "xna_lara",
+      "note": "generic names on unweighted main bones; weights on *jiggle / *adj / Ab-* helpers; leftover IK rig",
+      "path": "E:/day_work/2025money/wish/Cooing Suit(EVE)/#Stellar Blade - Eve (Cooling)/xps.xps"
+    },
+    {
+      "id": "unreal_gantz_reika",
+      "convention": "unreal",
+      "note": "UE/MetaHuman-style names, 5 spine + 2 neck bones, already in an A-pose, no eye bones",
+      "path": "E:/day_work/work/gantz/already/(Gantz) Reika Shimohira/xps.xps"
+    }
+  ]
+}
