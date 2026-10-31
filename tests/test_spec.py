@@ -124,3 +124,12 @@ def test_norm_name_unifies_width_case_and_separators():
     assert norm_name("Bip001-Pelvis") == norm_name("bip001 pelvis") == norm_name("BIP001_PELVIS")
     assert norm_name("左親指０") == norm_name("左親指0")
     assert norm_name("thigh_twist.l") == "thigh_twist_l"
+
+
+def test_metacarpal_slots_sit_between_wrist_and_finger_one():
+    spec = load_bone_spec()
+    for side, daz in (("left", "lCarpal1"), ("right", "rCarpal1")):
+        s0, s1 = spec[f"{side}_index_0"], spec[f"{side}_index_1"]
+        assert s0.parents == (f"{side}_hand_bone",) and s1.parents[0] == f"{side}_index_0"
+        assert s0.order < s1.order and [a.name for a in s0.aliases["daz_g8"]] == [daz]
+        assert s0.tier == 0 and not s0.required and s0.display_frame == "指"

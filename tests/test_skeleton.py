@@ -360,3 +360,55 @@ def test_lower_body_checks_flag_belly_and_hard_cut():
     codes = [i.code for i in check_lower_body(lower_body_metrics(pos, hard, upper, hard_legs, 0.9, 1.05, 0.09))]
     assert "lower_body.hard_cut" in codes
     assert [i.code for i in check_lower_body({})] == ["lower_body.no_weight"]
+
+
+# ---------------------------------------------------------------------------
+# visible-bone conventions of the 18 series (2026-10-31)
+
+
+def test_body_bones_are_movable_and_d_bones_visible_like_the_18_series(plan_a):
+    rig, plan = plan_a
+    for name in ("上半身", "首", "頭", "左肩", "左腕", "左ひじ", "左手首", "左人指１", "左足", "左ひざ", "左足首", "左つま先",
+                 "下半身", "左足D", "左ひざD", "左足首D"):
+        b = _b(plan, name)
+        assert b.visible and b.controllable and b.movable, name
+    for name in ("腰", "左肩P", "左腕捩", "左手捩", "左足先EX"):
+        assert _b(plan, name).movable is False, name
+    for name in ("左肩C", "左腕捩1", "腰キャンセル左"):
+        assert _b(plan, name).visible is False, name
+
+
+def test_toe_bones_are_kept_under_the_toe_bone():
+    rig = synthetic.build(extra=[("lBigToe", "leg left toes", (0.07, -0.16, 0.02)),
+                                 ("lBigToe_2", "lBigToe", (0.07, -0.19, 0.02)),
+                                 ("leg left heel", "leg left ankle", (0.081, 0.04, 0.02))])
+    plan = _plan(rig)
+    toe = _b(plan, "lBigToe")
+    assert toe.parent == "左つま先" and toe.movable and toe.visible and toe.display_frame == "足"
+    assert _b(plan, "lBigToe_2").parent == "lBigToe"
+    assert plan.bone("leg left heel") is None          # other helpers under the ankle still merge
+    assert _col(plan, "lBigToe").sum() > 0
+
+
+def test_face_parts_get_the_18_series_names():
+    rig = synthetic.build(extra=[("head teeth upper", "head neck upper", (0, -0.05, 1.57)),
+                                 ("head teeth lower", "head jaw", (0, -0.05, 1.555)),
+                                 ("head tongue 1", "head jaw", (0, -0.04, 1.555)),
+                                 ("head tongue 2", "head tongue 1", (0, -0.06, 1.555)),
+                                 ("lJawClench", "head jaw", (0.04, -0.02, 1.56))])
+    plan = _plan(rig)
+    names = {b.name_e: b.name for b in plan.bones}
+    assert names["head jaw"] == "Jaw Bone" and names["head teeth upper"] == "Teeth Upper"
+    assert names["head teeth lower"] == "Teeth Lower" and names["head tongue 2"] == "Tongue 2"
+    assert names["lJawClench"] == "lJawClench"
+    assert _b(plan, "Teeth Lower").parent == "Jaw Bone" and _b(plan, "Jaw Bone").movable
+
+
+@pytest.mark.parametrize("source, want", [
+    ("lowerJaw", "Jaw Bone"), ("head jaw", "Jaw Bone"), ("BelowJaw", ""), ("lJawClench", ""),
+    ("upperTeeth", "Teeth Upper"), ("unused bip001 teeth_dw", "Teeth Lower"), ("teeth", ""),
+    ("tongue01", "Tongue 1"), ("head tongue 3", "Tongue 3"), ("head tongue 2.001", ""), ("tongue", ""),
+])
+def test_face_part_name(source, want):
+    from xps_to_pmx.core.rig.skeleton import face_part_name
+    assert face_part_name(source) == want

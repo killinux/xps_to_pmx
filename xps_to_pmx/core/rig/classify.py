@@ -147,7 +147,10 @@ def classify_bones(rig: RigData, slot_bones: Dict[str, int], merged: Dict[int, s
         ancestors = rig.ancestors(i)
         end_owner = next((ends[a] for a in ancestors if a in ends), None)
         if end_owner:
-            out[i] = Disposition(i, "merge", end_owner, "detail", "手指/脚尖末端的细分骨")
+            if end_owner.endswith("toe_bone") and "toe" in name_tokens(name):
+                out[i] = Disposition(i, "keep", "", "toe", "脚趾骨，保留为可见骨（18 系列的做法）")
+            else:
+                out[i] = Disposition(i, "merge", end_owner, "detail", "手指/脚尖末端的细分骨")
             continue
         under_head = head >= 0 and (head in ancestors)
         if under_head:

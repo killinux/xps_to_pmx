@@ -34,6 +34,7 @@ from ..result import ERROR, INFO, WARNING, Message
 from ..spec.bone_slots import BoneSpec, SlotSpec, mmd_name_problems
 from ..weights import rules
 from ..weights.skin import SkinEditor
+from .classify import name_tokens
 from .rigdata import RigData
 
 UNIT_HEIGHT_PMX = 20.8
@@ -78,10 +79,35 @@ CATEGORY_STYLE: Dict[str, Tuple[str, bool, str]] = {
     "breast": ("胸", False, "物理"),
     "butt": ("尻", False, "物理"),
     "face": ("顔", True, "その他"),
+    "toe": ("趾", True, "足"),
     "genital": ("陰", True, "その他"),
     "prop": ("物", True, "その他"),
 }
 DEFAULT_STYLE = ("骨", True, "その他")
+
+#: Face parts the 18 series names in English regardless of the source: tokens that must all be present
+#: (any of the alternatives), and the tokens allowed besides them.
+_TEETH_UPPER = ({"teeth", "tooth"}, {"upper", "up", "top"})
+_TEETH_LOWER = ({"teeth", "tooth"}, {"lower", "low", "down", "dw", "bottom"})
+
+
+def face_part_name(source: str) -> str:
+    """18-series name for a jaw / teeth / tongue bone, or "" when the name is not clearly one of them.
+
+    ``lowerJaw`` and ``head jaw`` → Jaw Bone; ``upperTeeth`` / ``teeth_up`` → Teeth Upper; ``tongue02`` /
+    ``head tongue 2`` → Tongue 2.  Sided or compound names (lJawClench, BelowJaw, "head tongue 2.001")
+    are left alone.
+    """
+    toks = set(name_tokens(source))
+    if "tongue" in toks:
+        nums = [t for t in name_tokens(source) if t.isdigit()]
+        return f"Tongue {int(nums[0])}" if len(nums) == 1 else ""
+    for need, part, name in ((*_TEETH_UPPER, "Teeth Upper"), (*_TEETH_LOWER, "Teeth Lower")):
+        if toks & need and toks & part:
+            return name
+    if "jaw" in toks and toks <= {"jaw", "lower", "head", "bone"}:
+        return "Jaw Bone"
+    return ""
 #: mmd_tools deletes bones with these prefixes by name (note 08 Q4).
 RESERVED_PREFIXES = ("_dummy_", "_shadow_")
 
@@ -421,6 +447,11 @@ class _Planner:
         # names
         for pb in out:
             src = pb.source
+            part = face_part_name(src) if pb.category == "face" else ""
+            if part and part not in names_taken:
+                pb.name = part
+                names_taken.add(part)
+                continue
             ok = (not mmd_name_problems_short(src) and src not in names_taken
                   and not src.startswith(RESERVED_PREFIXES))
             if ok:

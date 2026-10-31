@@ -114,3 +114,14 @@ def test_unnamed_bones_on_a_cloth_chain_are_cloth():
     assert cat["bone_23"] == "cloth" and cat["bone_24"] == "cloth", cat
     assert cat["bone_99"] != "cloth", cat
     assert np.isfinite(rig.height)
+
+
+def test_toe_bones_are_kept_but_other_end_helpers_merge():
+    rig = synthetic.build(extra=[("lSmallToe1", "leg left toes", (0.09, -0.16, 0.02)),
+                                 ("lSmallToe1_2", "lSmallToe1", (0.09, -0.19, 0.02)),
+                                 ("arm left finger 2d", "arm left finger 2c", (0.72, -0.03, 1.41))])
+    ident = identify(rig, SPEC)
+    assert ident.bones[rig.by_name["lSmallToe1"]].action == "keep"
+    assert ident.bones[rig.by_name["lSmallToe1_2"]].category == "toe"
+    d = ident.bones[rig.by_name["arm left finger 2d"]]
+    assert d.action == "merge" and d.slot_id == "left_index_3"

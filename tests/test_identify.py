@@ -99,8 +99,9 @@ REAL = {
         convention="daz_g8", lower="A",
         slots={"lower_body_bone": "pelvis", "upper_body1_bone": "abdomenUpper", "upper_body2_bone": "chestLower",
                "upper_body3_bone": "chestUpper", "neck1_bone": "neckUpper", "left_ankle_bone": "lFoot",
-               "left_toe_bone": "lToe", "left_middle_1": "lMid1"},
-        merges={"left_upper_arm_bone": {"lShldrTwist"}, "left_hand_bone": {"lCarpal1", "lCarpal2"}}),
+               "left_toe_bone": "lToe", "left_middle_1": "lMid1", "left_index_0": "lCarpal1",
+               "right_pinky_0": "rCarpal4"},
+        merges={"left_upper_arm_bone": {"lShldrTwist"}}),
     "E:/day_work/work/gantz/already/(Gantz) Reika Shimohira/xps.xps": dict(
         convention="unreal", lower="A",
         slots={"lower_body_bone": "pelvis", "upper_body2_bone": "spine_03", "upper_body4_bone": "spine_05",
