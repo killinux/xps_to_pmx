@@ -1,6 +1,8 @@
 # M4 MMD 测试清单（MMD 骨架 + 导出）
 
-> 日期：2026-10-25。插件版本：工作区（未提交）。生成方式：`scripts/convert_xps.py` 默认参数（肩高 17.0、A 姿势 37.5° 直臂、准标准骨开、足D 系开、扭转权重 18 系列阶梯带、IK あにまさ标准）。
+> 日期：2026-10-25，2026-10-31 按 M4.5 重新导出。插件版本：工作区（未提交）。生成方式：`scripts/convert_xps.py`，也就是面板「一键转换」的同一套流程，用默认参数（肩高 17.0、A 姿势 37.5° 直臂、准标准骨开、足D 系开、扭转权重 18 系列阶梯带、IK あにまさ标准）。
+>
+> 和 2026-10-25 那一版的区别：Eve 的 6 根肘部辅助骨（`arm left/right elbow adj 1/2`、`Ab-L/R-Elbow`）原来被当成道具保留，现在并入手臂，所以骨数从 257 变成 251。另外三个模型的骨骼处置没有变化。新加了 rouffe。
 
 ## 1. 要测的文件
 
@@ -8,10 +10,18 @@
 |---|---|---|---|---|---|---|---|
 | inase (arbiter) | XNALara 通用名 | `D:\xps_exports\inase (arbiter)\inase (arbiter).pmx` | 143 | 56151 | 8 | 20.75 | 下半身 权重有 5.1% 在腰节上方（见 §4） |
 | Purifier (Inase) | DAZ G8 | `D:\xps_exports\Purifier (Inase)\Purifier (Inase).pmx` | 183 | 169621 | 15 | 20.92 | 可与 18 系列成品 `Purifier Inase 18 V1.pmx` 对照 |
-| Stellar Blade Eve (Cooling) | XNALara（主骨无权重，权重在辅助骨上） | `D:\xps_exports\#Stellar Blade - Eve (Cooling)\#Stellar Blade - Eve (Cooling).pmx` | 257 | 247491 | 28 | 20.91 | 下半身 权重有 3.7% 在腰节上方 |
+| Stellar Blade Eve (Cooling) | XNALara（主骨无权重，权重在辅助骨上） | `D:\xps_exports\#Stellar Blade - Eve (Cooling)\#Stellar Blade - Eve (Cooling).pmx` | 251 | 247491 | 28 | 20.91 | 下半身 权重有 3.7% 在腰节上方 |
 | (Gantz) Reika | Unreal | `D:\xps_exports\(Gantz) Reika Shimohira\(Gantz) Reika Shimohira.pmx` | 159 | 208724 | 23 | 21.27 | 源本身是 A 姿势；没有眼骨，所以没有 両目/左目/右目 |
+| rouffe | XNALara（Biped 衍生） | `D:\xps_exports\rouffe\rouffe.pmx` | 223 | 49336 | 7 | 20.72 | 膝、肘的扭转辅助骨按权重并入 ひざ/ひじ；披肩有两组重名骨，见 §4 第 5 条 |
 
-每个目录里还有：`<名>.report.json`（各阶段报告与读回检查），`<名>.blend`（转换后的 Blender 场景），`textures\`（复制的贴图）。
+每个目录里还有：
+
+- `<名>.report.json`：各阶段报告、读回检查，以及 ⑨ 体检（`checkup` 段）；
+- `<名>.fixes.json`：修正单（现在都是空的）和这个模型的选项；
+- `<名>.blend`：转换后的 Blender 场景，打开后侧栏的 XPS→PMX 页签里能看到体检报告；
+- `textures\`：复制的贴图。
+
+体检结果：Purifier、Reika 没有警告；inase、Eve 只有下半身那一条（§4 第 1 条）；rouffe 另有两条重名骨。
 
 ## 2. 这一版有什么、没有什么
 
@@ -39,6 +49,7 @@
 | 2 | 腿骨没有按 18 系列那样把 足/ひざ/足首 对齐到同一 X | 对齐只改骨不改网格，会让股关节枢轴偏离网格约 0.2 单位；IK 动作本身不需要对齐 | 如果你觉得站姿或 IK 不对，再加上 |
 | 3 | 脸部、头发骨名超过 15 字节的改成了短名（如 `顔R1_1`、`髪L1_2`），原名在英文名里 | VMD 只认前 15 字节，长名会互相冲突 | 有更好的命名习惯请告诉我 |
 | 4 | 足D 系是隐藏、不可操作的 | 沿用准标准骨插件的默认值（18 系列是可见可操作） | 需要可操作就改规格表一列 |
+| 5 | rouffe 动 左肩 时，背后披肩的右半边也跟着动 | 源文件里 `shawl back right 1/2` 各有两根同名骨，权重全挂在左边那根上 | 拆分会改源权重，所以没有自动做。要修：打开 `rouffe.blend`，在体检报告里勾上那两条的修正框，点「按修正从头重做」，会重新导出到同一个位置 |
 
 ## 5. 我这边已经验证过的
 
