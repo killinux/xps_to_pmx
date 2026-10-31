@@ -9,6 +9,7 @@ from collections import OrderedDict
 import bpy
 
 from .. import props
+from .panel_main import wrap_lines, wrap_width, wrapped
 
 BUILT_STAGES = props.BUILT_STAGES
 
@@ -206,9 +207,8 @@ class XPS2PMX_PT_mapping(bpy.types.Panel):
         if lb:
             box = layout.box()
             box.label(text=f"下半身诊断：情形{lb.get('case') or '?'}", icon='MOD_ARMATURE')
-            text = lb.get("text", "")
-            for i in range(0, len(text), 34):
-                box.label(text=text[i:i + 34])
+            for line in wrap_lines(lb.get("text", ""), wrap_width(context)):
+                box.label(text=line)
 
         layout.label(text=f"检查结果（{len(job.checks)}）")
         layout.template_list("XPS2PMX_UL_checks", "", job, "checks", job, "checks_index", rows=4)
@@ -219,7 +219,7 @@ class XPS2PMX_PT_mapping(bpy.types.Panel):
         layout.template_list("XPS2PMX_UL_bones", "", job, "bones", job, "bones_index", rows=6)
         if 0 <= job.bones_index < len(job.bones):
             plan = job.bones[job.bones_index]
-            layout.label(text=f"{plan.name}：{plan.reason}", icon='INFO')
+            wrapped(layout.column(align=True), f"{plan.name}：{plan.reason}", 'INFO', wrap_width(context))
 
 
 CLASSES = (XPS2PMX_UL_checks, XPS2PMX_UL_bones, XPS2PMX_PT_mapping)

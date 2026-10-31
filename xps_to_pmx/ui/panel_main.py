@@ -5,6 +5,7 @@ Reads properties and calls operators only.
 from __future__ import annotations
 
 import json
+import re
 
 import bpy
 
@@ -15,7 +16,10 @@ from ..core.fixes import Fix
 LEVEL_ICONS = {'info': 'INFO', 'warning': 'ERROR', 'error': 'CANCEL'}
 STATE_PREFIX = {'new': "", 'remaining': "", 'fixed': "已修复 · ", 'auto_fixed': "已自动修正 · "}
 MAX_REPORT_LINES = 8
-WRAP = 36
+#: Width of one CJK character in pixels at UI scale 1 (labels wrap to the sidebar's real width).
+CHAR_PX = 13.0
+#: Stage report lines that explain decisions rather than problems (also left out of the checkup).
+QUIET_CODES = ("mapping.disagreement",)
 NEXT_STEP = {
     "": "下一步：点「一键转换」",
     "import": "下一步：点「继续」，或展开「分步模式」逐步做",
@@ -28,7 +32,7 @@ NEXT_STEP = {
 
 
 def draw_report(layout, job, stage: str = "") -> None:
-    lines = [r for r in job.reports if not stage or r.stage == stage]
+    lines = [r for r in job.reports if (not stage or r.stage == stage) and r.code not in QUIET_CODES]
     if not lines:
         return
     box = layout.box()
@@ -39,9 +43,39 @@ def draw_report(layout, job, stage: str = "") -> None:
         box.label(text=f"…另有 {len(lines) - len(shown)} 条，见报告 JSON")
 
 
-def wrapped(layout, text: str, icon: str = 'NONE') -> None:
-    for i in range(0, len(text), WRAP):
-        layout.label(text=text[i:i + WRAP], icon=icon if i == 0 else 'BLANK1')
+def wrap_width(context) -> int:
+    """Characters per label line that fit the current region (CJK-width estimate, icon column excluded)."""
+    region = getattr(context, "region", None)
+    width = getattr(region, "width", 0) or 360
+    scale = context.preferences.system.ui_scale or context.preferences.view.ui_scale or 1.0  # 0 without a display
+    return max(10, int((width - 40 * scale) / (CHAR_PX * scale)))
+
+
+def wrap_lines(text: str, width: int) -> list:
+    """Greedy wrap: CJK characters count 1, ASCII 0.55; ASCII words are not split unless longer than a line."""
+    lines, line, used = [], "", 0.0
+    for token in re.findall(r"[A-Za-z0-9_.\-/]+|\s+|.", text):
+        w = sum(0.55 if ord(ch) < 128 else 1.0 for ch in token)
+        if used + w > width and line.strip():
+            lines.append(line.rstrip())
+            line, used = "", 0.0
+            if token.isspace():
+                continue
+        while w > width:  # a single ASCII run longer than a line
+            cut = int(width / 0.55)
+            lines.append(token[:cut])
+            token = token[cut:]
+            w = sum(0.55 if ord(ch) < 128 else 1.0 for ch in token)
+        line += token
+        used += w
+    if line.strip():
+        lines.append(line.rstrip())
+    return lines or [""]
+
+
+def wrapped(layout, text: str, icon: str = 'NONE', width: int = 24) -> None:
+    for i, line in enumerate(wrap_lines(text, width)):
+        layout.label(text=line, icon=icon if i == 0 else 'BLANK1')
 
 
 def fix_line(job, fix_json: str) -> str:
@@ -130,12 +164,13 @@ class XPS2PMX_PT_main(bpy.types.Panel):
             if 0 <= job.findings_index < len(job.findings):
                 item = job.findings[job.findings_index]
                 detail = layout.box().column(align=True)
-                wrapped(detail, item.text, LEVEL_ICONS.get(item.level, 'INFO'))
+                width = wrap_width(context)
+                wrapped(detail, item.text, LEVEL_ICONS.get(item.level, 'INFO'), width)
                 if item.detail:
-                    wrapped(detail, item.detail, 'DOT')
+                    wrapped(detail, item.detail, 'DOT', width)
                 line = fix_line(job, item.fix_json)
                 if line:
-                    wrapped(detail, f"修正：{line}", 'MODIFIER')
+                    wrapped(detail, f"修正：{line}", 'MODIFIER', width)
         else:
             draw_report(layout, job, stage=job.stage)
 

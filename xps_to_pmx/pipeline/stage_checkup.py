@@ -27,8 +27,9 @@ STAGE = "checkup"
 REPORT_STAGES = ("import", "prepare", "build", "export")
 #: ② explanations that are not problems and would only make the report longer.
 QUIET_CODES = ("mapping.disagreement",)
-#: Stage warnings that describe routine clean-up rather than problems: shown as 提示.
-INFO_CODES = ("import.weights_renormalized", "import.weights_truncated")
+#: Stage warnings that describe routine clean-up rather than problems: shown as 提示.  A renamed bone
+#: keeps its original name in a property; when the rename hides a real problem the duplicate check says so.
+INFO_CODES = ("import.weights_renormalized", "import.weights_truncated", "import.bone_renamed")
 SEVERITY = {"info": 0, "warning": 1, "error": 2}
 
 
@@ -60,7 +61,7 @@ def run(context: bpy.types.Context, job, previous: Optional[Dict[str, Dict]] = N
             return part_of_slot(spec, slot.slot_id)
         return part_of_category(category_of_src.get(source_of.get(name, ""), ""))
 
-    twins = {d.get("twin") for d in _load(job.duplicates_json)}
+    twins = {d.get("twin") for d in _load(job.duplicates_json)} | {f.twin for f in fx.split_fixes(fixes)}
     findings = [f for f in _stage_messages(job, bones, part_of_bone)
                 if not (f.code == "import.bone_renamed" and f.subject in twins)]  # explained by the duplicate
     findings += _mapping_checks(job, spec, bones, category_of_src)
