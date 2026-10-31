@@ -76,7 +76,7 @@ class Fix:
             cat = f"（类别 {self.category}）" if self.category else ""
             return f"{self.bone}：{action}{target}{cat}"
         if self.kind == "split_side":
-            return f"{self.bone} 按左右拆分权重给 {self.twin}"
+            return f"{self.bone} 按左右拆分权重给 {self.twin}（父骨在另一侧时一并改挂）"
         return f"忽略：{self.finding}"
 
     def to_dict(self) -> Dict:

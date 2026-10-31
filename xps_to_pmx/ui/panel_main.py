@@ -12,10 +12,12 @@ import bpy
 from .. import props
 from ..core.checks.checkup import PART_LABELS
 from ..core.fixes import Fix
+from . import previews
 
 LEVEL_ICONS = {'info': 'INFO', 'warning': 'ERROR', 'error': 'CANCEL'}
 STATE_PREFIX = {'new': "", 'remaining': "", 'fixed': "已修复 · ", 'auto_fixed': "已自动修正 · "}
 MAX_REPORT_LINES = 8
+THUMB_SCALE = 8.0
 #: Width of one CJK character in pixels at UI scale 1 (labels wrap to the sidebar's real width).
 CHAR_PX = 13.0
 #: Stage report lines that explain decisions rather than problems (also left out of the checkup).
@@ -99,6 +101,26 @@ def finding_counts(job) -> dict:
     return out
 
 
+def draw_view(layout, job, item) -> None:
+    """定位 / 看图 buttons and the before / after thumbnails of one finding (design doc §16.4–§16.5)."""
+    row = layout.row(align=True)
+    op = row.operator("xps2pmx.finding_locate", text="定位", icon='VIEWZOOM')
+    op.index = job.findings_index
+    op = row.operator("xps2pmx.finding_render", text="看图", icon='RENDER_STILL')
+    op.index = job.findings_index
+    shots = [(label, path) for label, path in (("上次", item.image_before), ("这次", item.image_after))
+             if previews.icon_id(path)]
+    if not shots:
+        return
+    row = layout.row()
+    for label, path in shots:
+        col = row.column(align=True)
+        col.label(text=label)
+        col.template_icon(icon_value=previews.icon_id(path), scale=THUMB_SCALE)
+        op = col.operator("wm.path_open", text="打开大图", icon='IMAGE_DATA')
+        op.filepath = path
+
+
 class XPS2PMX_UL_findings(bpy.types.UIList):
     def draw_item(self, context, layout, data, item, icon, active_data, active_propname, index):
         job = data
@@ -116,9 +138,9 @@ class XPS2PMX_UL_findings(bpy.types.UIList):
             on = fix is not None and fix.enabled
             op = row.operator("xps2pmx.finding_fix", text="", icon='CHECKBOX_HLT' if on else 'CHECKBOX_DEHLT')
             op.index = index
-        if item.target:
-            op = row.operator("xps2pmx.locate_bone", text="", icon='VIEWZOOM')
-            op.bone = item.target
+        if item.view_json or item.target:
+            op = row.operator("xps2pmx.finding_locate", text="", icon='VIEWZOOM')
+            op.index = index
         if item.state not in ('fixed', 'auto_fixed'):
             op = row.operator("xps2pmx.finding_ignore", text="", icon='HIDE_ON')
             op.index = index
@@ -143,6 +165,10 @@ class XPS2PMX_PT_main(bpy.types.Panel):
         if job is None:
             layout.label(text="还没有转换任何模型", icon='INFO')
             return
+        if job.preview_collection is not None:
+            row = layout.box().row(align=True)
+            row.label(text=f"预览：{job.pose_preview}", icon='POSE_HLT')
+            row.operator("xps2pmx.pose_reset", text="复位", icon='LOOP_BACK')
         info = job.summary().get("import", {})
         box = layout.box()
         box.label(text=f"{job.model_name}", icon='ARMATURE_DATA')
@@ -171,6 +197,8 @@ class XPS2PMX_PT_main(bpy.types.Panel):
                 line = fix_line(job, item.fix_json)
                 if line:
                     wrapped(detail, f"修正：{line}", 'MODIFIER', width)
+                if item.view_json:
+                    draw_view(detail, job, item)
         else:
             draw_report(layout, job, stage=job.stage)
 

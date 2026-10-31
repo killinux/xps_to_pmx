@@ -3,7 +3,8 @@
 * Fix files: written next to the PMX and under ``<user data dir>/fixes/<sha1>.fixes.json`` so the
   same XPS file finds its fixes again wherever it was exported; read back when that file is imported.
 * Remembered options travel with the fixes.
-* ``split_side`` fixes change source weights, so they run right after ① (before ②), once each.
+* ``split_side`` fixes change source weights, so they run right after ① (before ②), once each; a twin
+  whose parent was resolved to the other side's namesake is re-parented to its own side.
 """
 from __future__ import annotations
 
@@ -17,9 +18,11 @@ import numpy as np
 
 from .. import prefs, props
 from ..blender import rigedit, snapshot
+from ..blender.importer import PROP_SRC
 from ..core import fixes as fx
 from ..core.checks.cause import SPLIT_BLEND
 from ..core.result import StageResult
+from ..core.weights.split import twin_parent
 
 STAGE = "fixes"
 
@@ -175,8 +178,28 @@ def apply_splits(context: bpy.types.Context, job) -> StageResult:
         done.append(fix.key)
         res.info("fixes.split_applied", f"已按左右拆分 {fix.bone} 的权重：{changed} 个顶点改给 {fix.twin}", fix.bone,
                  vertices=changed)
+        _mend_twin_parent(context, arm, fix.twin, blend, res)
     job.splits_done_json = json.dumps(done, ensure_ascii=False)
     return res
+
+
+def _mend_twin_parent(context: bpy.types.Context, arm, twin: str, margin: float, res: StageResult) -> None:
+    """Hang the twin from the parent's namesake on its own side (duplicate names break parents too)."""
+    bones = arm.data.bones
+    parent = bones[twin].parent
+    if parent is None:
+        return
+    src = parent.get(PROP_SRC, parent.name)
+    namesakes = [(b.name, float(b.head_local[0])) for b in bones if b.get(PROP_SRC, b.name) == src]
+    target = twin_parent(float(bones[twin].head_local[0]), parent.name, float(parent.head_local[0]), namesakes,
+                         margin)
+    if target is None:
+        return
+    with rigedit.edit_mode(context, arm):
+        eb = arm.data.edit_bones[twin]
+        eb.use_connect = False
+        eb.parent = arm.data.edit_bones[target]
+    res.info("fixes.twin_parent", f"{twin} 的父骨在另一侧（{parent.name}），改挂到同侧的 {target}", twin)
 
 
 # ---------------------------------------------------------------------------

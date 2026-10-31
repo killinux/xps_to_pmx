@@ -4,8 +4,9 @@
         -- --out <folder> --xps <file.xps> [--measure]
 
 The window is driven with simulated events (it ignores the mouse and keyboard while it runs): the
-script widens the sidebar, opens the XPS→PMX tab, converts the model, ticks fixes, redoes, and saves
-one window screenshot per step plus ``log.txt``.  Exports and fix files go to ``<folder>/work``.
+script widens the sidebar, opens the XPS→PMX tab, converts the model, locates and renders a finding,
+ticks fixes, redoes, and saves one window screenshot per step plus ``log.txt``.  Exports, fix files
+and the 看图 images go to ``<folder>/work``.
 
 Python cannot read or set where a panel header is or whether a panel is open, so the header click
 positions are measured: ``--measure`` skips those clicks; read the positions off the shots and update
@@ -25,11 +26,13 @@ import bpy
 WIDTH, HEIGHT = 1600, 1000      # must match the -p window geometry
 UI_SCALE = 0.85
 SIDEBAR_WIDTH = 478
-#: Window positions (origin top-left) of panel headers in the state where they are clicked.
+#: Window positions (origin top-left) of panel headers in the state where they are clicked, tried in
+#: order until the panel draws; all candidates of one header lie inside that header's row.
 HEADER_CLICKS = {
-    "fixes": (1230, 850),        # 「修正单」 after the two fixes are ticked (05_ticked.png)
-    "steps": (1220, 544),        # 「分步模式（高级）」 after 分步重做 (08_at_identify.png)
+    "fixes": [(1230, 875), (1230, 864), (1230, 886)],   # 「修正单」 after the two fixes are ticked (05_ticked.png)
+    "steps": [(1220, 579), (1220, 570), (1220, 588)],   # 「分步模式（高级）」 after 分步重做 (08_at_identify.png)
 }
+HIT = {}                         # header → the candidate that opened it (used again to fold it)
 MAPPING_SCROLLS = (0, 10, 10, 10)   # wheel steps between the 10_mapping_*.png shots
 BONES_SCROLL = 10
 BONE_TO_SHOW = "unused bip001 lcalftwist"
@@ -124,14 +127,22 @@ def scroll(win, x, y, steps):
 
 
 def toggle_header(win, key, opening=True):
-    """Click a sub-panel header; when opening, report whether it opened (a sub-panel draws only when open)."""
+    """Click a sub-panel header; when opening, try the candidates until it opens (it draws only when open)."""
     if ARGS.measure:
         return
-    started = time.monotonic()
-    yield from click(win, *HEADER_CLICKS[key])
-    yield 0.3
-    if opening and DRAWN.get(key, 0) < started:
-        log(f"WARNING: header '{key}' not hit at {HEADER_CLICKS[key]}; run with --measure and update HEADER_CLICKS")
+    if not opening:
+        if key in HIT:
+            yield from click(win, *HIT[key])
+        return
+    for pos in HEADER_CLICKS[key]:
+        started = time.monotonic()
+        yield from click(win, *pos)
+        yield 0.3
+        if DRAWN.get(key, 0) >= started:
+            HIT[key] = pos
+            log(f"header '{key}' opened at {pos}")
+            return
+    log(f"WARNING: header '{key}' not hit at {HEADER_CLICKS[key]}; run with --measure and update HEADER_CLICKS")
 
 
 def op(name, **kw):
@@ -241,7 +252,8 @@ def shots():
     yield 1.0
     j = job()
     log("findings", [(f.level, f.code, f.state) for f in j.findings])
-    j.findings_index = 0
+    # the 下半身 提示: it shows how a pose test judges a stage warning
+    j.findings_index = next((i for i, f in enumerate(j.findings) if f.code == "lower_body.high"), 0)
     redraw()
     yield 0.8
     shot("03_report.png")
@@ -253,6 +265,16 @@ def shots():
     redraw()
     yield 0.8
     shot("04_detail.png")
+
+    # 4b 定位: the posed preview with the finding's vertices selected, then 复位
+    if dup:
+        op("xps2pmx.finding_locate", index=dup[0])
+        redraw()
+        yield 1.0
+        shot("13_locate.png")
+        op("xps2pmx.pose_reset")
+        frame_model()
+        yield 0.8
 
     # 5 tick their fixes
     for i in dup:
@@ -268,6 +290,16 @@ def shots():
     shot("06_fixlist.png")
     yield from toggle_header(win, "fixes", opening=False)      # fold it again
 
+    # 6b 看图: the thumbnail in the detail box, on the 下半身 提示 (its text is short enough for the
+    # thumbnail and the 「打开大图」 button to stay on screen)
+    low = next((i for i, f in enumerate(j.findings) if f.code == "lower_body.high"), None)
+    if low is not None:
+        j.findings_index = low
+        op("xps2pmx.finding_render", index=low)
+        redraw()
+        yield 1.0
+        shot("14_render.png")
+
     # 7 redo from scratch: the report compares with the last one
     op("xps2pmx.redo_full")
     yield 0.5
@@ -276,10 +308,18 @@ def shots():
     j = job()
     log("after redo", [(f.level, f.code, f.state) for f in j.findings])
     fixed = [i for i, f in enumerate(j.findings) if f.state == "fixed"]
-    j.findings_index = fixed[0] if fixed else 0
+    # the 下半身 提示 again: a fixed finding would show its 「上次」 thumbnail and push the panel off-screen
+    j.findings_index = next((i for i, f in enumerate(j.findings) if f.code == "lower_body.high"), 0)
     redraw()
     yield 0.8
     shot("07_after_redo.png")
+    # 7b 看图 on a fixed finding: last time (rendered before the redo) next to this time
+    if fixed:
+        j.findings_index = fixed[0]
+        op("xps2pmx.finding_render", index=fixed[0])
+        redraw()
+        yield 1.0
+        shot("15_compare.png")
 
     # 8 分步重做 stops at ②; the step panels
     op("xps2pmx.redo_steps")
@@ -308,6 +348,10 @@ def shots():
     op("xps2pmx.continue_run")
     yield 0.5
     frame_model()
+    j = job()
+    # a finding without a pose view: its detail box has no buttons or thumbnail, so ② stays on screen
+    j.findings_index = next((i for i, f in enumerate(j.findings) if not f.view_json), 0)
+    redraw()
     yield 1.0
     shot("12_continued.png")
     log("DONE")

@@ -4,6 +4,7 @@
 * ``continue_job``: from the job's current stage to ⑨ (e.g. after 分步重做 stopped at ②).
 * ``redo``: delete what the job generated, re-import the same XPS with the same options and fix
   list, and run to ② (分步重做) or to ⑨ (按修正从头重做), comparing with the previous checkup.
+  Findings whose fix is ticked are rendered first, so 看图 can show them before and after.
 
 They call the same stage functions as the step buttons (hard constraint 1); the batch script
 calls ``one_click`` too.  Automatic fixes are applied inside ② (no extra round is needed).
@@ -19,7 +20,8 @@ from .. import props
 from ..blender import importer
 from ..core import fixes as fx
 from ..core.result import StageResult
-from . import fixlist, stage_build, stage_checkup, stage_export, stage_identify, stage_import, stage_prepare
+from . import (fixlist, stage_build, stage_checkup, stage_export, stage_identify, stage_import, stage_prepare,
+               views)
 
 STAGE = "run"
 OPTIONS = tuple(fx.OPTION_TYPES) + ("export_path",)
@@ -73,8 +75,13 @@ def redo(context: bpy.types.Context, job, stop_after: str = "checkup") -> Tuple[
     path = job.source_path
     options = {name: getattr(job, name) for name in OPTIONS}
     fixes = job.fix_list()
+    views.clear_preview(context, job)
+    rendered = views.capture_before(context, job) if job.stage in props.BUILT_STAGES else 0
+    if rendered:
+        res.info("run.captured", f"修正前的看图已保存（{rendered} 张）")
     previous = stage_checkup.snapshot_findings(job)
     sha1 = job.source_sha1
+    run = job.checkup_run
     remove_job(context, job)
     imp, new = stage_import.run(context, path)
     _step(res, "① 导入", imp)
@@ -86,6 +93,7 @@ def redo(context: bpy.types.Context, job, stop_after: str = "checkup") -> Tuple[
             setattr(new, name, value)
         new.set_fix_list(fixes)
         new.source_sha1 = sha1
+        new.checkup_run = run
         new.previous_findings_json = json.dumps(previous, ensure_ascii=False)
     if stop_after == "identify":
         r = stage_identify.run(context, new)
@@ -134,6 +142,7 @@ def _step(res: StageResult, label: str, r: StageResult) -> None:
 def remove_job(context: bpy.types.Context, job) -> None:
     """Delete everything a job generated and the job itself."""
     st = props.state(context)
+    views.clear_preview(context, job)
     if context.view_layer.objects.active is not None and context.view_layer.objects.active.mode != 'OBJECT':
         bpy.ops.object.mode_set(mode='OBJECT')
     coll = job.collection

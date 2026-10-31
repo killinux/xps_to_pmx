@@ -14,7 +14,7 @@ regression models, the 18-series reference models and rouffe (2026-10-31).
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Callable, Dict, Iterable, List, Optional, Sequence, Tuple
 
 import numpy as np
@@ -72,6 +72,7 @@ class Finding:
     detail: str = ""
     fix: Optional[Fix] = None
     state: str = "new"        # new | remaining | fixed | auto_fixed
+    view: Optional[Dict] = None   # pose, vertices and framing for 定位 / 看图 (:func:`posetest.make_view`)
 
     @property
     def key(self) -> str:
@@ -127,6 +128,8 @@ class JointLeak:
     up: int = 0               # upper-segment vertices carrying lower weight
     up_region: int = 0
     up_max: float = 0.0
+    down_idx: np.ndarray = field(default_factory=lambda: np.zeros(0, np.int64))
+    up_idx: np.ndarray = field(default_factory=lambda: np.zeros(0, np.int64))
 
     def direction_flags(self) -> Tuple[bool, bool]:
         def bad(n: int, region: int) -> bool:
@@ -164,12 +167,14 @@ def joint_leaks(positions: np.ndarray, column: Callable[[Sequence[str]], np.ndar
         bad = region & (upper_w >= LEAK_WEIGHT) & ((lower_w >= MIX_WEIGHT) | (t_d >= PURE_FROM))
         leak.down, leak.down_region = int(bad.sum()), int(region.sum())
         leak.down_max = float(upper_w[bad].max()) if bad.any() else 0.0
+        leak.down_idx = np.nonzero(bad)[0]
         t_u, r_u = project(pts, js.a, js.j)
         len_u = float(np.linalg.norm(js.j - js.a))
         region = (t_u >= UP_RANGE[0]) & (t_u <= UP_RANGE[1]) & (r_u <= RADIUS * len_u)
         bad = region & (lower_w >= LEAK_WEIGHT) & ((upper_w >= MIX_WEIGHT) | (t_u <= 1.0 - PURE_FROM))
         leak.up, leak.up_region = int(bad.sum()), int(region.sum())
         leak.up_max = float(lower_w[bad].max()) if bad.any() else 0.0
+        leak.up_idx = np.nonzero(bad)[0]
         out.append(leak)
     return out
 
@@ -232,6 +237,7 @@ class SideLeak:
     side: float               # +1 left (x > 0), -1 right
     share: float
     vertices: int
+    idx: np.ndarray = field(default_factory=lambda: np.zeros(0, np.int64))   # the wrong-side vertices
 
 
 def side_leaks(names: Sequence[str], heads: np.ndarray, positions: np.ndarray,
@@ -252,7 +258,7 @@ def side_leaks(names: Sequence[str], heads: np.ndarray, positions: np.ndarray,
         wrong = (x * side < -eps) & (w > 0)
         share = float(w[wrong].sum()) / total
         if share > SIDE_SHARE and int(wrong.sum()) >= SIDE_MIN_VERTICES:
-            out.append(SideLeak(name, side, share, int(wrong.sum())))
+            out.append(SideLeak(name, side, share, int(wrong.sum()), np.nonzero(wrong)[0]))
     return out
 
 
@@ -285,7 +291,8 @@ def side_findings(leaks: Iterable[SideLeak], source_of: Dict[str, str], duplicat
 def diff_findings(previous: Dict[str, Dict], current: List[Finding]) -> List[Finding]:
     """Mark ``current`` findings new / remaining and append the previous ones that are gone as fixed.
 
-    ``previous`` maps finding key → {"level", "text", "part", "code"} of the last checkup.
+    ``previous`` maps finding key → {"level", "text", "part", "code", "view"} of the last checkup; a fixed
+    finding keeps its view so that 看图 can show the same spot on the new model.
     Findings already marked auto_fixed keep that state.
     """
     keys = set()
@@ -298,7 +305,7 @@ def diff_findings(previous: Dict[str, Dict], current: List[Finding]) -> List[Fin
         if key in keys or old.get("state") == "fixed" or old.get("level") == INFO:
             continue
         gone.append(Finding(old.get("code", key.split(":", 1)[0]), INFO, old.get("text", key), old.get("part", "global"),
-                            "", key.split(":", 1)[1] if ":" in key else "", "", None, "fixed"))
+                            "", key.split(":", 1)[1] if ":" in key else "", "", None, "fixed", old.get("view")))
     return current + gone
 
 

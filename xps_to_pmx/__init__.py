@@ -1,6 +1,6 @@
 """XPS → PMX: convert XPS / XNALara models into MMD PMX models inside Blender 3.6.
 
-Layers (see docs/design/XPS转PMX插件实施设计_v0.2.md §3):
+Layers (see docs/design/XPS转PMX插件实施设计_v0.3.md §3):
 ``core`` (pure Python, no bpy) → ``blender`` (bpy adapters; only
 ``blender.mmdtools_bridge`` imports mmd_tools) → ``pipeline`` (stage functions)
 → ``ops`` (operators) → ``ui`` (panels).
@@ -45,6 +45,7 @@ _MODULES = (
     "core.mmd_material",
     "core.checks.export",
     "core.checks.lower_body",
+    "core.checks.posetest",
     "props",
     "prefs",
     "blender.importer",
@@ -52,10 +53,12 @@ _MODULES = (
     "blender.rigedit",
     "blender.skeleton_apply",
     "blender.mmdtools_bridge",
+    "blender.posetest",
     "pipeline.fixlist",
     "pipeline.stage_import",
     "pipeline.stage_identify",
     "pipeline.stage_prepare",
+    "pipeline.views",
     "pipeline.stage_build",
     "pipeline.stage_export",
     "pipeline.stage_checkup",
@@ -65,6 +68,7 @@ _MODULES = (
     "ops.prepare_ops",
     "ops.build_ops",
     "ops.checkup_ops",
+    "ui.previews",
     "ui.panel_main",
     "ui.panel_checkup",
     "ui.panel_steps",
@@ -91,11 +95,11 @@ if IN_BLENDER:
 
     from . import prefs, props  # noqa: E402
     from .ops import build_ops, checkup_ops, import_ops, mapping_ops, prepare_ops  # noqa: E402
-    from .ui import panel_build, panel_checkup, panel_main, panel_mapping, panel_prepare, panel_steps  # noqa: E402
+    from .ui import panel_build, panel_checkup, panel_main, panel_mapping, panel_prepare, panel_steps, previews  # noqa: E402
 
     # parents before sub-panels: main → 修正单 / 分步模式 → ② ③ ④ ⑧
-    _REGISTER_ORDER = (prefs, props, import_ops, mapping_ops, prepare_ops, build_ops, checkup_ops, panel_main,
-                       panel_checkup, panel_steps, panel_mapping, panel_prepare, panel_build)
+    _REGISTER_ORDER = (prefs, props, import_ops, mapping_ops, prepare_ops, build_ops, checkup_ops, previews,
+                       panel_main, panel_checkup, panel_steps, panel_mapping, panel_prepare, panel_build)
 
 
 def register():

@@ -6,7 +6,7 @@ from bpy.props import BoolProperty, IntProperty, StringProperty
 from bpy_extras.io_utils import ExportHelper, ImportHelper
 
 from .. import props
-from ..pipeline import fixlist, runner
+from ..pipeline import fixlist, runner, views
 
 
 def _activate(context, job) -> None:
@@ -151,6 +151,63 @@ class XPS2PMX_OT_finding_ignore(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class XPS2PMX_OT_finding_locate(bpy.types.Operator):
+    """摆出这条结果的测试姿势，选中出问题的顶点，镜头对过去（模型本身不动，看完点「复位」）；没有姿势的结果选中相关的骨"""
+    bl_idname = "xps2pmx.finding_locate"
+    bl_label = "定位"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    index: IntProperty(options={'HIDDEN'})
+
+    def execute(self, context):
+        job = _job_or_cancel(self, context)
+        if job is None or not 0 <= self.index < len(job.findings):
+            return {'CANCELLED'}
+        item = job.findings[self.index]
+        job.findings_index = self.index
+        if not item.view_json:
+            if not item.target:
+                self.report({'WARNING'}, "这条结果没有可以定位的骨或顶点")
+                return {'CANCELLED'}
+            views.clear_preview(context, job)
+            return bpy.ops.xps2pmx.locate_bone(bone=item.target)
+        return _finish_view(self, views.locate(context, job, self.index))
+
+
+class XPS2PMX_OT_pose_reset(bpy.types.Operator):
+    """去掉定位时的姿势预览，显示原来的模型（预览的是副本，模型本身一直没动）"""
+    bl_idname = "xps2pmx.pose_reset"
+    bl_label = "复位"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        job = _job_or_cancel(self, context)
+        if job is None:
+            return {'CANCELLED'}
+        return _finish_view(self, views.reset(context, job))
+
+
+class XPS2PMX_OT_finding_render(bpy.types.Operator):
+    """渲染这条结果的测试姿势小图；从头重做以后，旁边会放上一次的图做对比"""
+    bl_idname = "xps2pmx.finding_render"
+    bl_label = "看图"
+
+    index: IntProperty(options={'HIDDEN'})
+
+    def execute(self, context):
+        job = _job_or_cancel(self, context)
+        if job is None or not 0 <= self.index < len(job.findings):
+            return {'CANCELLED'}
+        job.findings_index = self.index
+        return _finish_view(self, views.render_finding(context, job, self.index))
+
+
+def _finish_view(op, res) -> set:
+    for m in res.messages:
+        op.report({'ERROR'} if m.level == 'error' else {'WARNING'} if m.level == 'warning' else {'INFO'}, m.text)
+    return {'CANCELLED'} if not res.ok else {'FINISHED'}
+
+
 class XPS2PMX_OT_fix_remove(bpy.types.Operator):
     """从修正单删掉这一条（自动修正只撤销、保留记录）"""
     bl_idname = "xps2pmx.fix_remove"
@@ -214,8 +271,8 @@ class XPS2PMX_OT_fixes_import(bpy.types.Operator, ImportHelper):
 
 
 CLASSES = (XPS2PMX_OT_one_click, XPS2PMX_OT_redo_full, XPS2PMX_OT_redo_steps, XPS2PMX_OT_continue,
-           XPS2PMX_OT_finding_fix, XPS2PMX_OT_finding_ignore, XPS2PMX_OT_fix_remove, XPS2PMX_OT_fixes_export,
-           XPS2PMX_OT_fixes_import)
+           XPS2PMX_OT_finding_fix, XPS2PMX_OT_finding_ignore, XPS2PMX_OT_finding_locate, XPS2PMX_OT_pose_reset,
+           XPS2PMX_OT_finding_render, XPS2PMX_OT_fix_remove, XPS2PMX_OT_fixes_export, XPS2PMX_OT_fixes_import)
 
 
 def register() -> None:

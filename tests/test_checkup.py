@@ -206,3 +206,14 @@ def test_merge_segment_ignores_cloth_merged_into_a_limb():
     analysis = cause.merge_analysis(rig, ident.slot_bones(), ident.bones)
     assert all(a.bone != i for a in analysis)
     assert not cause.check_merge_segments(rig, SPEC, analysis, set())
+
+
+def test_twin_parent_moves_to_the_namesake_on_its_side():
+    from xps_to_pmx.core.weights.split import twin_parent
+    namesakes = [("shawl back right 1", 0.081), ("shawl back right 1.001", -0.081)]
+    # rouffe: the right "shawl back right 2" hangs from the left "shawl back right 1"
+    assert twin_parent(-0.138, "shawl back right 1", 0.081, namesakes, 0.017) == "shawl back right 1.001"
+    # already on its own side, on the centre line, or without a namesake there: nothing changes
+    assert twin_parent(-0.138, "shawl back right 1.001", -0.081, namesakes, 0.017) is None
+    assert twin_parent(-0.138, "spine upper", 0.0, [("spine upper", 0.0)], 0.017) is None
+    assert twin_parent(-0.138, "arm left shoulder 1", 0.05, [("arm left shoulder 1", 0.05)], 0.017) is None

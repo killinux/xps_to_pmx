@@ -19,7 +19,7 @@ from ..blender import mmdtools_bridge as bridge
 from ..core.checks.export import check_pmx
 from ..core.pose import EXPORT_SCALE
 from ..core.result import StageResult
-from . import stage_identify
+from . import stage_identify, views
 
 STAGE = "export"
 DEFAULT_ROOT = r"D:\xps_exports"
@@ -57,6 +57,7 @@ def run(context: bpy.types.Context, job, filepath: str = "") -> StageResult:
         res.error("export.no_root", "骨架不在 mmd_tools 模型里（④ 没有成功）")
         job.record(res)
         return res
+    views.clear_preview(context, job)  # 定位 hides the model behind posed copies
     path = bpy.path.abspath(filepath or job.export_path) if (filepath or job.export_path) else default_path(context, job)
     if not path.lower().endswith(".pmx"):
         path = os.path.join(path, f"{safe_name(job.model_name)}.pmx")

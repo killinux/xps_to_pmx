@@ -1,10 +1,12 @@
 """M4.5 (design doc §15.10): one-click, fix list, fix files, redo from scratch, the checkup.
 
-Regression models: one-click without error-level findings, fix files written and picked up again,
-分步重做 stops at ② and 继续 finishes.  rouffe (optional, skipped when missing): the knee / elbow
-helpers merge correctly, duplicate names are reported and the split fix clears them, the automatic
-merge fix works when the classifier errs, hand-made wrong merges are reported but not overridden,
-and ignored findings stay hidden.  Exports and user data go to the test output folder.
+Regression models: one-click without error-level findings and without pose-test warnings, fix files
+written and picked up again, 分步重做 stops at ② and 继续 finishes.  rouffe (optional, skipped when
+missing): the knee / elbow helpers merge correctly, duplicate names are reported (with the shrug pose
+as evidence) and the split fix clears them, 定位 shows a posed preview and 复位 removes it, 看图 renders
+before / after thumbnails, the 下半身 warning is judged by the pose tests, the automatic merge fix works
+when the classifier errs, hand-made wrong merges are reported but not overridden, and ignored findings
+stay hidden.  Exports and user data go to the test output folder.
 """
 from __future__ import annotations
 
@@ -24,7 +26,8 @@ os.environ["XPS2PMX_USER_DATA"] = os.path.join(OUT, "user_data")
 
 harness.register_addon()
 from xps_to_pmx.core.rig import classify  # noqa: E402
-from xps_to_pmx.pipeline import fixlist, runner, stage_checkup  # noqa: E402
+from xps_to_pmx.blender import posetest as bpt  # noqa: E402
+from xps_to_pmx.pipeline import fixlist, runner, stage_checkup, views  # noqa: E402
 
 ROUFFE = "E:/Downloads/rouffe (grand magician)/rouffe/xps.xps"
 HELPERS = {"unused bip001 lcalftwist": ("left_knee_bone", "left_thigh_bone"),
@@ -68,6 +71,9 @@ def check_model(entry, first: bool):
     new_checks = [f.text for f in job.findings if f.code in ("checkup.joint_leak", "checkup.side_leak")
                   and f.level != "info"]
     c.check("new symptom checks: no warnings on a good model", not new_checks, new_checks[:3])
+    pose = [f.text for f in job.findings if f.code.startswith("pose.") and f.level != "info"]
+    c.check("pose tests: no warnings on a good model", not pose, pose[:3])
+    c.check("pose tests ran", job.checkup_run == 1 and bool(bpt._CACHE.get(job.job_id)), job.checkup_run)
     pmx = job.last_export
     c.check("fix file next to the PMX", os.path.isfile(fixlist.pmx_fixes_path(pmx)), pmx)
     c.check("fix file in the user data folder",
@@ -134,6 +140,39 @@ def check_rouffe():
     c.check("duplicate findings carry the side-leak evidence", all("体检" in f.detail for f in dups),
             [f.detail for f in dups])
     c.check("split fixes are not automatic", not any(f.kind == "split_side" for f in job.fixes))
+    c.check("the shrug pose is evidence of a duplicate", any("左肩上耸 25°" in f.detail or "右肩上耸 25°" in f.detail
+                                                           for f in dups), [f.detail for f in dups])
+    c.check("duplicate findings have a view", all(f.view_json for f in dups))
+    lb = next((f for f in job.findings if f.code == "lower_body.high"), None)
+    c.check("下半身 warning judged by the pose tests",
+            lb is not None and lb.level == "info" and "18 系列成品也是这样" in lb.detail and lb.view_json,
+            (lb.level, lb.detail) if lb else None)
+
+    # 定位: posed copies with the vertices selected; the model itself is hidden, not posed
+    index = list(job.findings).index(dups[0])
+    view = json.loads(dups[0].view_json)
+    r = views.locate(bpy.context, job, index)
+    coll = job.preview_collection
+    c.check("定位 ok", r.ok and coll is not None, [m.text for m in r.messages])
+    layer = bpt._layer_collection(bpy.context.view_layer.layer_collection, job.collection)
+    c.check("model hidden while previewing", layer is not None and layer.hide_viewport)
+    if coll is not None:
+        selected = sum(v.select for o in coll.objects for v in o.data.vertices)
+        c.check("the view's vertices are selected", selected == len(view["vertices"]), (selected, len(view["vertices"])))
+        c.check("edit mode on the preview", bpy.context.mode == 'EDIT_MESH', bpy.context.mode)
+    c.check("armature not posed", all(pb.matrix_basis.is_identity for pb in job.armature.pose.bones))
+    r = views.reset(bpy.context, job)
+    c.check("复位 removes the preview", job.preview_collection is None and bpy.context.mode == 'OBJECT'
+            and not any(o.name.startswith(bpt.PREVIEW_PREFIX) for o in bpy.data.objects)
+            and not layer.hide_viewport, bpy.context.mode)
+
+    # 看图
+    r = views.render_finding(bpy.context, job, index)
+    shot = job.findings[index].image_after
+    c.check("看图 renders a thumbnail", r.ok and os.path.isfile(shot), [m.text for m in r.messages])
+    c.check("render left nothing behind", not any(o.name.startswith(bpt.RENDER_NAME) for o in bpy.data.objects)
+            and bpy.data.scenes.get(bpt.RENDER_NAME) is None)
+    run = job.checkup_run
 
     # tick both split fixes and redo
     for f in list(job.findings):
@@ -145,12 +184,30 @@ def check_rouffe():
     if job is None:
         return c
     c.check("splits applied once", len(json.loads(job.splits_done_json)) == 2, job.splits_done_json)
+    right = [b for b in job.armature.data.bones if b.head_local.x < -0.05
+             and job.armature.pose.bones[b.name].mmd_bone.name_e.startswith("shawl back right")]
+    c.check("the right shawl chain hangs from the right shoulder",
+            len(right) == 2 and all(b.parent.head_local.x < 0 for b in right),
+            [(b.name, b.parent.name) for b in right])
     c.check("duplicate names gone", not _findings(job, "mapping.duplicate_name"))
     c.check("no side leak left", not [f for f in _findings(job, "checkup.side_leak") if f.level != "info"],
             [f.text for f in _findings(job, "checkup.side_leak")])
     fixed = [f.code for f in job.findings if f.state == "fixed"]
     c.check("report says they are fixed", fixed.count("mapping.duplicate_name") == 2, fixed)
     c.check("pending cleared", not job.fixes_pending)
+    c.check("checkup runs counted on", job.checkup_run == run + 1, (run, job.checkup_run))
+    gone = [f for f in job.findings if f.state == "fixed" and f.code == "mapping.duplicate_name"]
+    c.check("fixed findings keep their views", all(f.view_json for f in gone))
+    c.check("before images captured for the ticked fixes", all(os.path.isfile(f.image_before) for f in gone),
+            [f.image_before for f in gone])
+    if gone:
+        index = list(job.findings).index(gone[0])
+        r = views.render_finding(bpy.context, job, index)
+        c.check("看图 of a fixed finding renders the new model", r.ok and os.path.isfile(job.findings[index].image_after)
+                and job.findings[index].image_before != job.findings[index].image_after)
+    c.check("no pose warning left after the split", not [f for f in _findings(job) if f.code.startswith("pose.")
+                                                         and f.level != "info"],
+            [f.text for f in _findings(job) if f.code.startswith("pose.")])
 
     # the automatic merge fix when the classifier errs (simulated: head rule only)
     original = classify.segment_mass
@@ -185,6 +242,10 @@ def check_rouffe():
             [f.text for f in warn])
     c.check("knee / elbow symptoms found and joined to them", sum("体检" in f.detail for f in warn) >= 2,
             [f.detail for f in warn])
+    c.check("the knee / elbow poses are evidence", sum("姿势测试" in f.detail for f in warn) >= 2,
+            [f.detail for f in warn])
+    c.check("wrong merges get the knee / elbow view",
+            any(json.loads(f.view_json or "{}").get("test", "").startswith(("knee", "elbow")) for f in warn))
 
     # ignore a finding
     lb = next((f for f in job.findings if f.code == "lower_body.high"), None)

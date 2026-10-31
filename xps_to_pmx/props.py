@@ -219,6 +219,15 @@ class XPS2PMX_Finding(PropertyGroup):
     fix_json: StringProperty()
     fix_key: StringProperty(description="建议修正的 Fix.key（用来查它在不在修正单里）")
     state: EnumProperty(items=FINDING_STATE_ITEMS, default='new')
+    view_json: StringProperty(description="定位/看图用：测试姿势、顶点和取景（JSON），没有则为空")
+    image_before: StringProperty(subtype='FILE_PATH', description="上一次体检时的看图")
+    image_after: StringProperty(subtype='FILE_PATH', description="这一次体检的看图")
+
+    def view(self) -> dict:
+        try:
+            return json.loads(self.view_json) if self.view_json else {}
+        except ValueError:
+            return {}
 
 
 class XPS2PMX_Slot(PropertyGroup):
@@ -301,6 +310,10 @@ class XPS2PMX_Job(PropertyGroup):
     duplicates_json: StringProperty(default="[]", description="② 找到的重名骨")
     splits_done_json: StringProperty(default="[]", description="已经应用过的拆分权重修正")
     previous_findings_json: StringProperty(default="{}", description="分步重做之前的体检结果，继续时用来对比")
+    # M4.5 step 2: pose tests (design doc §16)
+    checkup_run: IntProperty(default=0, description="第几次体检（从头重做时接着数），看图的文件名用它区分上次和这次")
+    preview_collection: PointerProperty(type=bpy.types.Collection, description="定位时显示的姿势预览")
+    pose_preview: StringProperty(description="正在预览的测试姿势")
 
     def summary(self) -> dict:
         try:

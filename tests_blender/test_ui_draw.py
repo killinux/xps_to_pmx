@@ -144,6 +144,27 @@ def main():
                   "fixes_index", i)
         c.check("fix list has the hand edit", job.fix_item("slot:left_toe_bone") is not None,
                 [f.key for f in job.fixes])
+
+        # 定位 / 看图 (design doc §16): a finding with a view, its thumbnail, the preview banner
+        import json
+        from xps_to_pmx.pipeline import views
+        index = next((i for i, f in enumerate(job.findings) if f.view_json), 0)
+        item = job.findings[index]
+        if not item.view_json:
+            item.view_json = json.dumps({"test": "knee_L", "vertices": [0, 1, 2], "focus": [0.0, 0.0, 0.5],
+                                         "size": 0.5, "dir": [1.0, 0.0, 0.0]})
+        job.findings_index = index
+        c.run("main panel with a view", draw_panel, panel_main.XPS2PMX_PT_main, bpy.context)
+        res = views.render_finding(bpy.context, job, index)
+        c.check("thumbnail rendered for the panel test", res.ok and os.path.isfile(item.image_after),
+                [m.text for m in res.messages])
+        item.image_before = item.image_after
+        c.run("main panel with thumbnails", draw_panel, panel_main.XPS2PMX_PT_main, bpy.context)
+        res = views.locate(bpy.context, job, index)
+        c.check("preview shown for the panel test", res.ok and job.preview_collection is not None)
+        c.run("main panel while previewing", draw_panel, panel_main.XPS2PMX_PT_main, bpy.context)
+        views.reset(bpy.context, job)
+        c.check("preview removed", job.preview_collection is None)
     c.check("no layout problems", not Stub.problems, sorted(set(Stub.problems))[:10])
     report = harness.write_report(args.out, "ui_draw", checkers)
     harness.finish(report)
