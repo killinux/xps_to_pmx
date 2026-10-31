@@ -81,6 +81,8 @@ mklink /J "%APPDATA%\Blender Foundation\Blender\3.6\scripts\addons\xps_to_pmx" "
 
 主面板最后一行总会提示下一步做什么。下次再转换同一个 XPS，上次的修正会自动套用。
 
+**每一步都带截图的完整说明见 [docs/使用说明.md](docs/使用说明.md)。**
+
 ## 主面板
 
 ### 体检报告
@@ -359,6 +361,7 @@ python scripts\run_blender_tests.py m4_build -- --models daz_purifier_inase
 
 ## 文档
 
+- [使用说明](docs/使用说明.md)：每一步带截图
 - [实施设计 v0.2](docs/design/XPS转PMX插件实施设计_v0.2.md)：边界、硬约束、架构、各阶段规格、里程碑
 - [调研报告](docs/reports/XPS%20转%20PMX%20方案调研.md)：分题笔记在 `docs/research_notes/`
 - [M4 的 MMD 测试清单](docs/test/M4_MMD测试清单.md)：M4.5 之后用新流程导出的模型来测
