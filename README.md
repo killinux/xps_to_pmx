@@ -350,6 +350,22 @@ python scripts\run_blender_tests.py m4_build -- --models daz_purifier_inase
 
 回归模型文件不在仓库里，路径写在 `tests_blender/regression_models.json`；找不到的模型会跳过。Blender 测试通过环境变量 `XPS2PMX_EXPORT_ROOT`、`XPS2PMX_USER_DATA` 把导出文件和修正单都写在 `out\blender_tests\` 下面，不碰你的导出目录和用户数据目录。
 
+### 重新生成使用说明的截图
+
+界面改了以后，用这条命令重拍 [使用说明](docs/使用说明.md) 里的截图（需要 Pillow）：
+
+```bat
+python scripts\make_guide_screenshots.py
+```
+
+- 它会启动一个带窗口的 Blender 3.6，自动操作并截图，大约三分钟；这期间窗口不接受鼠标和键盘。
+- 原始截图在 `out\guide_shots\`；裁剪、加了红框编号的成图写进 `docs\images\usage\`。导出的 PMX 和修正单都写在 `out\guide_shots\work\`，不碰你的导出目录。
+- 面板标题的点击位置和红框坐标是按 1600×1000 窗口、Windows 显示缩放 150% 量的。界面布局变了的话：
+  1. 先加 `--measure` 跑一遍（不点面板标题）；
+  2. 看 `out\guide_shots\` 里的截图，改 `scripts\guide_shots_blender.py` 的 `HEADER_CLICKS` 和 `scripts\make_guide_screenshots.py` 的 `BOXES`；
+  3. 再跑一遍。
+- 加 `--skip-shoot` 只重做裁剪和加框。
+
 ### 自定义骨骼名表
 
 在偏好设置的「用户数据目录」里放一个 `bone_slots.csv`，格式与 `xps_to_pmx/data/bone_slots.csv` 相同：
