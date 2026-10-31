@@ -188,7 +188,7 @@ def identify(rig: RigData, spec: BoneSpec, convention: Optional[str] = None,
 
     # 7. classification of everything else
     head = slots["head_bone"].bone
-    dispositions = classify_bones(rig, {s: m.bone for s, m in slots.items()}, merged, head)
+    dispositions = classify_bones(rig, {s: m.bone for s, m in slots.items()}, merged, head, facing)
     for bone, disp in dispositions.items():
         if disp.action == "merge" and bone not in merged:
             merged[bone] = disp.slot_id
