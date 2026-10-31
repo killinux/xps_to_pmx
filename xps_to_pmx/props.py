@@ -13,13 +13,15 @@ action is ``merge`` with that ``slot_id`` -- one source of truth.
 from __future__ import annotations
 
 import json
-from typing import Dict, Optional
+import re
+from typing import Dict, List, Optional
 
 import bpy
 from bpy.props import (BoolProperty, CollectionProperty, EnumProperty, FloatProperty, IntProperty,
                        PointerProperty, StringProperty)
 from bpy.types import PropertyGroup
 
+from .core.fixes import Fix
 from .core.result import StageResult
 
 PROP_JOB = "xps2pmx_job"
@@ -36,6 +38,7 @@ ORIGIN_ITEMS = (
     ('topology', "拓扑", "按层级与位置识别"),
     ('diagnosis', "诊断", "下半身诊断的结果"),
     ('classifier', "分类", "辅助骨分类的默认处置"),
+    ('checkup', "体检", "体检的自动修正（修正单里可撤销）"),
     ('user', "手动", "用户指定，自动识别不会覆盖"),
 )
 ACTION_ITEMS = (
@@ -82,16 +85,49 @@ IK_ITEMS = (
     ('S18', "18 系列", "足ＩＫ 40 次 / 1 rad，つま先ＩＫ 80 次 / 1 rad（mmd_tools 默认值）"),
 )
 
-STAGES = ("import", "identify", "prepare", "build", "morphs", "physics", "check", "export")
+STAGES = ("import", "identify", "prepare", "build", "morphs", "physics", "export", "checkup")
 STAGE_LABELS = {
     "import": "① 导入", "identify": "② 识别", "prepare": "③ 预处理", "build": "④ 生成MMD骨架",
-    "morphs": "⑤ 表情", "physics": "⑥ 物理", "check": "⑦ 检查", "export": "⑧ 导出",
+    "morphs": "⑤ 表情", "physics": "⑥ 物理", "export": "⑧ 导出", "checkup": "⑨ 体检",
 }
+#: Stages after which the MMD skeleton exists (the mapping is locked).  ⑦ was merged into ⑨ (design doc v0.2).
+BUILT_STAGES = ("build", "morphs", "physics", "export", "checkup")
+
+FIX_KIND_ITEMS = (
+    ('slot', "槽位", "槽位改用哪根源骨（空 = 留空由补骨生成）"),
+    ('bone', "处置", "源骨的处置、并入目标或类别"),
+    ('split_side', "拆分权重", "重名骨按左右拆分权重"),
+    ('ignore', "忽略", "忽略某条体检结果"),
+)
+FIX_ORIGIN_ITEMS = (
+    ('user', "手改", "你在面板里改的"),
+    ('csv', "映射CSV", "导入映射 CSV 时与当时结果不同的行"),
+    ('checkup', "体检", "体检给出的修正"),
+    ('file', "文件", "从修正单文件导入"),
+)
+FINDING_STATE_ITEMS = (
+    ('new', "新出现", ""),
+    ('remaining', "仍存在", ""),
+    ('fixed', "已修复", ""),
+    ('auto_fixed', "已自动修正", ""),
+)
 
 
 def _scene_state(item) -> Optional["XPS2PMX_SceneState"]:
     scene = item.id_data
     return getattr(scene, "xps2pmx", None)
+
+
+_JOB_PATH = re.compile(r"xps2pmx\.jobs\[(\d+)\]")
+
+
+def owner_job(item) -> Optional["XPS2PMX_Job"]:
+    """The job a slot / bone plan / fix item belongs to."""
+    st = _scene_state(item)
+    m = _JOB_PATH.match(item.path_from_id()) if st is not None else None
+    if m is None or int(m.group(1)) >= len(st.jobs):
+        return None
+    return st.jobs[int(m.group(1))]
 
 
 def _slot_bone_changed(self, context):
@@ -102,6 +138,10 @@ def _slot_bone_changed(self, context):
     self.origin = 'user'
     self.reason = "用户指定" if self.bone else "用户清空（缺失时由补骨生成）"
     st.mapping_dirty = True
+    job = owner_job(self)
+    if job is not None:
+        plan = job.bones.get(self.bone) if self.bone else None
+        job.upsert_fix(Fix("slot", slot_id=self.name, bone=self.bone, src=plan.src if plan else "", origin="user"))
 
 
 def _plan_changed(self, context):
@@ -110,6 +150,19 @@ def _plan_changed(self, context):
         return
     self.origin = 'user'
     st.mapping_dirty = True
+    job = owner_job(self)
+    if job is not None:
+        slot = self.slot_id if self.action in ("map", "merge") else ""
+        job.upsert_fix(Fix("bone", bone=self.name, src=self.src, action=self.action, slot_id=slot, origin="user"))
+
+
+def _fix_changed(self, context):
+    st = _scene_state(self)
+    if st is None or st.programmatic:
+        return
+    job = owner_job(self)
+    if job is not None and job.stage in BUILT_STAGES:
+        job.fixes_pending = True
 
 
 class XPS2PMX_ReportItem(PropertyGroup):
@@ -119,6 +172,53 @@ class XPS2PMX_ReportItem(PropertyGroup):
     text: StringProperty()
     target: StringProperty()
     slot_id: StringProperty()
+    detail: StringProperty()
+    fix_json: StringProperty(description="建议的修正（JSON），没有则为空")
+
+
+class XPS2PMX_Fix(PropertyGroup):
+    """One fix-list entry (design doc §15.3); mirrors :class:`core.fixes.Fix`."""
+
+    kind: EnumProperty(items=FIX_KIND_ITEMS, default='bone')
+    key: StringProperty(description="Fix.key，同一件事只有一条")
+    bone: StringProperty()
+    src: StringProperty()
+    slot_id: StringProperty()
+    action: StringProperty()
+    category: StringProperty()
+    twin: StringProperty()
+    finding: StringProperty()
+    enabled: BoolProperty(name="启用", default=True, update=_fix_changed,
+                          description="取消勾选 = 撤销这条修正，下次重做时生效")
+    origin: EnumProperty(items=FIX_ORIGIN_ITEMS, default='user')
+    auto: BoolProperty(description="体检自动加入")
+    note: StringProperty()
+
+    def to_fix(self) -> Fix:
+        return Fix(self.kind, self.bone, self.src, self.slot_id, self.action, self.category, self.twin,
+                   self.finding, self.enabled, self.origin, self.auto, self.note)
+
+    def assign(self, fix: Fix) -> None:
+        for name in ("kind", "bone", "src", "slot_id", "action", "category", "twin", "finding", "enabled",
+                     "origin", "auto", "note"):
+            setattr(self, name, getattr(fix, name))
+        self.key = fix.key
+
+
+class XPS2PMX_Finding(PropertyGroup):
+    """One checkup finding (design doc §15.6)."""
+
+    level: EnumProperty(items=LEVEL_ITEMS, default='info')
+    code: StringProperty()
+    part: StringProperty()
+    text: StringProperty()
+    target: StringProperty(description="定位时选中的骨")
+    subject: StringProperty()
+    key: StringProperty()
+    detail: StringProperty()
+    fix_json: StringProperty()
+    fix_key: StringProperty(description="建议修正的 Fix.key（用来查它在不在修正单里）")
+    state: EnumProperty(items=FINDING_STATE_ITEMS, default='new')
 
 
 class XPS2PMX_Slot(PropertyGroup):
@@ -190,6 +290,17 @@ class XPS2PMX_Job(PropertyGroup):
     export_path: StringProperty(name="导出路径", subtype='FILE_PATH', default="",
                                 description="留空 = 偏好设置里的导出根目录/<模型名>/<模型名>.pmx")
     last_export: StringProperty(subtype='FILE_PATH', default="")
+    # M4.5: fix list and checkup (design doc §15)
+    fixes: CollectionProperty(type=XPS2PMX_Fix)
+    fixes_index: IntProperty()
+    fixes_pending: BoolProperty(default=False, description="修正单在生成骨架后改过，要从头重做才生效")
+    findings: CollectionProperty(type=XPS2PMX_Finding)
+    findings_index: IntProperty()
+    source_sha1: StringProperty(description="XPS 文件的 SHA-1，用来找记住的修正单")
+    merge_analysis_json: StringProperty(default="[]", description="② 存下的并入骨分段权重")
+    duplicates_json: StringProperty(default="[]", description="② 找到的重名骨")
+    splits_done_json: StringProperty(default="[]", description="已经应用过的拆分权重修正")
+    previous_findings_json: StringProperty(default="{}", description="分步重做之前的体检结果，继续时用来对比")
 
     def summary(self) -> dict:
         try:
@@ -230,6 +341,28 @@ class XPS2PMX_Job(PropertyGroup):
         except ValueError:
             return {}
 
+    # -- fix list --------------------------------------------------------------------
+
+    def fix_list(self) -> List[Fix]:
+        return [item.to_fix() for item in self.fixes]
+
+    def set_fix_list(self, fixes) -> None:
+        self.fixes.clear()
+        for fix in fixes:
+            self.fixes.add().assign(fix)
+
+    def fix_item(self, key: str):
+        return next((item for item in self.fixes if item.key == key), None)
+
+    def upsert_fix(self, fix: Fix) -> None:
+        """Replace the entry with the same key in place, or append one."""
+        item = self.fix_item(fix.key)
+        if item is None:
+            item = self.fixes.add()
+        item.assign(fix)
+        if self.stage in BUILT_STAGES:
+            self.fixes_pending = True
+
 
 class XPS2PMX_SceneState(PropertyGroup):
     jobs: CollectionProperty(type=XPS2PMX_Job)
@@ -241,7 +374,8 @@ class XPS2PMX_SceneState(PropertyGroup):
     mapping_dirty: BoolProperty(default=False, description="映射被手动修改过，需要重新检查")
 
 
-CLASSES = (XPS2PMX_ReportItem, XPS2PMX_Slot, XPS2PMX_BonePlan, XPS2PMX_Job, XPS2PMX_SceneState)
+CLASSES = (XPS2PMX_ReportItem, XPS2PMX_Fix, XPS2PMX_Finding, XPS2PMX_Slot, XPS2PMX_BonePlan, XPS2PMX_Job,
+           XPS2PMX_SceneState)
 
 
 def register() -> None:

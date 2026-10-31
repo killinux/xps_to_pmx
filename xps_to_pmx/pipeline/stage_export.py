@@ -14,7 +14,7 @@ from typing import Dict, List
 
 import bpy
 
-from .. import prefs
+from .. import prefs, props
 from ..blender import mmdtools_bridge as bridge
 from ..core.checks.export import check_pmx
 from ..core.pose import EXPORT_SCALE
@@ -23,7 +23,7 @@ from . import stage_identify
 
 STAGE = "export"
 DEFAULT_ROOT = r"D:\xps_exports"
-READY_STAGES = ("build", "morphs", "physics", "check", "export")
+READY_STAGES = props.BUILT_STAGES
 _BAD_CHARS = re.compile(r'[<>:"/\\|?*\x00-\x1f]')
 
 
@@ -33,10 +33,7 @@ def safe_name(name: str) -> str:
 
 
 def default_path(context: bpy.types.Context, job) -> str:
-    try:
-        root = bpy.path.abspath(prefs.get(context).export_root) or DEFAULT_ROOT
-    except KeyError:  # add-on registered without being enabled (tests)
-        root = DEFAULT_ROOT
+    root = prefs.export_root(context, DEFAULT_ROOT)
     name = safe_name(job.model_name)
     return os.path.join(root, name, f"{name}.pmx")
 

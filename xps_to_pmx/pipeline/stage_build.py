@@ -14,6 +14,7 @@ from typing import Dict, List
 import bpy
 import numpy as np
 
+from .. import props
 from ..blender import mmdtools_bridge as bridge
 from ..blender import skeleton_apply, snapshot
 from ..blender.importer import PROP_MANIFEST
@@ -24,7 +25,7 @@ from ..core.rig.skeleton import BuildOptions, ExtraBone, SkeletonPlan, plan_skel
 from . import stage_identify
 
 STAGE = "build"
-DONE_STAGES = ("build", "morphs", "physics", "check", "export")
+DONE_STAGES = props.BUILT_STAGES
 
 
 def run(context: bpy.types.Context, job) -> StageResult:

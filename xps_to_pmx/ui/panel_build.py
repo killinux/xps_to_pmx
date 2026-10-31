@@ -5,7 +5,7 @@ import bpy
 
 from .. import props
 
-BUILT = ("build", "morphs", "physics", "check", "export")
+BUILT = props.BUILT_STAGES
 
 
 class XPS2PMX_PT_build(bpy.types.Panel):
@@ -14,7 +14,7 @@ class XPS2PMX_PT_build(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
     bl_category = "XPS→PMX"
-    bl_parent_id = "XPS2PMX_PT_main"
+    bl_parent_id = "XPS2PMX_PT_steps"
     bl_options = {'DEFAULT_CLOSED'}
 
     @classmethod
@@ -45,7 +45,7 @@ class XPS2PMX_PT_build(bpy.types.Panel):
             box.label(text=f"重写权重 {info.get('weights_rewritten', 0)} 顶点；超 4 影响 {plan.get('capped_vertices', 0)}；"
                            f"无权重 {plan.get('unweighted_vertices', 0)}")
         if built:
-            layout.label(text="已生成；要按新设置重新生成请『重来』", icon='INFO')
+            layout.label(text="已生成；要换这些选项：主面板「分步重做」后再生成", icon='INFO')
 
 
 class XPS2PMX_PT_export(bpy.types.Panel):
@@ -54,7 +54,7 @@ class XPS2PMX_PT_export(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
     bl_category = "XPS→PMX"
-    bl_parent_id = "XPS2PMX_PT_main"
+    bl_parent_id = "XPS2PMX_PT_steps"
     bl_options = {'DEFAULT_CLOSED'}
 
     @classmethod

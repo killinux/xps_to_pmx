@@ -1,10 +1,12 @@
-"""Convert XPS files to PMX headlessly with the default options (stages ① → ④ → ⑧).
+"""Convert XPS files to PMX headlessly: the same one-click flow as the panel (① → ⑨, design doc §15.2).
 
     "D:\\Program Files\\blender-3.6.15-windows-x64\\blender.exe" -b --factory-startup --python scripts/convert_xps.py ^
-        -- <file.xps> [<file2.xps> ...] [--out D:\\xps_exports] [--blend]
+        -- <file.xps> [<file2.xps> ...] [--out D:\\xps_exports] [--blend] [--fixes <file>] [--no-fixes]
 
-Output: ``<out>/<model>/<model>.pmx`` + ``.report.json`` (and ``.blend`` with
-``--blend``).  Stops a model at the first stage with errors and prints them.
+Output: ``<out>/<model>/<model>.pmx`` + ``.report.json`` (with the checkup) + ``.fixes.json``
+(and ``.blend`` with ``--blend``).  The fix list remembered for each XPS file is applied unless
+``--no-fixes``; ``--fixes`` applies one fix file to every model instead.  A model stops at the
+first stage with errors; the others continue.
 """
 from __future__ import annotations
 
@@ -23,51 +25,53 @@ def main() -> int:
     argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
     ap = argparse.ArgumentParser()
     ap.add_argument("files", nargs="+")
-    ap.add_argument("--out", default="")
+    ap.add_argument("--out", default="", help="export root (default: D:\\xps_exports)")
     ap.add_argument("--blend", action="store_true", help="also save the converted scene as .blend")
+    ap.add_argument("--fixes", default="", help="apply this fix file to every model")
+    ap.add_argument("--no-fixes", action="store_true", help="ignore the fix lists remembered for the files")
     args = ap.parse_args(argv)
+    if args.out:
+        os.environ["XPS2PMX_EXPORT_ROOT"] = os.path.abspath(args.out)
 
     import xps_to_pmx
     try:
         xps_to_pmx.register()
     except ValueError:
         pass
-    from xps_to_pmx.pipeline import stage_build, stage_export, stage_identify, stage_import, stage_prepare
+    from xps_to_pmx.pipeline import runner
 
     failed = 0
     for path in args.files:
         bpy.ops.wm.read_homefile(use_empty=True, use_factory_startup=True)
         t0 = time.time()
         print(f"\n=== {path}")
-        res, job = stage_import.run(bpy.context, path)
-        steps = [("① 导入", res)]
-        if res.ok:
-            steps.append(("② 识别", stage_identify.run(bpy.context, job)))
-        if steps[-1][1].ok:
-            steps.append(("③ 预处理", stage_prepare.run(bpy.context, job)))
-        if steps[-1][1].ok:
-            steps.append(("④ 骨架", stage_build.run(bpy.context, job)))
-        if steps[-1][1].ok:
-            out = ""
-            if args.out:
-                name = stage_export.safe_name(job.model_name)
-                out = os.path.join(args.out, name, f"{name}.pmx")
-            steps.append(("⑧ 导出", stage_export.run(bpy.context, job, out)))
-        for label, r in steps:
-            errors = [m.text for m in r.messages if m.level == "error"]
-            warnings = [m.text for m in r.messages if m.level == "warning"]
-            print(f"  {label}: {'OK' if r.ok else 'FAILED'}" + (f"，{len(warnings)} 条警告" if warnings else ""))
-            for text in errors[:5]:
+        res, job = runner.one_click(bpy.context, path, remember=not args.no_fixes, fixes_file=args.fixes)
+        for step in res.data.get("steps", []):
+            warn = f"，{len(step['warnings'])} 条警告" if step["warnings"] else ""
+            print(f"  {step['label']}: {'OK' if step['ok'] else 'FAILED'}{warn}")
+            for text in step["errors"][:5]:
                 print(f"     ✗ {text}")
-            for text in warnings[:8]:
-                print(f"     ! {text}")
-        if steps[-1][0] == "⑧ 导出" and steps[-1][1].ok:
-            pmx = steps[-1][1].data["path"]
-            print(f"  → {pmx}（{time.time() - t0:.1f}s）")
+        for m in res.messages:
+            if m.code.startswith("fixes."):
+                print(f"  · {m.text}")
+        if job is not None and job.findings:
+            print("  体检：")
+            for f in job.findings:
+                if f.level == "info" and f.state not in ("auto_fixed",):
+                    continue
+                mark = {"error": "✗", "warning": "!", "info": "·"}[f.level]
+                state = {"auto_fixed": "（已自动修正）", "fixed": "（已修复）"}.get(f.state, "")
+                print(f"     {mark} {f.text}{state}")
+        if res.ok and job is not None and job.stage == "checkup":
+            print(f"  → {job.last_export}（{time.time() - t0:.1f}s）")
             if args.blend:
-                bpy.ops.wm.save_as_mainfile(filepath=os.path.splitext(pmx)[0] + ".blend", check_existing=False)
+                bpy.ops.wm.save_as_mainfile(filepath=os.path.splitext(job.last_export)[0] + ".blend",
+                                            check_existing=False)
         else:
             failed += 1
+            for m in res.messages:
+                if m.code.startswith("run.") and m.level == "error":
+                    print(f"  ✗ {m.text}")
     print(f"\n{len(args.files) - failed}/{len(args.files)} converted")
     return 1 if failed else 0
 

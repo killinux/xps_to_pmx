@@ -6,7 +6,7 @@ from bpy.props import StringProperty
 from bpy_extras.io_utils import ImportHelper
 
 from .. import props
-from ..pipeline import stage_import
+from ..pipeline import fixlist, stage_import
 
 
 def _report_result(op: bpy.types.Operator, res) -> None:
@@ -37,9 +37,13 @@ class XPS2PMX_OT_import_xps(bpy.types.Operator, ImportHelper):
         return ImportHelper.invoke(self, context, event)
 
     def execute(self, context):
-        res, _job = stage_import.run(context, self.filepath)
+        res, job = stage_import.run(context, self.filepath)
         props.state(context).xps_path = self.filepath
         _report_result(self, res)
+        if job is not None:
+            loaded = fixlist.load_remembered(context, job)
+            for m in loaded.messages:
+                self.report({'WARNING'} if m.level != 'info' else {'INFO'}, m.text)
         return {'FINISHED'} if res.ok else {'CANCELLED'}
 
 

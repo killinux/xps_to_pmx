@@ -12,7 +12,7 @@ class XPS2PMX_PT_prepare(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
     bl_category = "XPS→PMX"
-    bl_parent_id = "XPS2PMX_PT_main"
+    bl_parent_id = "XPS2PMX_PT_steps"
     bl_options = {'DEFAULT_CLOSED'}
 
     @classmethod

@@ -15,6 +15,7 @@ import numpy as np
 from mathutils import Matrix, Vector
 
 from ..core.pose import blend_directions, blend_matrices, blend_points
+from ..core.weights.split import side_fraction
 
 
 # ---------------------------------------------------------------------------
@@ -234,3 +235,46 @@ def edit_bone_head(context, arm_obj, name: str, head: Sequence[float]) -> None:
         if eb is not None:
             eb.use_connect = False
             eb.head = Vector(head)
+
+
+def split_group_by_side(obj: bpy.types.Object, source: str, twin: str, twin_side: float, blend: float,
+                        to_arm: np.ndarray) -> int:
+    """Move ``source``'s weight on the twin's side of the centre line to ``twin`` (fix ``split_side``).
+
+    ``to_arm`` maps object coordinates to armature space, where the side is decided; within ``blend``
+    of the centre line the weight splits linearly.  Returns the number of vertices that changed.
+    """
+    vg = obj.vertex_groups.get(source)
+    if vg is None:
+        return 0
+    tgt = obj.vertex_groups.get(twin) or obj.vertex_groups.new(name=twin)
+    me = obj.data
+    co = get_coords(me.vertices, len(me.vertices))
+    x = (co @ to_arm[:3, :3].T + to_arm[:3, 3])[:, 0]
+    frac = side_fraction(x, twin_side, blend)
+    normals = loop_normals(me) if len(me.loops) else None
+    changed = 0
+    bm = bmesh.new()
+    try:
+        bm.from_mesh(me)
+        layer = bm.verts.layers.deform.verify()
+        s_i, t_i = vg.index, tgt.index
+        for v in bm.verts:
+            dv = v[layer]
+            f = float(frac[v.index])
+            if s_i not in dv or f <= 0.0:
+                continue
+            w = dv[s_i]
+            if f >= 1.0:
+                del dv[s_i]
+            else:
+                dv[s_i] = w * (1.0 - f)
+            dv[t_i] = dv.get(t_i, 0.0) + w * f
+            changed += 1
+        bm.to_mesh(me)
+    finally:
+        bm.free()
+    if normals is not None:
+        set_loop_normals(me, normals)
+    me.update()
+    return changed

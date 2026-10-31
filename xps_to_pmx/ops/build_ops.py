@@ -7,7 +7,7 @@ import bpy
 from bpy.props import StringProperty
 
 from .. import props
-from ..pipeline import redo, stage_build, stage_export
+from ..pipeline import stage_build, stage_export
 
 
 def _finish(op, res, done_code: str) -> set:
@@ -67,27 +67,7 @@ class XPS2PMX_OT_open_export_dir(bpy.types.Operator):
         return {'FINISHED'}
 
 
-class XPS2PMX_OT_redo(bpy.types.Operator):
-    """删除本任务生成的对象，重新导入同一个 XPS，保留选项与手改的映射，自动重跑到原来的阶段"""
-    bl_idname = "xps2pmx.redo"
-    bl_label = "重来"
-    bl_options = {'REGISTER', 'UNDO'}
-
-    def invoke(self, context, event):
-        return context.window_manager.invoke_confirm(self, event)
-
-    def execute(self, context):
-        job = props.active_job(context)
-        if job is None:
-            self.report({'ERROR'}, "没有活动任务")
-            return {'CANCELLED'}
-        res, new = redo.run(context, job)
-        if new is not None and new.armature is not None:
-            context.view_layer.objects.active = new.armature
-        return _finish(self, res, "redo.done")
-
-
-CLASSES = (XPS2PMX_OT_build, XPS2PMX_OT_export, XPS2PMX_OT_open_export_dir, XPS2PMX_OT_redo)
+CLASSES = (XPS2PMX_OT_build, XPS2PMX_OT_export, XPS2PMX_OT_open_export_dir)
 
 
 def register() -> None:

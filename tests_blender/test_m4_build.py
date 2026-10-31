@@ -17,6 +17,10 @@ import harness  # noqa: E402
 
 import bpy  # noqa: E402
 
+ARGS = harness.parse_args()
+# 从头重做 exports and saves fix files: keep them in the test output folder
+os.environ["XPS2PMX_EXPORT_ROOT"] = os.path.join(ARGS.out, "m4", "redo_exports")
+os.environ["XPS2PMX_USER_DATA"] = os.path.join(ARGS.out, "m4", "user_data")
 harness.register_addon()
 from xps_to_pmx.blender import mmdtools_bridge as bridge  # noqa: E402
 from xps_to_pmx.blender import snapshot  # noqa: E402
@@ -133,8 +137,8 @@ def check_model(entry, out_dir):
 
 
 def check_redo(entry):
-    """『重来』keeps options and hand-edited slots and rebuilds to the same stage."""
-    from xps_to_pmx.pipeline import redo
+    """按修正从头重做 keeps options and hand-edited slots (via the fix list) and runs to ⑨."""
+    from xps_to_pmx.pipeline import runner
     c = harness.Checker(entry["id"] + " (redo)")
     harness.reset_scene()
     res, job = stage_import.run(bpy.context, entry["path"])
@@ -148,12 +152,14 @@ def check_redo(entry):
     stage_prepare.run(bpy.context, job)
     res = stage_build.run(bpy.context, job)
     c.check("first build ok", res.ok, _errors(res)[:3])
-    res, new = redo.run(bpy.context, job)
+    c.check("hand edit recorded in the fix list", job.fix_item("slot:left_toe_bone") is not None,
+            [f.key for f in job.fixes])
+    res, new = runner.redo(bpy.context, job)
     c.check("redo ok", res.ok, _errors(res)[:3])
     if new is None:
         return c
     c.check("one job left", len(bpy.context.scene.xps2pmx.jobs) == 1, len(bpy.context.scene.xps2pmx.jobs))
-    c.check("stage reached again", new.stage == "build", new.stage)
+    c.check("ran to the checkup", new.stage == "checkup", new.stage)
     c.check("options kept", (new.twist_mode, new.ik_preset) == ('SMOOTH', 'S18'), (new.twist_mode, new.ik_preset))
     toe = new.slot("left_toe_bone")
     c.check("hand edit kept (left toe unmapped)", toe.bone == "" and original != "", (toe.bone, toe.origin))
@@ -168,7 +174,7 @@ def check_redo(entry):
 
 
 def main():
-    args = harness.parse_args()
+    args = ARGS
     out_dir = os.path.join(args.out, "m4")
     models = harness.regression_models(args.models)
     checkers = [check_model(m, out_dir) for m in models]

@@ -1,4 +1,7 @@
-"""Add-on preferences: where user data and exports go (outside the add-on folder)."""
+"""Add-on preferences: where user data and exports go (outside the add-on folder).
+
+``XPS2PMX_USER_DATA`` and ``XPS2PMX_EXPORT_ROOT`` override both folders (tests, batch runs).
+"""
 from __future__ import annotations
 
 import os
@@ -36,11 +39,25 @@ def get(context: bpy.types.Context) -> XPS2PMX_Preferences:
 
 
 def user_data_dir(context: bpy.types.Context) -> str:
+    env = os.environ.get("XPS2PMX_USER_DATA")
+    if env:
+        return env
     try:
         configured = get(context).user_data_dir
     except KeyError:  # add-on loaded without being enabled (tests)
         configured = ""
     return bpy.path.abspath(configured) if configured else default_user_data_dir()
+
+
+def export_root(context: bpy.types.Context, default: str = r"D:\xps_exports") -> str:
+    env = os.environ.get("XPS2PMX_EXPORT_ROOT")
+    if env:
+        return env
+    try:
+        configured = get(context).export_root
+    except KeyError:  # add-on loaded without being enabled (tests)
+        configured = ""
+    return bpy.path.abspath(configured) if configured else default
 
 
 CLASSES = (XPS2PMX_Preferences,)

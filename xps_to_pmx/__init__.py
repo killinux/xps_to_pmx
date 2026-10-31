@@ -1,6 +1,6 @@
 """XPS → PMX: convert XPS / XNALara models into MMD PMX models inside Blender 3.6.
 
-Layers (see docs/design/XPS转PMX插件实施设计_v0.1.md §3):
+Layers (see docs/design/XPS转PMX插件实施设计_v0.2.md §3):
 ``core`` (pure Python, no bpy) → ``blender`` (bpy adapters; only
 ``blender.mmdtools_bridge`` imports mmd_tools) → ``pipeline`` (stage functions)
 → ``ops`` (operators) → ``ui`` (panels).
@@ -9,7 +9,7 @@ Layers (see docs/design/XPS转PMX插件实施设计_v0.1.md §3):
 bl_info = {
     "name": "XPS → PMX",
     "author": "xps_to_pmx contributors",
-    "version": (0, 1, 0),
+    "version": (0, 2, 0),
     "blender": (3, 6, 0),
     "location": "View3D > Sidebar > XPS→PMX；File > Import > XPS → PMX",
     "description": "把 XPS/XNALara 模型转换成 MMD PMX：骨骼识别与补全、映射检查、表情、物理、校验",
@@ -19,6 +19,7 @@ bl_info = {
 # Modules in dependency order; re-imported on "Reload Scripts" so edits apply without restarting.
 _MODULES = (
     "core.result",
+    "core.fixes",
     "core.xps.types",
     "core.xps.render_groups",
     "core.xps.reader",
@@ -28,14 +29,18 @@ _MODULES = (
     "core.spec",
     "core.rig.rigdata",
     "core.rig.topology",
+    "core.rig.limbs",
     "core.rig.lower_body",
     "core.rig.classify",
     "core.rig.identify",
     "core.checks.mapping",
+    "core.checks.cause",
+    "core.checks.checkup",
     "core.mapping_io",
     "core.pose",
     "core.weights.skin",
     "core.weights.rules",
+    "core.weights.split",
     "core.rig.skeleton",
     "core.mmd_material",
     "core.checks.export",
@@ -47,17 +52,22 @@ _MODULES = (
     "blender.rigedit",
     "blender.skeleton_apply",
     "blender.mmdtools_bridge",
+    "pipeline.fixlist",
     "pipeline.stage_import",
     "pipeline.stage_identify",
     "pipeline.stage_prepare",
     "pipeline.stage_build",
     "pipeline.stage_export",
-    "pipeline.redo",
+    "pipeline.stage_checkup",
+    "pipeline.runner",
     "ops.import_ops",
     "ops.mapping_ops",
     "ops.prepare_ops",
     "ops.build_ops",
+    "ops.checkup_ops",
     "ui.panel_main",
+    "ui.panel_checkup",
+    "ui.panel_steps",
     "ui.panel_mapping",
     "ui.panel_prepare",
     "ui.panel_build",
@@ -80,11 +90,12 @@ if IN_BLENDER:
                 importlib.reload(_mod)
 
     from . import prefs, props  # noqa: E402
-    from .ops import build_ops, import_ops, mapping_ops, prepare_ops  # noqa: E402
-    from .ui import panel_build, panel_main, panel_mapping, panel_prepare  # noqa: E402
+    from .ops import build_ops, checkup_ops, import_ops, mapping_ops, prepare_ops  # noqa: E402
+    from .ui import panel_build, panel_checkup, panel_main, panel_mapping, panel_prepare, panel_steps  # noqa: E402
 
-    _REGISTER_ORDER = (prefs, props, import_ops, mapping_ops, prepare_ops, build_ops, panel_main,
-                       panel_mapping, panel_prepare, panel_build)
+    # parents before sub-panels: main → 修正单 / 分步模式 → ② ③ ④ ⑧
+    _REGISTER_ORDER = (prefs, props, import_ops, mapping_ops, prepare_ops, build_ops, checkup_ops, panel_main,
+                       panel_checkup, panel_steps, panel_mapping, panel_prepare, panel_build)
 
 
 def register():

@@ -10,7 +10,7 @@ import bpy
 
 from .. import props
 
-BUILT_STAGES = ("build", "morphs", "physics", "check", "export")
+BUILT_STAGES = props.BUILT_STAGES
 
 LEVEL_ICONS = {'info': 'INFO', 'warning': 'ERROR', 'error': 'CANCEL'}
 ACTION_ICONS = {'map': 'BONE_DATA', 'merge': 'AUTOMERGE_ON', 'keep': 'PINNED', 'delete': 'TRASH'}
@@ -135,7 +135,7 @@ class XPS2PMX_PT_mapping(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
     bl_category = "XPS→PMX"
-    bl_parent_id = "XPS2PMX_PT_main"
+    bl_parent_id = "XPS2PMX_PT_steps"
 
     @classmethod
     def poll(cls, context):
@@ -149,7 +149,7 @@ class XPS2PMX_PT_mapping(bpy.types.Panel):
         arm = job.armature
         if job.stage in BUILT_STAGES:
             layout.label(text="MMD 骨架已生成：下面是生成时用的源骨映射（只读）", icon='LOCKED')
-            layout.label(text="要改映射：『重来』后重新识别")
+            layout.label(text="要改映射：点主面板的「分步重做」（从头导入并停在 ②）")
             layout = layout.column()
             layout.enabled = False
 
@@ -158,7 +158,9 @@ class XPS2PMX_PT_mapping(bpy.types.Panel):
         row.operator("xps2pmx.check_mapping", text="检查映射", icon='CHECKMARK')
         row = layout.row(align=True)
         row.label(text=f"约定：{job.convention or '—'}")
-        row.operator("xps2pmx.mapping_import", text="", icon='IMPORT')
+        sub = row.row(align=True)
+        sub.enabled = bool(job.bones)  # the CSV is matched against the identified bones
+        sub.operator("xps2pmx.mapping_import", text="", icon='IMPORT')
         row.operator("xps2pmx.mapping_export", text="", icon='EXPORT')
         row.operator("xps2pmx.mapping_reset_user", text="", icon='LOOP_BACK')
         if st.mapping_dirty:

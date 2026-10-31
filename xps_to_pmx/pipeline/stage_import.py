@@ -37,7 +37,10 @@ def run(context: bpy.types.Context, filepath: str) -> Tuple[StageResult, Optiona
         return res, None
     t_read = time.perf_counter() - t0
     for warning in model.warnings:
-        res.warning("import.reader", f"读取提示：{warning}")
+        if "after the last mesh" in warning:  # XPS 11 appends a trailer; the reader skips it on purpose
+            res.info("import.trailer", f"读取提示：{warning}")
+        else:
+            res.warning("import.reader", f"读取提示：{warning}")
     if not model.complete:
         res.error("import.incomplete", "文件不完整或已损坏，读取提前结束", path)
         return res, None

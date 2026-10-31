@@ -1,5 +1,10 @@
 """Stage ②: identify the skeleton, store the mapping in the job, run the mapping checks.
 
+The fix list (design doc §15.3) is applied here: ``split_side`` fixes first (they change
+weights), slot fixes as fixed slots, bone fixes after identification.  The cause checks
+(§15.5) then run on the source skeleton; fixes they mark automatic are added to the fix
+list and applied on the spot, so no redo is needed for them.
+
 Also: re-check after manual edits (rebuilding the identification from the job
 state, not re-identifying), and import / export of per-model mapping CSV files.
 """
@@ -13,7 +18,10 @@ import bpy
 
 from .. import prefs, props
 from ..blender import snapshot
+from ..core import fixes as fx
+from ..core.checks import cause
 from ..core.checks.mapping import CheckItem, check_mapping
+from ..core.fixes import Fix
 from ..core.mapping_io import MappingRow, parse_mapping, write_mapping
 from ..core.result import StageResult
 from ..core.rig.classify import Disposition
@@ -23,6 +31,7 @@ from ..core.rig.rigdata import RigData
 from ..core.rig.topology import TopologyResult
 from ..core.spec import BoneSpec, SpecError, load_bone_spec
 from ..core.spec.bone_slots import DEFAULT_PATH
+from . import fixlist
 
 STAGE = "identify"
 USER_SPEC_NAME = "bone_slots.csv"
@@ -34,7 +43,10 @@ def load_spec(context: bpy.types.Context) -> BoneSpec:
     return load_bone_spec(DEFAULT_PATH, [user])
 
 
-BUILT_STAGES = ("build", "morphs", "physics", "check", "export")
+BUILT_STAGES = props.BUILT_STAGES
+#: Cause-check codes; after ③ the source skeleton is gone, so re-checks keep the last results of these.
+CAUSE_CODES = ("mapping.merge_segment", "mapping.duplicate_name", "mapping.auto_fixed")
+PRE_PREPARE = ("", "import", "identify")
 
 
 def _require_armature(res: StageResult, job) -> Optional[bpy.types.Object]:
@@ -43,12 +55,13 @@ def _require_armature(res: StageResult, job) -> Optional[bpy.types.Object]:
         res.error("identify.no_armature", "当前任务没有骨架（先 ① 导入 XPS）")
         return None
     if job.stage in BUILT_STAGES:
-        res.error("identify.already_built", "MMD 骨架已生成，骨名已改成日文；要改映射请先『重来』")
+        res.error("identify.already_built", "MMD 骨架已生成，骨名已改成日文；要改映射请用「分步重做」")
         return None
     return arm
 
 
 def run(context: bpy.types.Context, job, keep_user: bool = True) -> StageResult:
+    """Identify; ``keep_user=False`` first drops the user's slot / bone fixes (「清除手动修改」)."""
     res = StageResult(STAGE)
     arm = _require_armature(res, job)
     if arm is None:
@@ -58,19 +71,27 @@ def run(context: bpy.types.Context, job, keep_user: bool = True) -> StageResult:
     except SpecError as exc:
         res.error("identify.spec_invalid", f"骨骼规格表有错误：{exc.problems[0]}（共 {len(exc.problems)} 处）")
         return res
+    if not keep_user:
+        _drop_user_mapping_fixes(context, job)
+    res.extend(fixlist.apply_splits(context, job))      # they change weights: before anything looks at them
     rig = snapshot.rig_from_blender(arm)
-    fixed = {}
-    if keep_user:
-        for s in job.slots:
-            if s.origin != 'user':
-                continue
-            if not s.bone:
-                fixed[s.name] = -1          # explicitly left empty → generated
-            elif s.bone in rig.by_name:
-                fixed[s.name] = rig.by_name[s.bone]
+    fixes = job.fix_list()
+    fixed: Dict[str, int] = {}
+    for slot_id, bone in fx.fixed_slots(fixes).items():
+        if not bone:
+            fixed[slot_id] = -1                           # explicitly left empty → generated
+        elif bone in rig.by_name:
+            fixed[slot_id] = rig.by_name[bone]
+        else:
+            res.warning("identify.fix_stale", f"修正单：槽位 {slot_id} 指定的骨 {bone} 不在骨架里，没有套用", bone)
+    for fix in fx.bone_fixes(fixes).values():             # "map" in the bone list = choosing a slot's bone
+        if fix.action == "map" and fix.slot_id and fix.slot_id not in fixed and fix.bone in rig.by_name:
+            fixed[fix.slot_id] = rig.by_name[fix.bone]
     ident = identify(rig, spec, fixed=fixed)
+    apply_bone_fixes(rig, ident, [f for f in fx.bone_fixes(fixes).values() if f.action != "map"], res)
+    cause_items = _cause_checks(context, job, spec, rig, ident, auto=True)
     _store(context, job, spec, rig, ident)
-    items = check_mapping(rig, spec, ident)
+    items = check_mapping(rig, spec, ident) + cause_items
     _store_checks(context, job, items)
     _fill_result(res, spec, ident, items)
     job.record(res)
@@ -89,13 +110,87 @@ def recheck(context: bpy.types.Context, job) -> StageResult:
     ident, problems = identification_from_job(job, spec, rig)
     for text in problems:
         res.warning("identify.stale_mapping", text)
-    items = check_mapping(rig, spec, ident)
+    if job.stage in PRE_PREPARE:
+        cause_items = _cause_checks(context, job, spec, rig, ident, auto=False)
+    else:
+        cause_items = [_item_from_report(c) for c in job.checks if c.code in CAUSE_CODES]
+    items = check_mapping(rig, spec, ident) + cause_items
     _store_checks(context, job, items)
     _fill_result(res, spec, ident, items)
     props.state(context).mapping_dirty = False
     job.record(res)
     return res
 
+
+def apply_bone_fixes(rig: RigData, ident: Identification, fixes, res: StageResult) -> None:
+    """Set the dispositions the fix list asks for (merge targets, keep / delete, categories)."""
+    for fix in fixes:
+        i = rig.by_name.get(fix.bone)
+        d = ident.bones.get(i) if i is not None else None
+        if d is None:
+            res.warning("identify.fix_stale", f"修正单：骨 {fix.bone} 不在骨架里，没有套用", fix.bone)
+            continue
+        if d.action == "map":
+            res.warning("identify.fix_conflict",
+                        f"修正单要求 {fix.bone} {fix.action}，但它是槽位主骨；要换主骨请改槽位", fix.bone)
+            continue
+        old = ident.slots.get(d.slot_id) if d.action == "merge" else None
+        if old is not None and i in old.merges:
+            old.merges.remove(i)
+        d.action = fix.action
+        d.slot_id = fix.slot_id if fix.action in ("map", "merge") else ""
+        if fix.category:
+            d.category = fix.category
+        d.origin = "checkup" if fix.origin == "checkup" else "user"
+        d.reason = f"修正单：{fix.note}" if fix.note else "修正单"
+        if fix.action == "merge" and fix.slot_id in ident.slots:
+            ident.slots[fix.slot_id].merges.append(i)
+
+
+def _cause_checks(context, job, spec: BoneSpec, rig: RigData, ident: Identification, auto: bool
+                  ) -> List[CheckItem]:
+    """Merge-segment and duplicate-name checks; automatic fixes go into the fix list and apply now."""
+    fixes = job.fix_list()
+    known = {f.key for f in fixes}              # never re-add a fix the user unticked or decided otherwise
+    analysis = cause.merge_analysis(rig, ident.slot_bones(), ident.bones)
+    items: List[CheckItem] = []
+    applied: List[Fix] = []
+    for it in cause.check_merge_segments(rig, spec, analysis, fx.user_decided(fixes)):
+        if auto and it.fix is not None and it.fix.auto and it.fix.key not in known:
+            applied.append(it.fix)
+        else:
+            items.append(it)
+    if applied:
+        with props.programmatic_writes(context):
+            for fix in applied:
+                job.upsert_fix(fix)
+        apply_bone_fixes(rig, ident, applied, StageResult(STAGE))
+        analysis = cause.merge_analysis(rig, ident.slot_bones(), ident.bones)
+    items += [cause.auto_fixed_item(f, spec) for f in job.fix_list() if f.auto and f.enabled and f.kind == "bone"]
+    pairs = cause.find_duplicates(rig)
+    items += cause.check_duplicates(rig, pairs)
+    job.merge_analysis_json = json.dumps([a.as_dict(rig) for a in analysis], ensure_ascii=False)
+    job.duplicates_json = json.dumps([p.as_dict(rig) for p in pairs], ensure_ascii=False)
+    return items
+
+
+def _drop_user_mapping_fixes(context, job) -> None:
+    keep = [f for f in job.fix_list() if not (f.kind in ("slot", "bone") and f.origin in ("user", "csv", "file"))]
+    with props.programmatic_writes(context):
+        job.set_fix_list(keep)
+
+
+def fix_from_json(text: str) -> Optional[Fix]:
+    if not text:
+        return None
+    try:
+        return Fix(**json.loads(text))
+    except (TypeError, ValueError):
+        return None
+
+
+def _item_from_report(c) -> CheckItem:
+    return CheckItem(c.level, c.code, c.text, c.slot_id, c.target, c.detail, fix_from_json(c.fix_json))
 
 def sync_plans_with_slots(context: bpy.types.Context, job) -> None:
     """After manual slot edits: slot primaries get action ``map``; bones that lost their slot are kept."""
@@ -205,6 +300,8 @@ def _store_checks(context, job, items: List[CheckItem]) -> None:
         c.text = it.text
         c.target = it.bone
         c.slot_id = it.slot_id
+        c.detail = it.detail
+        c.fix_json = json.dumps(it.fix.to_dict(), ensure_ascii=False) if it.fix is not None else ""
 
 
 def _fill_result(res: StageResult, spec: BoneSpec, ident: Identification, items: List[CheckItem]) -> None:
@@ -248,9 +345,13 @@ def export_csv(context: bpy.types.Context, job, path: str) -> StageResult:
 
 
 def import_csv(context: bpy.types.Context, job, path: str) -> StageResult:
+    """Apply a mapping CSV; rows that differ from the current mapping go into the fix list (origin csv)."""
     res = StageResult(STAGE)
     arm = _require_armature(res, job)
     if arm is None:
+        return res
+    if not job.bones:
+        res.error("identify.csv_before_identify", "先点「② 自动识别」，再导入映射 CSV")
         return res
     spec = load_spec(context)
     with open(path, encoding="utf-8-sig") as f:
@@ -259,7 +360,7 @@ def import_csv(context: bpy.types.Context, job, path: str) -> StageResult:
         res.warning("identify.csv_problem", text, path)
     by_src = {plan.src or plan.name: plan.name for plan in job.bones}
     by_name = {plan.name: plan.name for plan in job.bones}
-    resolved = 0
+    resolved = changed = 0
     with props.programmatic_writes(context):
         for row in parsed.rows:
             bone = by_src.get(row.source_bone) or by_name.get(row.source_bone)
@@ -267,16 +368,29 @@ def import_csv(context: bpy.types.Context, job, path: str) -> StageResult:
                 res.warning("identify.csv_unknown_bone", f"映射文件里的骨 {row.source_bone} 不在当前骨架里")
                 continue
             plan = job.bones.get(bone)
+            resolved += 1
             if row.action == "map":
+                slot = job.slot(row.slot_id)
+                if slot is None or slot.bone == bone:
+                    continue
                 for other in job.slots:  # a bone fills at most one slot
                     if other.bone == bone and other.name != row.slot_id:
                         other.bone, other.origin = "", 'NONE'
-                slot = job.slot(row.slot_id)
                 slot.bone, slot.origin, slot.reason, slot.confidence = bone, 'user', "映射文件", 1.0
-            plan.action, plan.slot_id, plan.origin = row.action, row.slot_id, 'user'
+                job.upsert_fix(Fix("slot", slot_id=row.slot_id, bone=bone, src=plan.src, origin="csv",
+                                   note="映射 CSV"))
+                changed += 1
+                continue
+            target = row.slot_id if row.action in ("map", "merge") else ""
+            if plan.action == row.action and (plan.slot_id == target or not target):
+                continue
+            plan.action, plan.slot_id, plan.origin = row.action, target, 'user'
             if row.note:
                 plan.reason = row.note
-            resolved += 1
-    res.info("identify.csv_imported", f"已导入 {resolved} 行映射（标记为手动）", path)
+            job.upsert_fix(Fix("bone", bone=bone, src=plan.src, action=row.action, slot_id=target, origin="csv",
+                               note=row.note[:80]))
+            changed += 1
+    res.info("identify.csv_imported", f"已导入 {resolved} 行映射，其中 {changed} 行与当前结果不同，已记入修正单", path)
     res.extend(recheck(context, job))
     return res
+

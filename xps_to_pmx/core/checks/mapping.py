@@ -11,6 +11,7 @@ from typing import Dict, List, Optional
 
 import numpy as np
 
+from ..fixes import Fix
 from ..rig.identify import Identification
 from ..rig.rigdata import RigData
 from ..spec import BoneSpec
@@ -31,6 +32,8 @@ class CheckItem:
     text: str
     slot_id: str = ""
     bone: str = ""
+    detail: str = ""                      # evidence (numbers) shown under the text
+    fix: Optional[Fix] = None             # suggested fix (design doc §15.3)
 
 
 def _name(rig: RigData, bone: int) -> str:

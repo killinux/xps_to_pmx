@@ -31,7 +31,7 @@ def run(context: bpy.types.Context, job) -> StageResult:
     if arm is None or arm.name not in bpy.data.objects:
         res.error("prepare.no_armature", "当前任务没有骨架（先 ① 导入）")
         return res
-    if job.stage in ("build", "morphs", "physics", "check", "export"):
+    if job.stage in props.BUILT_STAGES:
         res.error("prepare.already_built", "MMD 骨架已生成；要重新预处理请先『重来』")
         return res
     if not job.slots:
